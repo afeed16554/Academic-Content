@@ -93,6 +93,32 @@
             line-height: 1.6;
         }
 
+        /* MathJax Responsive Scrolling - Added to prevent cut-offs */
+        mjx-container {
+            max-width: 100%;
+            overflow-x: auto;
+            overflow-y: hidden;
+        }
+        mjx-container:not([display="true"]) {
+            display: inline-block;
+            vertical-align: middle;
+        }
+        
+        /* Custom thin scrollbar for math and wrappers */
+        .overflow-x-auto::-webkit-scrollbar,
+        mjx-container::-webkit-scrollbar {
+            height: 4px;
+        }
+        .overflow-x-auto::-webkit-scrollbar-thumb,
+        mjx-container::-webkit-scrollbar-thumb {
+            background-color: #cbd5e1;
+            border-radius: 2px;
+        }
+        .dark .overflow-x-auto::-webkit-scrollbar-thumb,
+        .dark mjx-container::-webkit-scrollbar-thumb {
+            background-color: #475569;
+        }
+
         /* Animations */
         .animate-fade-in {
             animation: fadeIn 0.4s ease-in-out;
@@ -114,7 +140,7 @@
     <!-- Header Section -->
     <header class="bg-gradient-to-r from-blue-700 to-indigo-800 dark:from-slate-900 dark:via-indigo-950 dark:to-slate-900 text-white shadow-lg py-10 px-4 text-center relative border-b border-transparent dark:border-indigo-900/50">
         <!-- Dark Mode Toggle -->
-        <button onclick="toggleDarkMode()" class="absolute top-4 right-4 bg-white/20 hover:bg-white/30 text-white p-2 rounded-full backdrop-blur-sm transition-all" aria-label="Toggle Dark Mode">
+        <button onclick="toggleDarkMode()" class="fixed z-50 top-4 right-4 md:top-6 md:right-6 bg-white/80 dark:bg-slate-800/80 text-blue-900 dark:text-blue-100 hover:bg-white dark:hover:bg-slate-700 p-2.5 rounded-full backdrop-blur-md shadow-lg border border-gray-200/50 dark:border-slate-700/50 transition-all" aria-label="Toggle Dark Mode">
             <svg id="moon-icon" class="w-6 h-6 hidden dark:block" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path></svg>
             <svg id="sun-icon" class="w-6 h-6 block dark:hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path></svg>
         </button>
@@ -127,8 +153,8 @@
     </header>
 
     <!-- Pill Tabs -->
-    <div class="flex justify-center mt-8 px-4 relative z-10">
-        <div class="flex bg-gray-200 dark:bg-slate-800 p-1 rounded-full shadow-inner border border-gray-300 dark:border-slate-700">
+    <div class="fixed bottom-6 left-0 right-0 z-50 flex justify-center px-4 md:static md:mt-8 md:bottom-auto pointer-events-none">
+        <div class="flex bg-white/80 dark:bg-slate-800/80 backdrop-blur-lg p-1.5 rounded-full shadow-2xl border border-gray-200/60 dark:border-slate-700/60 pointer-events-auto">
             <button id="btn-paper1" onclick="switchTab('paper1')" class="px-6 py-2 rounded-full font-bold text-sm md:text-lg transition-all bg-blue-600 text-white shadow-md dark:bg-blue-500">
                 রসায়ন ১ম পত্র
             </button>
@@ -264,7 +290,7 @@
     </div>
 
     <!-- Main Content Container -->
-    <main class="max-w-5xl mx-auto px-4 py-6 space-y-8">
+    <main class="max-w-5xl mx-auto px-4 pt-6 pb-28 md:pb-8 space-y-8">
 
         <!-- ============================== -->
         <!-- PAPER 1 CONTENT (Source 2)     -->
@@ -379,7 +405,7 @@
                                         <li>তুলনা অর্থাৎ কোনটি অধিকতর গ্রহণযোগ্য।</li>
                                         <li>বোর মডেলের স্বীকার্য ৩টি বিশেষ করে কৌণিক ভরবেগ।</li>
                                         <li>বোর তত্ত্বের সাহায্যে n তম কক্ষপথের শক্তি ও ব্যাসার্ধ নির্ণয়।
-                                            <div class="mt-3 mb-1 text-sm md:text-base text-gray-700 dark:text-gray-300 bg-white dark:bg-slate-900 p-3 rounded border dark:border-slate-700 shadow-sm">
+                                            <div class="mt-3 mb-1 text-sm md:text-base text-gray-700 dark:text-gray-300 bg-white dark:bg-slate-900 p-3 rounded border dark:border-slate-700 shadow-sm overflow-x-auto max-w-full">
                                                 [★★★] n তম কক্ষপথের শক্তি, $E_n = -\left(\frac{2\pi^{2}me^{4}}{h^{2}}\right) \times \left(\frac{Z^{2}}{n^{2}}\right)$<br><br>
                                                 n তম কক্ষপথের ব্যাসার্ধ, $r_n = \left(\frac{h^{2}}{4\pi^{2}me^{2}}\right) \times \left(\frac{n^{2}}{Z}\right)$
                                             </div>
@@ -407,7 +433,7 @@
                                     <ol class="nested-list text-slate-700 dark:text-slate-300">
                                         <li>কেন সৃষ্টি হয়?</li>
                                         <li>[★★★] পরমাণুর বর্ণালির সিরিজ ও রিডবার্গ সমীকরণভিত্তিক math।<br>
-                                            <span class="inline-block bg-white dark:bg-slate-900 px-3 py-2 border dark:border-slate-700 rounded mt-2 shadow-sm font-medium">$\bar{\nu} = \frac{1}{\lambda} = R_H \times Z^2 \times \left(\frac{1}{n_1^2} - \frac{1}{n_2^2}\right)$</span>
+                                            <span class="inline-block bg-white dark:bg-slate-900 px-3 py-2 border dark:border-slate-700 rounded mt-2 shadow-sm font-medium overflow-x-auto max-w-full">$\bar{\nu} = \frac{1}{\lambda} = R_H \times Z^2 \times \left(\frac{1}{n_1^2} - \frac{1}{n_2^2}\right)$</span>
                                         </li>
                                         <li>দৃশ্যমান আলোর তরঙ্গদৈর্ঘ্যের পরিসর (বেগুনী থেকে লাল পর্যন্ত)।</li>
                                         <li>UV, IR রশ্মির ব্যবহার (যথাক্রমে জাল টাকা সনাক্তকরণ ও চিকিৎসা ক্ষেত্রে ব্যবহার)।</li>
@@ -424,7 +450,7 @@
                                 </li>
                                 <li class="bg-blue-50 dark:bg-slate-800">
                                     <strong class="text-lg text-slate-800 dark:text-slate-200 block">৬) আয়ন সনাক্তকরণ: (পড়তেই হবে) [★★★]</strong>
-                                    <div class="text-slate-700 dark:text-slate-300 mt-3 bg-white dark:bg-slate-900 p-3 rounded border dark:border-slate-700 inline-block shadow-sm">
+                                    <div class="text-slate-700 dark:text-slate-300 mt-3 bg-white dark:bg-slate-900 p-3 rounded border dark:border-slate-700 inline-block shadow-sm overflow-x-auto max-w-full">
                                         $Cu^{2+}$, $Na^{+}$, $NH_{4}^{+}$, $Cl^{-}$, $SO_{4}^{2-}$, $CO_{3}^{2-}$
                                     </div>
                                 </li>
@@ -1423,7 +1449,7 @@
             li.innerHTML = `
                 <label class="inline-flex items-start gap-3 w-full cursor-pointer group">
                     <input type="checkbox" id="${id}" ${isChecked ? 'checked' : ''} class="checklist-item mt-1 w-5 h-5 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-slate-800 focus:ring-2 dark:bg-slate-700 dark:border-slate-500 cursor-pointer transition-colors duration-200">
-                    <span class="content-wrapper flex-1 transition-all duration-200 ${styleClasses}">
+                    <span class="content-wrapper flex-1 min-w-0 transition-all duration-200 overflow-x-auto ${styleClasses}">
                         ${contentHTML}
                     </span>
                 </label>
