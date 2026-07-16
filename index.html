@@ -112,7 +112,7 @@
 <body class="antialiased bg-slate-50 text-slate-900 dark:bg-slate-900 dark:text-slate-200 transition-colors duration-300">
 
     <!-- Header Section -->
-    <header class="bg-gradient-to-r from-blue-700 to-indigo-800 dark:from-slate-800 dark:to-slate-950 text-white shadow-lg py-10 px-4 text-center relative">
+    <header class="bg-gradient-to-r from-blue-700 to-indigo-800 dark:from-slate-900 dark:via-indigo-950 dark:to-slate-900 text-white shadow-lg py-10 px-4 text-center relative border-b border-transparent dark:border-indigo-900/50">
         <!-- Dark Mode Toggle -->
         <button onclick="toggleDarkMode()" class="absolute top-4 right-4 bg-white/20 hover:bg-white/30 text-white p-2 rounded-full backdrop-blur-sm transition-all" aria-label="Toggle Dark Mode">
             <svg id="moon-icon" class="w-6 h-6 hidden dark:block" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path></svg>
@@ -121,8 +121,8 @@
 
         <div class="max-w-4xl mx-auto">
             <h1 class="text-2xl md:text-4xl font-bold mb-3 tracking-wide">মোহাম্মদপুর প্রিপারেটরি স্কুল এন্ড কলেজ</h1>
-            <h2 class="text-xl md:text-2xl font-semibold mb-2 text-blue-100 dark:text-gray-300">এইচ এস সি পরীক্ষা - ২০২৬</h2>
-            <p class="text-md md:text-lg text-blue-200 dark:text-gray-400 mt-2">প্রস্তুতকারক: <span class="font-semibold text-white">আতিকুন্নাহার মিতু</span>, প্রভাষক (রসায়ন)</p>
+            <h2 class="text-xl md:text-2xl font-semibold mb-2 text-blue-100 dark:text-indigo-200">এইচ এস সি পরীক্ষা - ২০২৬ / নির্বাচনি পরীক্ষা-২০২৫</h2>
+            <p class="text-md md:text-lg text-blue-200 dark:text-indigo-300/80 mt-2">প্রস্তুতকারক: <span class="font-semibold text-white">আতিকুন্নাহার মিতু</span>, প্রভাষক (রসায়ন)</p>
         </div>
     </header>
 
@@ -139,27 +139,118 @@
     </div>
 
     <!-- Progress & Score Section -->
-    <div class="max-w-3xl mx-auto px-4 mt-6">
+    <div class="max-w-4xl mx-auto px-4 mt-6">
         <div class="bg-white dark:bg-slate-800 p-5 rounded-xl shadow-sm border border-gray-200 dark:border-slate-700">
-            <!-- Paper 1 Score -->
+            
+            <!-- Paper 1 Score Dashboard -->
             <div id="p1-score-container" class="block animate-fade-in">
-                <div class="flex justify-between items-center mb-2">
-                    <span class="text-sm font-bold text-slate-700 dark:text-slate-300">১ম পত্র প্রস্তুতি অগ্রগতি</span>
-                    <span id="p1-score" class="text-sm font-bold text-blue-700 dark:text-blue-300 bg-blue-100 dark:bg-blue-900/50 py-1 px-3 rounded-full border border-blue-200 dark:border-blue-700">0 / 0</span>
+                <div class="flex justify-between items-center mb-3 pb-3 border-b border-gray-100 dark:border-slate-700">
+                    <span class="text-base font-bold text-slate-800 dark:text-slate-200">১ম পত্র - সর্বমোট প্রস্তুতি</span>
+                    <span id="p1-total-score" class="text-sm font-bold text-blue-700 dark:text-blue-300 bg-blue-50 dark:bg-blue-900/30 py-1 px-3 rounded-md border border-blue-100 dark:border-blue-800">0 / 0</span>
                 </div>
-                <div class="w-full bg-gray-200 rounded-full h-2.5 dark:bg-slate-700 overflow-hidden">
-                    <div id="p1-progress-bar" class="bg-gradient-to-r from-blue-500 to-indigo-600 h-2.5 rounded-full transition-all duration-700 ease-out" style="width: 0%"></div>
+                <!-- Total Progress Bar -->
+                <div class="w-full bg-gray-100 rounded-full h-3 mb-6 dark:bg-slate-700 overflow-hidden shadow-inner">
+                    <div id="p1-total-bar" class="bg-gradient-to-r from-blue-500 to-indigo-600 h-3 rounded-full transition-all duration-700 ease-out" style="width: 0%"></div>
+                </div>
+                
+                <!-- Category Breakdown Grid -->
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                    <!-- Gyan -->
+                    <div>
+                        <div class="flex justify-between text-xs mb-1.5 font-medium text-slate-600 dark:text-slate-400">
+                            <span>জ্ঞানমূলক</span>
+                            <span id="p1-gyan-score">0/0</span>
+                        </div>
+                        <div class="w-full bg-gray-100 rounded-full h-1.5 dark:bg-slate-700">
+                            <div id="p1-gyan-bar" class="bg-sky-500 h-1.5 rounded-full transition-all duration-500" style="width: 0%"></div>
+                        </div>
+                    </div>
+                    <!-- Onudhabon -->
+                    <div>
+                        <div class="flex justify-between text-xs mb-1.5 font-medium text-slate-600 dark:text-slate-400">
+                            <span>অনুধাবন</span>
+                            <span id="p1-onudhabon-score">0/0</span>
+                        </div>
+                        <div class="w-full bg-gray-100 rounded-full h-1.5 dark:bg-slate-700">
+                            <div id="p1-onudhabon-bar" class="bg-indigo-500 h-1.5 rounded-full transition-all duration-500" style="width: 0%"></div>
+                        </div>
+                    </div>
+                    <!-- Ucchotor -->
+                    <div>
+                        <div class="flex justify-between text-xs mb-1.5 font-medium text-slate-600 dark:text-slate-400">
+                            <span>উচ্চতর দক্ষতা</span>
+                            <span id="p1-ucchotor-score">0/0</span>
+                        </div>
+                        <div class="w-full bg-gray-100 rounded-full h-1.5 dark:bg-slate-700">
+                            <div id="p1-ucchotor-bar" class="bg-purple-500 h-1.5 rounded-full transition-all duration-500" style="width: 0%"></div>
+                        </div>
+                    </div>
+                    <!-- Suggestion -->
+                    <div>
+                        <div class="flex justify-between text-xs mb-1.5 font-medium text-slate-600 dark:text-slate-400">
+                            <span>সাজেশন</span>
+                            <span id="p1-suggestion-score">0/0</span>
+                        </div>
+                        <div class="w-full bg-gray-100 rounded-full h-1.5 dark:bg-slate-700">
+                            <div id="p1-suggestion-bar" class="bg-teal-500 h-1.5 rounded-full transition-all duration-500" style="width: 0%"></div>
+                        </div>
+                    </div>
                 </div>
             </div>
             
-            <!-- Paper 2 Score -->
+            <!-- Paper 2 Score Dashboard -->
             <div id="p2-score-container" class="hidden animate-fade-in">
-                <div class="flex justify-between items-center mb-2">
-                    <span class="text-sm font-bold text-slate-700 dark:text-slate-300">২য় পত্র প্রস্তুতি অগ্রগতি</span>
-                    <span id="p2-score" class="text-sm font-bold text-blue-700 dark:text-blue-300 bg-blue-100 dark:bg-blue-900/50 py-1 px-3 rounded-full border border-blue-200 dark:border-blue-700">0 / 0</span>
+                <div class="flex justify-between items-center mb-3 pb-3 border-b border-gray-100 dark:border-slate-700">
+                    <span class="text-base font-bold text-slate-800 dark:text-slate-200">২য় পত্র - সর্বমোট প্রস্তুতি</span>
+                    <span id="p2-total-score" class="text-sm font-bold text-blue-700 dark:text-blue-300 bg-blue-50 dark:bg-blue-900/30 py-1 px-3 rounded-md border border-blue-100 dark:border-blue-800">0 / 0</span>
                 </div>
-                <div class="w-full bg-gray-200 rounded-full h-2.5 dark:bg-slate-700 overflow-hidden">
-                    <div id="p2-progress-bar" class="bg-gradient-to-r from-blue-500 to-indigo-600 h-2.5 rounded-full transition-all duration-700 ease-out" style="width: 0%"></div>
+                <!-- Total Progress Bar -->
+                <div class="w-full bg-gray-100 rounded-full h-3 mb-6 dark:bg-slate-700 overflow-hidden shadow-inner">
+                    <div id="p2-total-bar" class="bg-gradient-to-r from-blue-500 to-indigo-600 h-3 rounded-full transition-all duration-700 ease-out" style="width: 0%"></div>
+                </div>
+                
+                <!-- Category Breakdown Grid -->
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                    <!-- Gyan -->
+                    <div>
+                        <div class="flex justify-between text-xs mb-1.5 font-medium text-slate-600 dark:text-slate-400">
+                            <span>জ্ঞানমূলক</span>
+                            <span id="p2-gyan-score">0/0</span>
+                        </div>
+                        <div class="w-full bg-gray-100 rounded-full h-1.5 dark:bg-slate-700">
+                            <div id="p2-gyan-bar" class="bg-sky-500 h-1.5 rounded-full transition-all duration-500" style="width: 0%"></div>
+                        </div>
+                    </div>
+                    <!-- Onudhabon -->
+                    <div>
+                        <div class="flex justify-between text-xs mb-1.5 font-medium text-slate-600 dark:text-slate-400">
+                            <span>অনুধাবন</span>
+                            <span id="p2-onudhabon-score">0/0</span>
+                        </div>
+                        <div class="w-full bg-gray-100 rounded-full h-1.5 dark:bg-slate-700">
+                            <div id="p2-onudhabon-bar" class="bg-indigo-500 h-1.5 rounded-full transition-all duration-500" style="width: 0%"></div>
+                        </div>
+                    </div>
+                    <!-- Ucchotor -->
+                    <div>
+                        <div class="flex justify-between text-xs mb-1.5 font-medium text-slate-600 dark:text-slate-400">
+                            <span>উচ্চতর দক্ষতা</span>
+                            <span id="p2-ucchotor-score">0/0</span>
+                        </div>
+                        <div class="w-full bg-gray-100 rounded-full h-1.5 dark:bg-slate-700">
+                            <div id="p2-ucchotor-bar" class="bg-purple-500 h-1.5 rounded-full transition-all duration-500" style="width: 0%"></div>
+                        </div>
+                    </div>
+                    <!-- Suggestion -->
+                    <div>
+                        <div class="flex justify-between text-xs mb-1.5 font-medium text-slate-600 dark:text-slate-400">
+                            <span>সাজেশন</span>
+                            <span id="p2-suggestion-score">0/0</span>
+                        </div>
+                        <div class="w-full bg-gray-100 rounded-full h-1.5 dark:bg-slate-700">
+                            <div id="p2-suggestion-bar" class="bg-teal-500 h-1.5 rounded-full transition-all duration-500" style="width: 0%"></div>
+                        </div>
+                    </div>
                 </div>
             </div>
             
@@ -1243,22 +1334,56 @@
 
         const progressData = JSON.parse(localStorage.getItem('hsc_chem_progress') || '{}');
 
-        function updateScores() {
-            // Calculate Paper 1 Score
-            const p1Checkboxes = document.querySelectorAll('#paper1 .checklist-item');
-            const p1Total = p1Checkboxes.length;
-            const p1Checked = Array.from(p1Checkboxes).filter(cb => cb.checked).length;
+        function getCategoryStats(paperId, keyword) {
+            const paper = document.getElementById(paperId);
+            const summaries = Array.from(paper.querySelectorAll('summary span'));
+            let total = 0;
+            let checked = 0;
             
-            document.getElementById('p1-score').innerText = `${p1Checked} / ${p1Total}`;
-            document.getElementById('p1-progress-bar').style.width = p1Total ? (p1Checked / p1Total * 100) + '%' : '0%';
+            summaries.forEach(span => {
+                if (span.textContent.includes(keyword)) {
+                    const details = span.closest('details');
+                    const checkboxes = details.querySelectorAll('.checklist-item');
+                    total += checkboxes.length;
+                    checked += Array.from(checkboxes).filter(cb => cb.checked).length;
+                }
+            });
+            return { total, checked };
+        }
 
-            // Calculate Paper 2 Score
-            const p2Checkboxes = document.querySelectorAll('#paper2 .checklist-item');
-            const p2Total = p2Checkboxes.length;
-            const p2Checked = Array.from(p2Checkboxes).filter(cb => cb.checked).length;
-            
-            document.getElementById('p2-score').innerText = `${p2Checked} / ${p2Total}`;
-            document.getElementById('p2-progress-bar').style.width = p2Total ? (p2Checked / p2Total * 100) + '%' : '0%';
+        function updateScores() {
+            const categories = [
+                { id: 'gyan', keyword: 'জ্ঞানমূলক' },
+                { id: 'onudhabon', keyword: 'অনুধাবন' },
+                { id: 'ucchotor', keyword: 'উচ্চতর' },
+                { id: 'suggestion', keyword: 'সাজেশন' }
+            ];
+
+            ['p1', 'p2'].forEach((prefix, index) => {
+                const paperId = index === 0 ? 'paper1' : 'paper2';
+                let paperTotal = 0;
+                let paperChecked = 0;
+
+                // Update Mini Progress Bars
+                categories.forEach(cat => {
+                    const stats = getCategoryStats(paperId, cat.keyword);
+                    paperTotal += stats.total;
+                    paperChecked += stats.checked;
+
+                    const scoreText = document.getElementById(`${prefix}-${cat.id}-score`);
+                    const progressBar = document.getElementById(`${prefix}-${cat.id}-bar`);
+                    
+                    if (scoreText) scoreText.innerText = `${stats.checked}/${stats.total}`;
+                    if (progressBar) progressBar.style.width = stats.total ? (stats.checked / stats.total * 100) + '%' : '0%';
+                });
+
+                // Update Total Progress Bar for the paper
+                const totalScoreText = document.getElementById(`${prefix}-total-score`);
+                const totalProgressBar = document.getElementById(`${prefix}-total-bar`);
+                
+                if (totalScoreText) totalScoreText.innerText = `${paperChecked} / ${paperTotal}`;
+                if (totalProgressBar) totalProgressBar.style.width = paperTotal ? (paperChecked / paperTotal * 100) + '%' : '0%';
+            });
         }
 
         let resetClicks = 0;
@@ -1334,6 +1459,3 @@
     </script>
 </body>
 </html>
-
-
-
