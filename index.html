@@ -11,7 +11,20 @@
         tailwind.config = {
             darkMode: 'class',
             theme: {
-                extend: {}
+                extend: {
+                    colors: {
+                        darkBg: '#0B1220',
+                        darkSurface: '#131C2E',
+                        darkBorder: '#22304A',
+                        lightBg: '#F5F7FB',
+                        lightSurface: '#FFFFFF',
+                        lightBorder: '#E5E7EB',
+                        primaryBlue: '#3B82F6',
+                        darkPrimaryBlue: '#5B8CFF',
+                        progTrackLight: '#E2E8F0',
+                        progTrackDark: '#25324A'
+                    }
+                }
             }
         }
     </script>
@@ -32,7 +45,7 @@
                 fontCache: 'global'
             },
             startup: {
-                typeset: false // We will trigger it manually after our checklist script runs
+                typeset: false 
             }
         };
     </script>
@@ -93,32 +106,6 @@
             line-height: 1.6;
         }
 
-        /* MathJax Responsive Scrolling - Added to prevent cut-offs */
-        mjx-container {
-            max-width: 100%;
-            overflow-x: auto;
-            overflow-y: hidden;
-        }
-        mjx-container:not([display="true"]) {
-            display: inline-block;
-            vertical-align: middle;
-        }
-        
-        /* Custom thin scrollbar for math and wrappers */
-        .overflow-x-auto::-webkit-scrollbar,
-        mjx-container::-webkit-scrollbar {
-            height: 4px;
-        }
-        .overflow-x-auto::-webkit-scrollbar-thumb,
-        mjx-container::-webkit-scrollbar-thumb {
-            background-color: #cbd5e1;
-            border-radius: 2px;
-        }
-        .dark .overflow-x-auto::-webkit-scrollbar-thumb,
-        .dark mjx-container::-webkit-scrollbar-thumb {
-            background-color: #475569;
-        }
-
         /* Animations */
         .animate-fade-in {
             animation: fadeIn 0.4s ease-in-out;
@@ -131,158 +118,160 @@
         /* Checkbox custom style adjustments */
         .checklist-item {
             flex-shrink: 0;
-            margin-top: 0.25rem; /* align with text */
+            margin-top: 0.25rem; 
+        }
+
+        /* Thin Scrollbar for math equations to prevent cutting off on mobile */
+        ::-webkit-scrollbar {
+            height: 5px;
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+            background-color: #CBD5E1;
+            border-radius: 10px;
+        }
+        .dark ::-webkit-scrollbar-thumb {
+            background-color: #475569;
+        }
+        mjx-container {
+            overflow-x: auto;
+            overflow-y: hidden;
+            max-width: 100%;
+            padding-bottom: 2px;
         }
     </style>
 </head>
-<body class="antialiased bg-slate-50 text-slate-900 dark:bg-slate-900 dark:text-slate-200 transition-colors duration-300">
+<body class="antialiased bg-lightBg text-slate-900 dark:bg-darkBg dark:text-slate-200 transition-colors duration-300">
 
     <!-- Header Section -->
-    <header class="bg-gradient-to-r from-blue-700 to-indigo-800 dark:from-slate-900 dark:via-indigo-950 dark:to-slate-900 text-white shadow-lg py-10 px-4 text-center relative border-b border-transparent dark:border-indigo-900/50">
+    <header class="bg-gradient-to-r from-[#2563EB] to-[#4338CA] dark:from-[#173A8A] dark:via-[#233FD3] dark:to-[#4438CA] text-white shadow-lg py-10 px-4 text-center relative z-40">
         <!-- Dark Mode Toggle -->
-        <button onclick="toggleDarkMode()" class="fixed z-50 top-4 right-4 md:top-6 md:right-6 bg-white/80 dark:bg-slate-800/80 text-blue-900 dark:text-blue-100 hover:bg-white dark:hover:bg-slate-700 p-2.5 rounded-full backdrop-blur-md shadow-lg border border-gray-200/50 dark:border-slate-700/50 transition-all" aria-label="Toggle Dark Mode">
+        <button onclick="toggleDarkMode()" class="fixed top-4 right-4 z-50 bg-white/10 hover:bg-white/20 text-white p-2.5 rounded-full backdrop-blur-md border border-white/20 shadow-lg transition-all" aria-label="Toggle Dark Mode">
             <svg id="moon-icon" class="w-6 h-6 hidden dark:block" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path></svg>
             <svg id="sun-icon" class="w-6 h-6 block dark:hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path></svg>
         </button>
 
         <div class="max-w-4xl mx-auto">
             <h1 class="text-2xl md:text-4xl font-bold mb-3 tracking-wide">মোহাম্মদপুর প্রিপারেটরি স্কুল এন্ড কলেজ</h1>
-            <h2 class="text-xl md:text-2xl font-semibold mb-2 text-blue-100 dark:text-indigo-200">এইচ এস সি পরীক্ষা - ২০২৬</h2>
-            <p class="text-md md:text-lg text-blue-200 dark:text-indigo-300/80 mt-2">প্রস্তুতকারক: <span class="font-semibold text-white">আতিকুন্নাহার মিতু</span>, প্রভাষক (রসায়ন)</p>
+            <h2 class="text-xl md:text-2xl font-semibold mb-2 text-blue-100 dark:text-indigo-200">এইচ এস সি পরীক্ষা - ২০২৬ / নির্বাচনি পরীক্ষা-২০২৫</h2>
+            <p class="text-md md:text-lg text-blue-200 dark:text-indigo-300 mt-2">প্রস্তুতকারক: <span class="font-semibold text-white">আতিকুন্নাহার মিতু</span>, প্রভাষক (রসায়ন)</p>
         </div>
     </header>
 
-    <!-- Pill Tabs -->
-    <div class="fixed bottom-6 left-0 right-0 z-50 flex justify-center px-4 md:static md:mt-8 md:bottom-auto pointer-events-none">
-        <div class="flex bg-white/80 dark:bg-slate-800/80 backdrop-blur-lg p-1.5 rounded-full shadow-2xl border border-gray-200/60 dark:border-slate-700/60 pointer-events-auto">
-            <button id="btn-paper1" onclick="switchTab('paper1')" class="px-6 py-2 rounded-full font-bold text-sm md:text-lg transition-all bg-blue-600 text-white shadow-md dark:bg-blue-500">
+    <!-- Pill Tabs (Floating on Mobile) -->
+    <div class="fixed bottom-6 left-0 right-0 md:static md:mt-8 flex justify-center px-4 z-50 pointer-events-none">
+        <div class="flex bg-white/80 dark:bg-darkSurface/80 p-1.5 rounded-full shadow-lg border border-gray-200 dark:border-darkBorder backdrop-blur-md pointer-events-auto">
+            <button id="btn-paper1" onclick="switchTab('paper1')" class="px-6 py-2 rounded-full font-bold text-sm md:text-lg transition-all bg-[#3B82F6] text-white shadow-[0_8px_24px_rgba(37,99,235,0.30)] border-transparent">
                 রসায়ন ১ম পত্র
             </button>
-            <button id="btn-paper2" onclick="switchTab('paper2')" class="px-6 py-2 rounded-full font-bold text-sm md:text-lg transition-all text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400">
+            <button id="btn-paper2" onclick="switchTab('paper2')" class="px-6 py-2 rounded-full font-bold text-sm md:text-lg transition-all text-slate-700 dark:text-slate-300 hover:text-primaryBlue">
                 রসায়ন ২য় পত্র
             </button>
         </div>
     </div>
 
     <!-- Progress & Score Section -->
-    <div class="max-w-4xl mx-auto px-4 mt-6">
-        <div class="bg-white dark:bg-slate-800 p-5 rounded-xl shadow-sm border border-gray-200 dark:border-slate-700">
+    <div class="max-w-3xl mx-auto px-4 mt-8 md:mt-6">
+        <div class="bg-lightSurface dark:bg-darkSurface p-5 rounded-xl shadow-sm border border-lightBorder dark:border-darkBorder">
             
-            <!-- Paper 1 Score Dashboard -->
-            <div id="p1-score-container" class="block animate-fade-in">
-                <div class="flex justify-between items-center mb-3 pb-3 border-b border-gray-100 dark:border-slate-700">
-                    <span class="text-base font-bold text-slate-800 dark:text-slate-200">১ম পত্র - সর্বমোট প্রস্তুতি</span>
-                    <span id="p1-total-score" class="text-sm font-bold text-blue-700 dark:text-blue-300 bg-blue-50 dark:bg-blue-900/30 py-1 px-3 rounded-md border border-blue-100 dark:border-blue-800">0 / 0</span>
+            <!-- Paper 1 Dashboard -->
+            <div id="p1-score-container" class="block animate-fade-in space-y-4">
+                <div class="flex justify-between items-center mb-1 border-b border-gray-100 dark:border-gray-800 pb-2">
+                    <span class="text-base font-bold text-slate-800 dark:text-slate-100">১ম পত্র প্রস্তুতি অগ্রগতি</span>
+                    <span id="p1-total-score" class="text-sm font-bold text-primaryBlue bg-blue-50 dark:bg-blue-900/30 py-1 px-3 rounded-full border border-blue-200 dark:border-blue-800">0 / 0</span>
                 </div>
-                <!-- Total Progress Bar -->
-                <div class="w-full bg-gray-100 rounded-full h-3 mb-6 dark:bg-slate-700 overflow-hidden shadow-inner">
-                    <div id="p1-total-bar" class="bg-gradient-to-r from-blue-500 to-indigo-600 h-3 rounded-full transition-all duration-700 ease-out" style="width: 0%"></div>
+                <div class="w-full bg-progTrackLight dark:bg-progTrackDark rounded-full h-2.5 overflow-hidden mb-4">
+                    <div id="p1-total-bar" class="bg-primaryBlue dark:bg-darkPrimaryBlue h-2.5 rounded-full transition-all duration-700 ease-out" style="width: 0%"></div>
                 </div>
                 
-                <!-- Category Breakdown Grid -->
                 <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-                    <!-- Gyan -->
+                    <!-- Gyanmulok -->
                     <div>
-                        <div class="flex justify-between text-xs mb-1.5 font-medium text-slate-600 dark:text-slate-400">
+                        <div class="flex justify-between text-xs font-semibold text-slate-600 dark:text-slate-400 mb-1">
                             <span>জ্ঞানমূলক</span>
                             <span id="p1-gyan-score">0/0</span>
                         </div>
-                        <div class="w-full bg-gray-100 rounded-full h-1.5 dark:bg-slate-700">
-                            <div id="p1-gyan-bar" class="bg-sky-500 h-1.5 rounded-full transition-all duration-500" style="width: 0%"></div>
-                        </div>
+                        <div class="w-full bg-progTrackLight dark:bg-progTrackDark rounded-full h-1.5"><div id="p1-gyan-bar" class="bg-blue-400 h-1.5 rounded-full transition-all" style="width: 0%"></div></div>
                     </div>
                     <!-- Onudhabon -->
                     <div>
-                        <div class="flex justify-between text-xs mb-1.5 font-medium text-slate-600 dark:text-slate-400">
+                        <div class="flex justify-between text-xs font-semibold text-slate-600 dark:text-slate-400 mb-1">
                             <span>অনুধাবন</span>
                             <span id="p1-onudhabon-score">0/0</span>
                         </div>
-                        <div class="w-full bg-gray-100 rounded-full h-1.5 dark:bg-slate-700">
-                            <div id="p1-onudhabon-bar" class="bg-indigo-500 h-1.5 rounded-full transition-all duration-500" style="width: 0%"></div>
-                        </div>
+                        <div class="w-full bg-progTrackLight dark:bg-progTrackDark rounded-full h-1.5"><div id="p1-onudhabon-bar" class="bg-indigo-400 h-1.5 rounded-full transition-all" style="width: 0%"></div></div>
                     </div>
                     <!-- Ucchotor -->
                     <div>
-                        <div class="flex justify-between text-xs mb-1.5 font-medium text-slate-600 dark:text-slate-400">
+                        <div class="flex justify-between text-xs font-semibold text-slate-600 dark:text-slate-400 mb-1">
                             <span>উচ্চতর দক্ষতা</span>
                             <span id="p1-ucchotor-score">0/0</span>
                         </div>
-                        <div class="w-full bg-gray-100 rounded-full h-1.5 dark:bg-slate-700">
-                            <div id="p1-ucchotor-bar" class="bg-purple-500 h-1.5 rounded-full transition-all duration-500" style="width: 0%"></div>
-                        </div>
+                        <div class="w-full bg-progTrackLight dark:bg-progTrackDark rounded-full h-1.5"><div id="p1-ucchotor-bar" class="bg-purple-400 h-1.5 rounded-full transition-all" style="width: 0%"></div></div>
                     </div>
                     <!-- Suggestion -->
                     <div>
-                        <div class="flex justify-between text-xs mb-1.5 font-medium text-slate-600 dark:text-slate-400">
+                        <div class="flex justify-between text-xs font-semibold text-slate-600 dark:text-slate-400 mb-1">
                             <span>সাজেশন</span>
                             <span id="p1-suggestion-score">0/0</span>
                         </div>
-                        <div class="w-full bg-gray-100 rounded-full h-1.5 dark:bg-slate-700">
-                            <div id="p1-suggestion-bar" class="bg-teal-500 h-1.5 rounded-full transition-all duration-500" style="width: 0%"></div>
-                        </div>
+                        <div class="w-full bg-progTrackLight dark:bg-progTrackDark rounded-full h-1.5"><div id="p1-suggestion-bar" class="bg-teal-400 h-1.5 rounded-full transition-all" style="width: 0%"></div></div>
                     </div>
                 </div>
             </div>
             
-            <!-- Paper 2 Score Dashboard -->
-            <div id="p2-score-container" class="hidden animate-fade-in">
-                <div class="flex justify-between items-center mb-3 pb-3 border-b border-gray-100 dark:border-slate-700">
-                    <span class="text-base font-bold text-slate-800 dark:text-slate-200">২য় পত্র - সর্বমোট প্রস্তুতি</span>
-                    <span id="p2-total-score" class="text-sm font-bold text-blue-700 dark:text-blue-300 bg-blue-50 dark:bg-blue-900/30 py-1 px-3 rounded-md border border-blue-100 dark:border-blue-800">0 / 0</span>
+            <!-- Paper 2 Dashboard -->
+            <div id="p2-score-container" class="hidden animate-fade-in space-y-4">
+                <div class="flex justify-between items-center mb-1 border-b border-gray-100 dark:border-gray-800 pb-2">
+                    <span class="text-base font-bold text-slate-800 dark:text-slate-100">২য় পত্র প্রস্তুতি অগ্রগতি</span>
+                    <span id="p2-total-score" class="text-sm font-bold text-primaryBlue bg-blue-50 dark:bg-blue-900/30 py-1 px-3 rounded-full border border-blue-200 dark:border-blue-800">0 / 0</span>
                 </div>
-                <!-- Total Progress Bar -->
-                <div class="w-full bg-gray-100 rounded-full h-3 mb-6 dark:bg-slate-700 overflow-hidden shadow-inner">
-                    <div id="p2-total-bar" class="bg-gradient-to-r from-blue-500 to-indigo-600 h-3 rounded-full transition-all duration-700 ease-out" style="width: 0%"></div>
+                <div class="w-full bg-progTrackLight dark:bg-progTrackDark rounded-full h-2.5 overflow-hidden mb-4">
+                    <div id="p2-total-bar" class="bg-primaryBlue dark:bg-darkPrimaryBlue h-2.5 rounded-full transition-all duration-700 ease-out" style="width: 0%"></div>
                 </div>
                 
-                <!-- Category Breakdown Grid -->
                 <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-                    <!-- Gyan -->
+                    <!-- Gyanmulok -->
                     <div>
-                        <div class="flex justify-between text-xs mb-1.5 font-medium text-slate-600 dark:text-slate-400">
+                        <div class="flex justify-between text-xs font-semibold text-slate-600 dark:text-slate-400 mb-1">
                             <span>জ্ঞানমূলক</span>
                             <span id="p2-gyan-score">0/0</span>
                         </div>
-                        <div class="w-full bg-gray-100 rounded-full h-1.5 dark:bg-slate-700">
-                            <div id="p2-gyan-bar" class="bg-sky-500 h-1.5 rounded-full transition-all duration-500" style="width: 0%"></div>
-                        </div>
+                        <div class="w-full bg-progTrackLight dark:bg-progTrackDark rounded-full h-1.5"><div id="p2-gyan-bar" class="bg-blue-400 h-1.5 rounded-full transition-all" style="width: 0%"></div></div>
                     </div>
                     <!-- Onudhabon -->
                     <div>
-                        <div class="flex justify-between text-xs mb-1.5 font-medium text-slate-600 dark:text-slate-400">
+                        <div class="flex justify-between text-xs font-semibold text-slate-600 dark:text-slate-400 mb-1">
                             <span>অনুধাবন</span>
                             <span id="p2-onudhabon-score">0/0</span>
                         </div>
-                        <div class="w-full bg-gray-100 rounded-full h-1.5 dark:bg-slate-700">
-                            <div id="p2-onudhabon-bar" class="bg-indigo-500 h-1.5 rounded-full transition-all duration-500" style="width: 0%"></div>
-                        </div>
+                        <div class="w-full bg-progTrackLight dark:bg-progTrackDark rounded-full h-1.5"><div id="p2-onudhabon-bar" class="bg-indigo-400 h-1.5 rounded-full transition-all" style="width: 0%"></div></div>
                     </div>
                     <!-- Ucchotor -->
                     <div>
-                        <div class="flex justify-between text-xs mb-1.5 font-medium text-slate-600 dark:text-slate-400">
+                        <div class="flex justify-between text-xs font-semibold text-slate-600 dark:text-slate-400 mb-1">
                             <span>উচ্চতর দক্ষতা</span>
                             <span id="p2-ucchotor-score">0/0</span>
                         </div>
-                        <div class="w-full bg-gray-100 rounded-full h-1.5 dark:bg-slate-700">
-                            <div id="p2-ucchotor-bar" class="bg-purple-500 h-1.5 rounded-full transition-all duration-500" style="width: 0%"></div>
-                        </div>
+                        <div class="w-full bg-progTrackLight dark:bg-progTrackDark rounded-full h-1.5"><div id="p2-ucchotor-bar" class="bg-purple-400 h-1.5 rounded-full transition-all" style="width: 0%"></div></div>
                     </div>
                     <!-- Suggestion -->
                     <div>
-                        <div class="flex justify-between text-xs mb-1.5 font-medium text-slate-600 dark:text-slate-400">
+                        <div class="flex justify-between text-xs font-semibold text-slate-600 dark:text-slate-400 mb-1">
                             <span>সাজেশন</span>
                             <span id="p2-suggestion-score">0/0</span>
                         </div>
-                        <div class="w-full bg-gray-100 rounded-full h-1.5 dark:bg-slate-700">
-                            <div id="p2-suggestion-bar" class="bg-teal-500 h-1.5 rounded-full transition-all duration-500" style="width: 0%"></div>
-                        </div>
+                        <div class="w-full bg-progTrackLight dark:bg-progTrackDark rounded-full h-1.5"><div id="p2-suggestion-bar" class="bg-teal-400 h-1.5 rounded-full transition-all" style="width: 0%"></div></div>
                     </div>
                 </div>
             </div>
             
             <!-- Reset Button -->
-            <div class="mt-4 text-right">
-                <button id="reset-btn" onclick="handleReset()" class="text-xs font-semibold text-gray-500 hover:text-red-600 dark:text-gray-400 dark:hover:text-red-400 transition-colors">
+            <div class="mt-5 text-right">
+                <button id="reset-btn" onclick="handleReset()" class="text-xs font-semibold text-slate-500 hover:text-red-600 dark:text-slate-400 dark:hover:text-red-400 transition-colors bg-slate-100 dark:bg-slate-800 px-3 py-1.5 rounded">
                     <svg class="w-3 h-3 inline-block mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path></svg>প্রস্তুতি রিসেট করুন
                 </button>
             </div>
@@ -290,26 +279,26 @@
     </div>
 
     <!-- Main Content Container -->
-    <main class="max-w-5xl mx-auto px-4 pt-6 pb-28 md:pb-8 space-y-8">
+    <main class="max-w-5xl mx-auto px-4 py-6 pb-28 md:pb-8 space-y-8">
 
         <!-- ============================== -->
-        <!-- PAPER 1 CONTENT (Source 2)     -->
+        <!-- PAPER 1 CONTENT                -->
         <!-- ============================== -->
         <div id="paper1" class="space-y-8 block animate-fade-in">
             
             <!-- Chapter 2 -->
-            <section class="bg-white dark:bg-slate-800 rounded-xl shadow-md border border-gray-100 dark:border-slate-700 overflow-hidden">
-                <div class="bg-blue-50 dark:bg-slate-700 border-b border-blue-100 dark:border-slate-600 px-6 py-4">
+            <section class="bg-lightSurface dark:bg-darkSurface rounded-xl shadow-md border border-lightBorder dark:border-darkBorder overflow-hidden">
+                <div class="bg-blue-50 dark:bg-slate-800/80 border-b border-blue-100 dark:border-darkBorder px-6 py-4">
                     <h2 class="text-2xl font-bold text-blue-800 dark:text-blue-300">অধ্যায় ২: গুনগত রসায়ন</h2>
                 </div>
                 <div class="p-4 md:p-6 space-y-4">
                     
-                    <details class="group bg-white dark:bg-slate-900 border border-gray-200 dark:border-slate-700 rounded-lg shadow-sm">
+                    <details class="group bg-white dark:bg-[#1B2740] border border-gray-200 dark:border-darkBorder rounded-lg shadow-sm">
                         <summary class="flex justify-between items-center cursor-pointer p-4 font-semibold text-lg hover:bg-gray-50 dark:hover:bg-slate-800 text-slate-800 dark:text-slate-200">
                             <span>জ্ঞানমূলক প্রশ্ন</span>
                             <svg class="accordion-icon w-6 h-6 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
                         </summary>
-                        <div class="p-4 border-t border-gray-200 dark:border-slate-700 bg-gray-50 dark:bg-slate-800/50">
+                        <div class="p-4 border-t border-gray-200 dark:border-darkBorder bg-gray-50 dark:bg-darkSurface/50">
                             <ol class="question-list">
                                 <li>আলফা কণা কাকে বলে?</li>
                                 <li>আইসোটোপ ও আইসোটোন কাকে বলে?</li>
@@ -337,7 +326,7 @@
                                 <li>নেসলার বিকারক কাকে বলে?</li>
                                 <li>কেলাসন কাকে বলে?</li>
                                 <li>আংশিক পাতন কাকে বলে?</li>
-                                <li>নিম্নচাপ পাতন/ বাষ্প পাতন কাকে বলে?</li>
+                                <li>বাষ্প পাতন কাকে বলে?</li>
                                 <li>দ্রাবক নিষকাশন কী?</li>
                                 <li>ক্রোমাটোগ্রাফি কাকে বলে?</li>
                                 <li>Rf কাকে বলে?</li>
@@ -345,12 +334,12 @@
                         </div>
                     </details>
 
-                    <details class="group bg-white dark:bg-slate-900 border border-gray-200 dark:border-slate-700 rounded-lg shadow-sm">
+                    <details class="group bg-white dark:bg-[#1B2740] border border-gray-200 dark:border-darkBorder rounded-lg shadow-sm">
                         <summary class="flex justify-between items-center cursor-pointer p-4 font-semibold text-lg hover:bg-gray-50 dark:hover:bg-slate-800 text-slate-800 dark:text-slate-200">
                             <span>অনুধাবন মূলক প্রশ্ন</span>
                             <svg class="accordion-icon w-6 h-6 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
                         </summary>
-                        <div class="p-4 border-t border-gray-200 dark:border-slate-700 bg-gray-50 dark:bg-slate-800/50">
+                        <div class="p-4 border-t border-gray-200 dark:border-darkBorder bg-gray-50 dark:bg-darkSurface/50">
                             <ol class="question-list">
                                 <li>$Fe^{2+}$ ও $Fe^{3+}$ আয়নদ্বয়ের মধ্যে কোনটি অধিক স্থায়ী?</li>
                                 <li>He এর ক্ষেত্রে বোর তত্ত্ব প্রযোজ্য ব্যাখ্যা কর।</li>
@@ -375,12 +364,12 @@
                         </div>
                     </details>
 
-                    <details class="group bg-white dark:bg-slate-900 border border-gray-200 dark:border-slate-700 rounded-lg shadow-sm">
+                    <details class="group bg-white dark:bg-[#1B2740] border border-gray-200 dark:border-darkBorder rounded-lg shadow-sm">
                         <summary class="flex justify-between items-center cursor-pointer p-4 font-semibold text-lg hover:bg-gray-50 dark:hover:bg-slate-800 text-slate-800 dark:text-slate-200">
                             <span>উচ্চতর দক্ষতার জন্য গুরুত্বপূর্ণ টপিক</span>
                             <svg class="accordion-icon w-6 h-6 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
                         </summary>
-                        <div class="p-4 border-t border-gray-200 dark:border-slate-700 bg-gray-50 dark:bg-slate-800/50">
+                        <div class="p-4 border-t border-gray-200 dark:border-darkBorder bg-gray-50 dark:bg-darkSurface/50">
                             <ol class="question-list">
                                 <li>বোর পরমাণু মডেল ও এর গাণিতিক সমস্যা</li>
                                 <li>কোয়ান্টাম সংখ্যা</li>
@@ -392,20 +381,20 @@
                         </div>
                     </details>
 
-                    <details class="group bg-white dark:bg-slate-900 border border-blue-200 dark:border-blue-800 rounded-lg shadow-sm" open>
-                        <summary class="flex justify-between items-center cursor-pointer p-4 font-semibold text-lg bg-blue-50 dark:bg-blue-900/30 hover:bg-blue-100 dark:hover:bg-blue-900/50 text-blue-800 dark:text-blue-300">
+                    <details class="group bg-white dark:bg-[#1B2740] border border-blue-200 dark:border-blue-800/50 rounded-lg shadow-sm" open>
+                        <summary class="flex justify-between items-center cursor-pointer p-4 font-semibold text-lg bg-blue-50 dark:bg-blue-900/20 hover:bg-blue-100 dark:hover:bg-blue-900/30 text-blue-800 dark:text-blue-300">
                             <span>গুরুত্বপূর্ণ টপিক (সাজেশন)</span>
                             <svg class="accordion-icon w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
                         </summary>
-                        <div class="p-4 md:p-6 border-t border-blue-100 dark:border-blue-800">
+                        <div class="p-4 md:p-6 border-t border-blue-100 dark:border-blue-800/50">
                             <ul class="suggestion-list">
-                                <li class="bg-blue-50 dark:bg-slate-800">
+                                <li class="bg-blue-50/50 dark:bg-slate-800/50">
                                     <strong class="text-lg text-slate-800 dark:text-slate-200 block mb-2">১) বোর ও রাদারফোর্ড পরমাণু মডেল:</strong>
                                     <ol class="nested-list text-slate-700 dark:text-slate-300">
                                         <li>তুলনা অর্থাৎ কোনটি অধিকতর গ্রহণযোগ্য।</li>
                                         <li>বোর মডেলের স্বীকার্য ৩টি বিশেষ করে কৌণিক ভরবেগ।</li>
                                         <li>বোর তত্ত্বের সাহায্যে n তম কক্ষপথের শক্তি ও ব্যাসার্ধ নির্ণয়।
-                                            <div class="mt-3 mb-1 text-sm md:text-base text-gray-700 dark:text-gray-300 bg-white dark:bg-slate-900 p-3 rounded border dark:border-slate-700 shadow-sm overflow-x-auto max-w-full">
+                                            <div class="mt-3 mb-1 text-sm md:text-base text-slate-700 dark:text-slate-300 bg-white dark:bg-darkSurface p-3 rounded border border-lightBorder dark:border-darkBorder shadow-sm overflow-x-auto max-w-full">
                                                 [★★★] n তম কক্ষপথের শক্তি, $E_n = -\left(\frac{2\pi^{2}me^{4}}{h^{2}}\right) \times \left(\frac{Z^{2}}{n^{2}}\right)$<br><br>
                                                 n তম কক্ষপথের ব্যাসার্ধ, $r_n = \left(\frac{h^{2}}{4\pi^{2}me^{2}}\right) \times \left(\frac{n^{2}}{Z}\right)$
                                             </div>
@@ -413,14 +402,14 @@
                                         <li>$mvr = \frac{nh}{2\pi}$ সমীকরণের math।</li>
                                     </ol>
                                 </li>
-                                <li class="bg-blue-50 dark:bg-slate-800">
+                                <li class="bg-blue-50/50 dark:bg-slate-800/50">
                                     <strong class="text-lg text-slate-800 dark:text-slate-200 block mb-2">২) কোয়ান্টাম সংখ্যা: [★★★]</strong>
                                     <ol class="nested-list text-slate-700 dark:text-slate-300">
                                         <li>কোয়ান্টাম সংখ্যার সাহায্যে কক্ষপথে অরবিটাল সংখ্যা ও সর্বোচ্চ ইলেকট্রন ধারণ ক্ষমতা নির্ণয়।</li>
                                         <li>কোন অরবিটালটি সম্ভব বা সম্ভব নয় কেন?</li>
                                     </ol>
                                 </li>
-                                <li class="bg-blue-50 dark:bg-slate-800">
+                                <li class="bg-blue-50/50 dark:bg-slate-800/50">
                                     <strong class="text-lg text-slate-800 dark:text-slate-200 block mb-2">৩) ইলেকট্রন বিন্যাসের নীতি ৩টি: [★★★]</strong>
                                     <ol class="nested-list text-slate-700 dark:text-slate-300">
                                         <li>আউফবাউ নীতি, ব্যতিক্রম: Cr ও Cu কেন?</li>
@@ -428,18 +417,18 @@
                                         <li>পলির বর্জননীতি</li>
                                     </ol>
                                 </li>
-                                <li class="bg-blue-50 dark:bg-slate-800">
+                                <li class="bg-blue-50/50 dark:bg-slate-800/50">
                                     <strong class="text-lg text-slate-800 dark:text-slate-200 block mb-2">৪) বর্ণালী:</strong>
                                     <ol class="nested-list text-slate-700 dark:text-slate-300">
                                         <li>কেন সৃষ্টি হয়?</li>
                                         <li>[★★★] পরমাণুর বর্ণালির সিরিজ ও রিডবার্গ সমীকরণভিত্তিক math।<br>
-                                            <span class="inline-block bg-white dark:bg-slate-900 px-3 py-2 border dark:border-slate-700 rounded mt-2 shadow-sm font-medium overflow-x-auto max-w-full">$\bar{\nu} = \frac{1}{\lambda} = R_H \times Z^2 \times \left(\frac{1}{n_1^2} - \frac{1}{n_2^2}\right)$</span>
+                                            <span class="inline-block bg-white dark:bg-darkSurface px-3 py-2 border border-lightBorder dark:border-darkBorder rounded mt-2 shadow-sm font-medium overflow-x-auto max-w-full">$\bar{\nu} = \frac{1}{\lambda} = R_H \times Z^2 \times \left(\frac{1}{n_1^2} - \frac{1}{n_2^2}\right)$</span>
                                         </li>
                                         <li>দৃশ্যমান আলোর তরঙ্গদৈর্ঘ্যের পরিসর (বেগুনী থেকে লাল পর্যন্ত)।</li>
                                         <li>UV, IR রশ্মির ব্যবহার (যথাক্রমে জাল টাকা সনাক্তকরণ ও চিকিৎসা ক্ষেত্রে ব্যবহার)।</li>
                                     </ol>
                                 </li>
-                                <li class="bg-blue-50 dark:bg-slate-800">
+                                <li class="bg-blue-50/50 dark:bg-slate-800/50">
                                     <strong class="text-lg text-slate-800 dark:text-slate-200 block mb-2">৫) দ্রাব্যতা:</strong>
                                     <ol class="nested-list text-slate-700 dark:text-slate-300">
                                         <li>[★★★] $S=\frac{100 \times m}{M-m}$ সূত্রের math এবং এই সূত্রের সাহায্যে কেলাসিত বা অধঃক্ষিপ্ত লবণের ভর নির্ণয়।</li>
@@ -448,9 +437,9 @@
                                         <li>[★★★] দ্রাব্যতার উপর সমআয়নের প্রভাব + math + (ব্যতিক্রম)।</li>
                                     </ol>
                                 </li>
-                                <li class="bg-blue-50 dark:bg-slate-800">
+                                <li class="bg-blue-50/50 dark:bg-slate-800/50">
                                     <strong class="text-lg text-slate-800 dark:text-slate-200 block">৬) আয়ন সনাক্তকরণ: (পড়তেই হবে) [★★★]</strong>
-                                    <div class="text-slate-700 dark:text-slate-300 mt-3 bg-white dark:bg-slate-900 p-3 rounded border dark:border-slate-700 inline-block shadow-sm overflow-x-auto max-w-full">
+                                    <div class="text-slate-700 dark:text-slate-300 mt-3 bg-white dark:bg-darkSurface p-3 rounded border border-lightBorder dark:border-darkBorder inline-block shadow-sm overflow-x-auto max-w-full">
                                         $Cu^{2+}$, $Na^{+}$, $NH_{4}^{+}$, $Cl^{-}$, $SO_{4}^{2-}$, $CO_{3}^{2-}$
                                     </div>
                                 </li>
@@ -461,18 +450,18 @@
             </section>
 
             <!-- Chapter 3 -->
-            <section class="bg-white dark:bg-slate-800 rounded-xl shadow-md border border-gray-100 dark:border-slate-700 overflow-hidden">
-                <div class="bg-indigo-50 dark:bg-slate-700 border-b border-indigo-100 dark:border-slate-600 px-6 py-4">
+            <section class="bg-lightSurface dark:bg-darkSurface rounded-xl shadow-md border border-lightBorder dark:border-darkBorder overflow-hidden">
+                <div class="bg-indigo-50 dark:bg-slate-800/80 border-b border-indigo-100 dark:border-darkBorder px-6 py-4">
                     <h2 class="text-2xl font-bold text-indigo-800 dark:text-indigo-300">অধ্যায় ৩: পর্যায়বৃত্তিক ধর্ম ও রাসায়নিক বন্ধন</h2>
                 </div>
                 <div class="p-4 md:p-6 space-y-4">
                     
-                    <details class="group bg-white dark:bg-slate-900 border border-gray-200 dark:border-slate-700 rounded-lg shadow-sm">
+                    <details class="group bg-white dark:bg-[#1B2740] border border-gray-200 dark:border-darkBorder rounded-lg shadow-sm">
                         <summary class="flex justify-between items-center cursor-pointer p-4 font-semibold text-lg hover:bg-gray-50 dark:hover:bg-slate-800 text-slate-800 dark:text-slate-200">
                             <span>জ্ঞানমূলক প্রশ্ন</span>
                             <svg class="accordion-icon w-6 h-6 text-indigo-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
                         </summary>
-                        <div class="p-4 border-t border-gray-200 dark:border-slate-700 bg-gray-50 dark:bg-slate-800/50">
+                        <div class="p-4 border-t border-gray-200 dark:border-darkBorder bg-gray-50 dark:bg-darkSurface/50">
                             <ol class="question-list">
                                 <li>হাইড্রোজেন বন্ধন কাকে বলে?</li>
                                 <li>ইলেক্ট্রন আসক্তি কাকে বলে?</li>
@@ -501,12 +490,12 @@
                         </div>
                     </details>
 
-                    <details class="group bg-white dark:bg-slate-900 border border-gray-200 dark:border-slate-700 rounded-lg shadow-sm">
+                    <details class="group bg-white dark:bg-[#1B2740] border border-gray-200 dark:border-darkBorder rounded-lg shadow-sm">
                         <summary class="flex justify-between items-center cursor-pointer p-4 font-semibold text-lg hover:bg-gray-50 dark:hover:bg-slate-800 text-slate-800 dark:text-slate-200">
                             <span>অনুধাবন মূলক প্রশ্ন</span>
                             <svg class="accordion-icon w-6 h-6 text-indigo-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
                         </summary>
-                        <div class="p-4 border-t border-gray-200 dark:border-slate-700 bg-gray-50 dark:bg-slate-800/50">
+                        <div class="p-4 border-t border-gray-200 dark:border-darkBorder bg-gray-50 dark:bg-darkSurface/50">
                             <ol class="question-list">
                                 <li>NaCl অপেক্ষা CuCl এর গলনাঙ্ক কম কেন?</li>
                                 <li>সিগমা বন্ধন মূলত সমযোজী বন্ধন ব্যাখ্যা কর।</li>
@@ -544,12 +533,12 @@
                         </div>
                     </details>
 
-                    <details class="group bg-white dark:bg-slate-900 border border-gray-200 dark:border-slate-700 rounded-lg shadow-sm">
+                    <details class="group bg-white dark:bg-[#1B2740] border border-gray-200 dark:border-darkBorder rounded-lg shadow-sm">
                         <summary class="flex justify-between items-center cursor-pointer p-4 font-semibold text-lg hover:bg-gray-50 dark:hover:bg-slate-800 text-slate-800 dark:text-slate-200">
                             <span>উচ্চতর দক্ষতার জন্য গুরুত্বপূর্ণ টপিক</span>
                             <svg class="accordion-icon w-6 h-6 text-indigo-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
                         </summary>
-                        <div class="p-4 border-t border-gray-200 dark:border-slate-700 bg-gray-50 dark:bg-slate-800/50">
+                        <div class="p-4 border-t border-gray-200 dark:border-darkBorder bg-gray-50 dark:bg-darkSurface/50">
                             <ol class="question-list">
                                 <li>d- ব্লক ও অবস্থান্তর মৌল</li>
                                 <li>অবস্থান্তর মৌলের রঙিনযৌগ গঠন, জটিল যৌগ গঠন।</li>
@@ -561,14 +550,14 @@
                         </div>
                     </details>
 
-                    <details class="group bg-white dark:bg-slate-900 border border-indigo-200 dark:border-indigo-800 rounded-lg shadow-sm" open>
-                        <summary class="flex justify-between items-center cursor-pointer p-4 font-semibold text-lg bg-indigo-50 dark:bg-indigo-900/30 hover:bg-indigo-100 dark:hover:bg-indigo-900/50 text-indigo-800 dark:text-indigo-300">
+                    <details class="group bg-white dark:bg-[#1B2740] border border-indigo-200 dark:border-indigo-800/50 rounded-lg shadow-sm" open>
+                        <summary class="flex justify-between items-center cursor-pointer p-4 font-semibold text-lg bg-indigo-50 dark:bg-indigo-900/20 hover:bg-indigo-100 dark:hover:bg-indigo-900/30 text-indigo-800 dark:text-indigo-300">
                             <span>গুরুত্বপূর্ণ টপিক (সাজেশন)</span>
                             <svg class="accordion-icon w-6 h-6 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
                         </summary>
-                        <div class="p-4 md:p-6 border-t border-indigo-100 dark:border-indigo-800">
+                        <div class="p-4 md:p-6 border-t border-indigo-100 dark:border-indigo-800/50">
                             <ul class="suggestion-list">
-                                <li class="bg-indigo-50 dark:bg-slate-800">
+                                <li class="bg-indigo-50/50 dark:bg-slate-800/50">
                                     <strong class="text-lg text-slate-800 dark:text-slate-200 block mb-2">১) পর্যায়বৃত্ত ধর্ম: [★★★]</strong>
                                     <ol class="nested-list text-slate-700 dark:text-slate-300">
                                         <li>[★★★] আয়নিকরণ শক্তির ক্রম (বিশেষ করে ব্যতিক্রমগুলো) যেমন: (i) Be ও B (ii) N ও O (iii) Mg ও Al (iv) P ও S</li>
@@ -576,7 +565,7 @@
                                         <li>তড়িৎ ঋণাত্মকতা</li>
                                     </ol>
                                 </li>
-                                <li class="bg-indigo-50 dark:bg-slate-800">
+                                <li class="bg-indigo-50/50 dark:bg-slate-800/50">
                                     <strong class="text-lg text-slate-800 dark:text-slate-200 block mb-2">২) সংকরায়ন: [★★★]</strong>
                                     <ol class="nested-list text-slate-700 dark:text-slate-300">
                                         <li>অবস্থা বর্ণনা ($CH_{4}, BeCl_{2}, BCl_{3}, CCl_{4}, NH_{3}, H_{2}O$)</li>
@@ -584,7 +573,7 @@
                                         <li>বন্ধনকোণের উপর তড়িৎ ঋণাত্মকতার প্রভাব: (i) $H_{2}O, H_{2}S$ (ii) $NH_{3}$ ও $PH_{3}$ (iii) $NH_{3}$ ও $NF_{3}$</li>
                                     </ol>
                                 </li>
-                                <li class="bg-indigo-50 dark:bg-slate-800">
+                                <li class="bg-indigo-50/50 dark:bg-slate-800/50">
                                     <strong class="text-lg text-slate-800 dark:text-slate-200 block mb-2">৩) ফাজানের নীতি: পোলারায়ন [★★★]</strong>
                                     <ol class="nested-list text-slate-700 dark:text-slate-300">
                                         <li>আয়নিক যৌগের সমযোজী বৈশিষ্ট্য</li>
@@ -592,7 +581,7 @@
                                         <li>গলনাঙ্ক ও স্ফুটনাঙ্কের ক্রম।</li>
                                     </ol>
                                 </li>
-                                <li class="bg-indigo-50 dark:bg-slate-800">
+                                <li class="bg-indigo-50/50 dark:bg-slate-800/50">
                                     <strong class="text-lg text-slate-800 dark:text-slate-200 block mb-2">৪) H বন্ধন: [★★★]</strong>
                                     <ol class="nested-list text-slate-700 dark:text-slate-300">
                                         <li>যৌগের ভৌত অবস্থার ভিন্নতা, যেমন: $H_{2}O$ ও $H_{2}S$, HF ও HI</li>
@@ -600,7 +589,7 @@
                                         <li>পোলারিটি ও পোলার যৌগ।</li>
                                     </ol>
                                 </li>
-                                <li class="bg-indigo-50 dark:bg-slate-800">
+                                <li class="bg-indigo-50/50 dark:bg-slate-800/50">
                                     <strong class="text-lg text-slate-800 dark:text-slate-200 block mb-2">৫) বিভিন্ন ব্লকের ধর্মাবলি:</strong>
                                     <ol class="nested-list text-slate-700 dark:text-slate-300">
                                         <li>ক্ষারধাতু, মৃৎক্ষার ধাতু</li>
@@ -624,21 +613,21 @@
             </section>
 
             <!-- Chapter 4 -->
-            <section class="bg-white dark:bg-slate-800 rounded-xl shadow-md border border-gray-100 dark:border-slate-700 overflow-hidden">
-                <div class="bg-teal-50 dark:bg-slate-700 border-b border-teal-100 dark:border-slate-600 px-6 py-4">
+            <section class="bg-lightSurface dark:bg-darkSurface rounded-xl shadow-md border border-lightBorder dark:border-darkBorder overflow-hidden">
+                <div class="bg-teal-50 dark:bg-slate-800/80 border-b border-teal-100 dark:border-darkBorder px-6 py-4">
                     <h2 class="text-2xl font-bold text-teal-800 dark:text-teal-300">অধ্যায় ৪: রাসায়নিক পরিবর্তন</h2>
                 </div>
                 <div class="p-4 md:p-6 space-y-4">
                     
-                    <details class="group bg-white dark:bg-slate-900 border border-gray-200 dark:border-slate-700 rounded-lg shadow-sm">
+                    <details class="group bg-white dark:bg-[#1B2740] border border-gray-200 dark:border-darkBorder rounded-lg shadow-sm">
                         <summary class="flex justify-between items-center cursor-pointer p-4 font-semibold text-lg hover:bg-gray-50 dark:hover:bg-slate-800 text-slate-800 dark:text-slate-200">
                             <span>জ্ঞানমূলক প্রশ্ন</span>
                             <svg class="accordion-icon w-6 h-6 text-teal-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
                         </summary>
-                        <div class="p-4 border-t border-gray-200 dark:border-slate-700 bg-gray-50 dark:bg-slate-800/50">
+                        <div class="p-4 border-t border-gray-200 dark:border-darkBorder bg-gray-50 dark:bg-darkSurface/50">
                             <ol class="question-list">
                                 <li>ভরক্রিয়া সূত্রটি লিখ</li>
-                                <li>সক্রিয়ন শক্তি কি?</li>
+                                <li>সক্রিয়ণ শক্তি কি?</li>
                                 <li>এটম ইকোনমি কী?</li>
                                 <li>বিক্রিয়ার হার / গতি কি?</li>
                                 <li>বিক্রিয়ার হার ধ্রুবক কি?</li>
@@ -674,12 +663,12 @@
                         </div>
                     </details>
 
-                    <details class="group bg-white dark:bg-slate-900 border border-gray-200 dark:border-slate-700 rounded-lg shadow-sm">
+                    <details class="group bg-white dark:bg-[#1B2740] border border-gray-200 dark:border-darkBorder rounded-lg shadow-sm">
                         <summary class="flex justify-between items-center cursor-pointer p-4 font-semibold text-lg hover:bg-gray-50 dark:hover:bg-slate-800 text-slate-800 dark:text-slate-200">
                             <span>অনুধাবন মূলক প্রশ্ন</span>
                             <svg class="accordion-icon w-6 h-6 text-teal-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
                         </summary>
-                        <div class="p-4 border-t border-gray-200 dark:border-slate-700 bg-gray-50 dark:bg-slate-800/50">
+                        <div class="p-4 border-t border-gray-200 dark:border-darkBorder bg-gray-50 dark:bg-darkSurface/50">
                             <ol class="question-list">
                                 <li>$K_{p}$ এর মান শূন্য বা অসীম হতে পারে না কেন? ব্যাখ্যা কর।</li>
                                 <li>সাম্যাঙ্কের মান শূন্য বা অসীম হতে পারে না কেন? ব্যাখ্যা কর।</li>
@@ -716,12 +705,12 @@
                         </div>
                     </details>
 
-                    <details class="group bg-white dark:bg-slate-900 border border-gray-200 dark:border-slate-700 rounded-lg shadow-sm">
+                    <details class="group bg-white dark:bg-[#1B2740] border border-gray-200 dark:border-darkBorder rounded-lg shadow-sm">
                         <summary class="flex justify-between items-center cursor-pointer p-4 font-semibold text-lg hover:bg-gray-50 dark:hover:bg-slate-800 text-slate-800 dark:text-slate-200">
                             <span>উচ্চতর দক্ষতার জন্য গুরুত্বপূর্ণ টপিক</span>
                             <svg class="accordion-icon w-6 h-6 text-teal-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
                         </summary>
-                        <div class="p-4 border-t border-gray-200 dark:border-slate-700 bg-gray-50 dark:bg-slate-800/50">
+                        <div class="p-4 border-t border-gray-200 dark:border-darkBorder bg-gray-50 dark:bg-darkSurface/50">
                             <ol class="question-list">
                                 <li>দহন ও সংগঠন তাপের গানিতিক সমস্যা</li>
                                 <li>হেসের সুত্রের ব্যাখ্যা ও গাণিতিক সমস্যা</li>
@@ -733,14 +722,14 @@
                         </div>
                     </details>
 
-                    <details class="group bg-white dark:bg-slate-900 border border-teal-200 dark:border-teal-800 rounded-lg shadow-sm" open>
-                        <summary class="flex justify-between items-center cursor-pointer p-4 font-semibold text-lg bg-teal-50 dark:bg-teal-900/30 hover:bg-teal-100 dark:hover:bg-teal-900/50 text-teal-800 dark:text-teal-300">
+                    <details class="group bg-white dark:bg-[#1B2740] border border-teal-200 dark:border-teal-800/50 rounded-lg shadow-sm" open>
+                        <summary class="flex justify-between items-center cursor-pointer p-4 font-semibold text-lg bg-teal-50 dark:bg-teal-900/20 hover:bg-teal-100 dark:hover:bg-teal-900/30 text-teal-800 dark:text-teal-300">
                             <span>গুরুত্বপূর্ণ টপিক (সাজেশন)</span>
                             <svg class="accordion-icon w-6 h-6 text-teal-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
                         </summary>
-                        <div class="p-4 md:p-6 border-t border-teal-100 dark:border-teal-800">
+                        <div class="p-4 md:p-6 border-t border-teal-100 dark:border-teal-800/50">
                             <ul class="suggestion-list">
-                                <li class="bg-teal-50 dark:bg-slate-800">
+                                <li class="bg-teal-50/50 dark:bg-slate-800/50">
                                     <ol class="nested-list text-slate-700 dark:text-slate-300" style="list-style-type: decimal;">
                                         <li>(i) % AE নির্ণয়।</li>
                                         <li>[★★★] (ii) লা শাতেলিয়ার নীতি [সর্বোচ্চ উৎপাদ পাওয়ার কৌশল বা তাপমাত্রা ও চাপের প্রভাব ব্যাখ্যা]।</li>
@@ -759,25 +748,25 @@
             </section>
 
             <!-- Chapter 5 -->
-            <section class="bg-white dark:bg-slate-800 rounded-xl shadow-md border border-gray-100 dark:border-slate-700 overflow-hidden">
-                <div class="bg-purple-50 dark:bg-slate-700 border-b border-purple-100 dark:border-slate-600 px-6 py-4">
+            <section class="bg-lightSurface dark:bg-darkSurface rounded-xl shadow-md border border-lightBorder dark:border-darkBorder overflow-hidden">
+                <div class="bg-purple-50 dark:bg-slate-800/80 border-b border-purple-100 dark:border-darkBorder px-6 py-4">
                     <h2 class="text-2xl font-bold text-purple-800 dark:text-purple-300">অধ্যায় ৫: কর্মমুখী রসায়ন</h2>
                 </div>
                 <div class="p-4 md:p-6 space-y-4">
                     
-                    <details class="group bg-white dark:bg-slate-900 border border-gray-200 dark:border-slate-700 rounded-lg shadow-sm">
+                    <details class="group bg-white dark:bg-[#1B2740] border border-gray-200 dark:border-darkBorder rounded-lg shadow-sm">
                         <summary class="flex justify-between items-center cursor-pointer p-4 font-semibold text-lg hover:bg-gray-50 dark:hover:bg-slate-800 text-slate-800 dark:text-slate-200">
                             <span>জ্ঞানমূলক প্রশ্ন</span>
                             <svg class="accordion-icon w-6 h-6 text-purple-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
                         </summary>
-                        <div class="p-4 border-t border-gray-200 dark:border-slate-700 bg-gray-50 dark:bg-slate-800/50">
+                        <div class="p-4 border-t border-gray-200 dark:border-darkBorder bg-gray-50 dark:bg-darkSurface/50">
                             <ol class="question-list">
                                 <li>ভিনেগার কি?</li>
-                                <li>ব্লাচিং কি?</li>
+                                <li>ব্লিচিং কি?</li>
                                 <li>সাসপেনসন কি?</li>
                                 <li>কলয়েড কি?</li>
-                                <li>কোয়াগুলেষন কি?</li>
-                                <li>রিটটিং কি?</li>
+                                <li>কোয়াগুলেশন কি?</li>
+                                <li>রেটিং (Retting) কি?</li>
                                 <li>বি এইচ টি (BHT) এর সংকেত লিখ?</li>
                                 <li>কলয়েড মিশ্রন কি?</li>
                                 <li>খাদ্য নিরাপত্তা কি?</li>
@@ -787,7 +776,7 @@
                                 <li>খাদ্য সংরক্ষক বা ফুড প্রিজারভেটিভ কাকে বলে?</li>
                                 <li>অ্যান্টিঅক্সিডেন্ট কাকে বলে?</li>
                                 <li>পিকলিং কী?</li>
-                                <li>রিটটিং কী?</li>
+                                <li>রেটিং কী?</li>
                                 <li>ট্যালক কী?</li>
                                 <li>ট্যালকম পাউডারের প্রধান উপাদান কী?</li>
                                 <li>ইমালশন কী?</li>
@@ -796,44 +785,44 @@
                         </div>
                     </details>
 
-                    <details class="group bg-white dark:bg-slate-900 border border-gray-200 dark:border-slate-700 rounded-lg shadow-sm">
+                    <details class="group bg-white dark:bg-[#1B2740] border border-gray-200 dark:border-darkBorder rounded-lg shadow-sm">
                         <summary class="flex justify-between items-center cursor-pointer p-4 font-semibold text-lg hover:bg-gray-50 dark:hover:bg-slate-800 text-slate-800 dark:text-slate-200">
                             <span>অনুধাবন মূলক প্রশ্ন</span>
                             <svg class="accordion-icon w-6 h-6 text-purple-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
                         </summary>
-                        <div class="p-4 border-t border-gray-200 dark:border-slate-700 bg-gray-50 dark:bg-slate-800/50">
+                        <div class="p-4 border-t border-gray-200 dark:border-darkBorder bg-gray-50 dark:bg-darkSurface/50">
                             <ol class="question-list">
-                                <li>প্রিজারভেটিব খাদ্যবস্তুকে সংরক্ষন করে কিভাবে?</li>
+                                <li>প্রিজারভেটিভ খাদ্যবস্তুকে সংরক্ষন করে কিভাবে?</li>
                                 <li>খাদ্য নিরাপত্তায় রসায়নের ভূমিকা ব্যাখ্যা কর।</li>
                                 <li>সংরক্ষনের জন্য খাদ্যকে বায়ুমুক্ত রাখতে হয়-ব্যাখ্যা কর।</li>
-                                <li>খাদ্য সংরক্ষনে প্রিজারভেটিব হিসেবে চিনির ভূমিকা কি?</li>
+                                <li>খাদ্য সংরক্ষনে প্রিজারভেটিভ হিসেবে চিনির ভূমিকা কি?</li>
                                 <li>খাদ্য সংরক্ষনে প্রিজারভেটিব হিসেবে লবনের ভূমিকা কি?</li>
                                 <li>খাদ্য সংরক্ষনে প্রিজারভেটিব হিসেবে ভিনেগারের ভূমিকা কি?</li>
                                 <li>ভিনেগার কিভাবে ব্যাকটেরিয়া ধ্বংস করে?</li>
-                                <li>বিএইচএ (BHA) কীরূপে খাদ্যবস্তুর জারণ বাধাগ্রস্থ করে।</li>
+                                <li>BHA কীরূপে খাদ্যবস্তুর জারণ বাধাগ্রস্থ করে?</li>
                                 <li>কোয়াগুলেশন বলতে কি বুঝ?</li>
                                 <li>কলয়েড কণার সুস্থিতির কারণ ব্যাখ্যা কর।</li>
-                                <li>ভ্যানিশিং ক্রিমের উপাদান সংযুক্তি সহকারে লিখ?</li>
                                 <li>নদীর ঘোলা পানি সাগরে গিয়ে পরিস্কার হয় কেন?</li>
                                 <li>দুধ একটি ইমালশন-ব্যাখ্যা কর।</li>
                                 <li>মাখনকে পানিমুক্ত করা প্রয়োজন কেন? ব্যাখ্যা কর।</li>
-                                <li>গ্লাস ক্লিনারে কস্টিক অ্যামোনিয়া ব্যবহারের কারণ ব্যাখ্যা কর।</li>
-                                <li>গ্লাস কেন?</li>
-                                <li>কেন?</li>
-                                <li>কর।</li>
-                                <li>দ্রবন কলয়েড ও সাসপেনশনের মধ্যে পার্থক্য লিখ?</li>
+                                <li>ভ্যানিশিং ক্রিমের উপাদানগুলো শতকরা সংযুক্তি সহকারে লিখ।</li>
+                                <li>গ্লাস ক্লিনারে কস্টিক সোডা ব্যবহার না করে অ্যামোনিয়া ব্যবহারের কারণ ব্যাখ্যা কর।</li>
+                                <li>গ্লাস ক্লিনারে কস্টিক সোডা ব্যবহার করা হয় না কেন?</li>
+                                <li>টয়লেট ক্লিনারে কস্টিক সোডা ব্যবহার করা হয় কেন?</li>
+                                <li>খাদ্য সংরক্ষণে কেস হার্ডেনিং (Case hardening) কাকে বলে? ব্যাখ্যা কর।</li>
+                                <li>দ্রবন, কলয়েড ও সাসপেনশনের মধ্যে পার্থক্য লিখ।</li>
                                 <li>দুধ থেকে মাখন প্রস্তুতিতে পাস্তুরাইজেশনের গুরূত্ব লিখ।</li>
                                 <li>ক্রিস্টালয়েড ও কলয়েডের মধ্যে পার্থক্য লিখ।</li>
                             </ol>
                         </div>
                     </details>
 
-                    <details class="group bg-white dark:bg-slate-900 border border-gray-200 dark:border-slate-700 rounded-lg shadow-sm">
+                    <details class="group bg-white dark:bg-[#1B2740] border border-gray-200 dark:border-darkBorder rounded-lg shadow-sm">
                         <summary class="flex justify-between items-center cursor-pointer p-4 font-semibold text-lg hover:bg-gray-50 dark:hover:bg-slate-800 text-slate-800 dark:text-slate-200">
                             <span>উচ্চতর দক্ষতার জন্য গুরুত্বপূর্ণ টপিক</span>
                             <svg class="accordion-icon w-6 h-6 text-purple-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
                         </summary>
-                        <div class="p-4 border-t border-gray-200 dark:border-slate-700 bg-gray-50 dark:bg-slate-800/50">
+                        <div class="p-4 border-t border-gray-200 dark:border-darkBorder bg-gray-50 dark:bg-darkSurface/50">
                             <ol class="question-list">
                                 <li>দুধ হতে মাখন ও ঘি প্রস্তুতি (কোয়াগুলেশন)</li>
                                 <li>টয়লেট ক্লিনার ও গ্লাস ক্লিনার এর ক্রিয়াকৌশল।</li>
@@ -843,17 +832,17 @@
                         </div>
                     </details>
 
-                    <details class="group bg-white dark:bg-slate-900 border border-purple-200 dark:border-purple-800 rounded-lg shadow-sm" open>
-                        <summary class="flex justify-between items-center cursor-pointer p-4 font-semibold text-lg bg-purple-50 dark:bg-purple-900/30 hover:bg-purple-100 dark:hover:bg-purple-900/50 text-purple-800 dark:text-purple-300">
+                    <details class="group bg-white dark:bg-[#1B2740] border border-purple-200 dark:border-purple-800/50 rounded-lg shadow-sm" open>
+                        <summary class="flex justify-between items-center cursor-pointer p-4 font-semibold text-lg bg-purple-50 dark:bg-purple-900/20 hover:bg-purple-100 dark:hover:bg-purple-900/30 text-purple-800 dark:text-purple-300">
                             <span>গুরুত্বপূর্ণ টপিক (সাজেশন)</span>
                             <svg class="accordion-icon w-6 h-6 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
                         </summary>
-                        <div class="p-4 md:p-6 border-t border-purple-100 dark:border-purple-800">
+                        <div class="p-4 md:p-6 border-t border-purple-100 dark:border-purple-800/50">
                             <ul class="suggestion-list">
-                                <li class="bg-purple-50 dark:bg-slate-800">
+                                <li class="bg-purple-50/50 dark:bg-slate-800/50">
                                     <strong class="text-lg text-slate-800 dark:text-slate-200 block mb-2">(১) খাদ্য নিরাপত্তায় রসায়নের ভূমিকা</strong>
                                 </li>
-                                <li class="bg-purple-50 dark:bg-slate-800">
+                                <li class="bg-purple-50/50 dark:bg-slate-800/50">
                                     <strong class="text-lg text-slate-800 dark:text-slate-200 block mb-2">[★★★] (২) ভিনেগার:</strong>
                                     <ol class="nested-list text-slate-700 dark:text-slate-300">
                                         <li>প্রস্তুত প্রণালী (বিক্রিয়াসহ)</li>
@@ -869,41 +858,33 @@
         </div>
 
         <!-- ============================== -->
-        <!-- PAPER 2 CONTENT (Source 1)     -->
+        <!-- PAPER 2 CONTENT                -->
         <!-- ============================== -->
         <div id="paper2" class="space-y-8 hidden animate-fade-in">
             
             <!-- Chapter 1 -->
-            <section class="bg-white dark:bg-slate-800 rounded-xl shadow-md border border-gray-100 dark:border-slate-700 overflow-hidden">
-                <div class="bg-blue-50 dark:bg-slate-700 border-b border-blue-100 dark:border-slate-600 px-6 py-4">
+            <section class="bg-lightSurface dark:bg-darkSurface rounded-xl shadow-md border border-lightBorder dark:border-darkBorder overflow-hidden">
+                <div class="bg-blue-50 dark:bg-slate-800/80 border-b border-blue-100 dark:border-darkBorder px-6 py-4">
                     <h2 class="text-2xl font-bold text-blue-800 dark:text-blue-300">অধ্যায় ১: পরিবেশ রসায়ন</h2>
                 </div>
                 <div class="p-4 md:p-6 space-y-4">
                     
-                    <details class="group bg-white dark:bg-slate-900 border border-gray-200 dark:border-slate-700 rounded-lg shadow-sm">
+                    <details class="group bg-white dark:bg-[#1B2740] border border-gray-200 dark:border-darkBorder rounded-lg shadow-sm">
                         <summary class="flex justify-between items-center cursor-pointer p-4 font-semibold text-lg hover:bg-gray-50 dark:hover:bg-slate-800 text-slate-800 dark:text-slate-200">
                             <span>জ্ঞানমূলক প্রশ্ন</span>
                             <svg class="accordion-icon w-6 h-6 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
                         </summary>
-                        <div class="p-4 border-t border-gray-200 dark:border-slate-700 bg-gray-50 dark:bg-slate-800/50">
-                            <ul class="question-list list-none mb-4 text-slate-700 dark:text-slate-300">
-                                <li>$HNO_{3}$ অপেক্ষা $H_{3}PO_{4}$ দুর্বল এসিড কেন?</li>
-                                <li>$44g~CO_{2}$ এর জন্য ভ্যান্ডার ওয়ালস সমীকরণ লিখ।</li>
-                                <li>৫.</li>
-                                <li>৬.</li>
-                                <li>৭. $BF_{3}$ অম্লধর্মী কেন?</li>
-                                <li>৮. অনুবন্ধী এসিড ও অনুবন্ধী ক্ষার ব্যাখ্যা কর।</li>
-                            </ul>
+                        <div class="p-4 border-t border-gray-200 dark:border-darkBorder bg-gray-50 dark:bg-darkSurface/50">
                             <ol class="question-list">
                                 <li>ব্যাপন কাকে বলে?</li>
-                                <li>নিঃসরন কাকে বলে?</li>
+                                <li>নিঃসরণ কাকে বলে?</li>
                                 <li>সন্ধি/ সংকট তাপমাত্রা কাকে বলে?</li>
                                 <li>আইসোথার্ম কি?</li>
                                 <li>অনুবন্ধী এসিড ও অনুবন্ধী ক্ষার কাকে বলে?</li>
                                 <li>SATP ও STP কি?</li>
                                 <li>COD কাকে বলে?</li>
                                 <li>BOD কাকে বলে?</li>
-                                <li>TDS কাকে কলে?</li>
+                                <li>TDS কাকে বলে?</li>
                                 <li>আদর্শ গ্যাস কাকে বলে?</li>
                                 <li>SI এককে R এর মান কত?</li>
                                 <li>CFC কি?</li>
@@ -914,34 +895,38 @@
                         </div>
                     </details>
 
-                    <details class="group bg-white dark:bg-slate-900 border border-gray-200 dark:border-slate-700 rounded-lg shadow-sm">
+                    <details class="group bg-white dark:bg-[#1B2740] border border-gray-200 dark:border-darkBorder rounded-lg shadow-sm">
                         <summary class="flex justify-between items-center cursor-pointer p-4 font-semibold text-lg hover:bg-gray-50 dark:hover:bg-slate-800 text-slate-800 dark:text-slate-200">
                             <span>অনুধাবন মূলক</span>
                             <svg class="accordion-icon w-6 h-6 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
                         </summary>
-                        <div class="p-4 border-t border-gray-200 dark:border-slate-700 bg-gray-50 dark:bg-slate-800/50">
+                        <div class="p-4 border-t border-gray-200 dark:border-darkBorder bg-gray-50 dark:bg-darkSurface/50">
                             <ol class="question-list">
                                 <li>পানির ক্ষরতার কারণ কি ও কিভাবে দূর করা যায়?</li>
                                 <li>$HCl$ অপেক্ষা $NH_{3}$ এর ব্যাপন হার বেশি কেন?</li>
                                 <li>CFC কিভাবে ওজনস্তরকে ধ্বংস করে?</li>
                                 <li>পানির BOD $5~mg/L$ বলতে কি বুঝ?</li>
+                                <li>$HNO_{3}$ অপেক্ষা $H_{3}PO_{4}$ দুর্বল এসিড কেন?</li>
+                                <li>$44g~CO_{2}$ এর জন্য ভ্যান্ডার ওয়ালস সমীকরণ লিখ।</li>
+                                <li>$BF_{3}$ অম্লধর্মী কেন?</li>
+                                <li>অনুবন্ধী এসিড ও অনুবন্ধী ক্ষার ব্যাখ্যা কর উদাহরনসহ।</li>
                                 <li>$H_{2}O$, $HSO_{4}^{-}$ একটি উভধর্মী পদার্থ- ব্যাখ্যা কর।</li>
                                 <li>কোন নমুনায় BOD অপেক্ষা COD এর মান বেশি হয় কেন?</li>
                                 <li>অ্যামোনিয়া একটি লুইস ক্ষারক- ব্যাখ্যা কর।</li>
-                                <li>R এর তাৎপর্য লিখ?</li>
-                                <li>BOD ও COD এর মধ্যে পার্থক্য লিখ?</li>
-                                <li>জুলথমসন পরীক্ষাতে গ্যাসের তাপমাত্রা হ্রাস পায় কেন?</li>
+                                <li>R এর তাৎপর্য লিখ।</li>
+                                <li>BOD ও COD এর মধ্যে পার্থক্য লিখ।</li>
+                                <li>জুল-থমসন পরীক্ষাতে গ্যাসের তাপমাত্রা হ্রাস পায় কেন?</li>
                                 <li>বিভিন্ন এককে R এর মান নির্ণয় কর।</li>
                             </ol>
                         </div>
                     </details>
 
-                    <details class="group bg-white dark:bg-slate-900 border border-gray-200 dark:border-slate-700 rounded-lg shadow-sm">
+                    <details class="group bg-white dark:bg-[#1B2740] border border-gray-200 dark:border-darkBorder rounded-lg shadow-sm">
                         <summary class="flex justify-between items-center cursor-pointer p-4 font-semibold text-lg hover:bg-gray-50 dark:hover:bg-slate-800 text-slate-800 dark:text-slate-200">
                             <span>উচ্চতর দক্ষতার জন্য গুরুত্বপূর্ণ টপিক</span>
                             <svg class="accordion-icon w-6 h-6 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
                         </summary>
-                        <div class="p-4 border-t border-gray-200 dark:border-slate-700 bg-gray-50 dark:bg-slate-800/50">
+                        <div class="p-4 border-t border-gray-200 dark:border-darkBorder bg-gray-50 dark:bg-darkSurface/50">
                             <ol class="question-list">
                                 <li>ডাল্টনের আংশিক চাপ সুত্র ও গানিতিক সমস্যা</li>
                                 <li>গ্রাহামের ব্যাপন সূত্র ও গানিতিক সমস্যা</li>
@@ -955,32 +940,32 @@
             </section>
 
             <!-- Chapter 2 -->
-            <section class="bg-white dark:bg-slate-800 rounded-xl shadow-md border border-gray-100 dark:border-slate-700 overflow-hidden">
-                <div class="bg-indigo-50 dark:bg-slate-700 border-b border-indigo-100 dark:border-slate-600 px-6 py-4">
+            <section class="bg-lightSurface dark:bg-darkSurface rounded-xl shadow-md border border-lightBorder dark:border-darkBorder overflow-hidden">
+                <div class="bg-indigo-50 dark:bg-slate-800/80 border-b border-indigo-100 dark:border-darkBorder px-6 py-4">
                     <h2 class="text-2xl font-bold text-indigo-800 dark:text-indigo-300">অধ্যায় ২: জৈব রসায়ন</h2>
                 </div>
                 <div class="p-4 md:p-6 space-y-4">
                     
-                    <details class="group bg-white dark:bg-slate-900 border border-gray-200 dark:border-slate-700 rounded-lg shadow-sm">
+                    <details class="group bg-white dark:bg-[#1B2740] border border-gray-200 dark:border-darkBorder rounded-lg shadow-sm">
                         <summary class="flex justify-between items-center cursor-pointer p-4 font-semibold text-lg hover:bg-gray-50 dark:hover:bg-slate-800 text-slate-800 dark:text-slate-200">
                             <span>জ্ঞানমূলক প্রশ্ন</span>
                             <svg class="accordion-icon w-6 h-6 text-indigo-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
                         </summary>
-                        <div class="p-4 border-t border-gray-200 dark:border-slate-700 bg-gray-50 dark:bg-slate-800/50">
+                        <div class="p-4 border-t border-gray-200 dark:border-darkBorder bg-gray-50 dark:bg-darkSurface/50">
                             <ol class="question-list">
                                 <li>লুকাস বিকারক কি?</li>
                                 <li>প্যারাফিন কি?</li>
-                                <li>ডিকাবক্সিলেশন কী?</li>
-                                <li>রেজন্যান্স কী?</li>
+                                <li>ডিকার্বক্সিলেশন কী?</li>
+                                <li>রেজোনান্স কী?</li>
                                 <li>কাইরাল কার্বন কি?</li>
-                                <li>রেসিমিক মিশ্রন কি?</li>
+                                <li>রেসিমিক মিশ্রণ কি?</li>
                                 <li>মেসো যৌগ কী?</li>
                                 <li>কার্যকরী মূলক কাকে বলে?</li>
                                 <li>ফরমালিন কি?</li>
                                 <li>প্রডিউসার গ্যাস কী?</li>
                                 <li>হেক্সামিন কী?</li>
                                 <li>টি.এন.টি কি?</li>
-                                <li>মনোমার ক?</li>
+                                <li>মনোমার কী?</li>
                                 <li>ডায়াজোকরণ কি?</li>
                                 <li>কার্বোক্যাটায়ন কি?</li>
                                 <li>কার্বানায়ন কাকে বলে?</li>
@@ -998,7 +983,7 @@
                                 <li>কাঁদুনে গ্যাসের সংকেত লিখ।</li>
                                 <li>টটোমারিজম কি?</li>
                                 <li>হাকেল নীতি কি?</li>
-                                <li>ডেটলের সংকেত লিখ?</li>
+                                <li>ডেটলের সংকেত লিখ।</li>
                                 <li>সমগোত্রীয় শ্রেণি কাকে বলে?</li>
                                 <li>জ্যামিতিক/ সিস-ট্রান্স সমাণু কাকে বলে?</li>
                                 <li>ফ্রি-রেডিকেল কাকে বলে?</li>
@@ -1006,15 +991,15 @@
                         </div>
                     </details>
 
-                    <details class="group bg-white dark:bg-slate-900 border border-gray-200 dark:border-slate-700 rounded-lg shadow-sm">
+                    <details class="group bg-white dark:bg-[#1B2740] border border-gray-200 dark:border-darkBorder rounded-lg shadow-sm">
                         <summary class="flex justify-between items-center cursor-pointer p-4 font-semibold text-lg hover:bg-gray-50 dark:hover:bg-slate-800 text-slate-800 dark:text-slate-200">
                             <span>অনুধাবন মূলক</span>
                             <svg class="accordion-icon w-6 h-6 text-indigo-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
                         </summary>
-                        <div class="p-4 border-t border-gray-200 dark:border-slate-700 bg-gray-50 dark:bg-slate-800/50">
+                        <div class="p-4 border-t border-gray-200 dark:border-darkBorder bg-gray-50 dark:bg-darkSurface/50">
                             <ol class="question-list">
                                 <li>প্রোপিন ও বিউটিন পরস্পর সমগোত্রক-কেন?</li>
-                                <li>রেসিমিক মিশ্রন আলোক নিক্সিয়-কেন?</li>
+                                <li>রেসিমিক মিশ্রণ আলোক নিষ্ক্রিয়-কেন?</li>
                                 <li>গ্লুকোজ পানিতে দ্রবনীয় কেন?</li>
                                 <li>$CHCl_{3}$ কে বাদামী বোতলে রাখা হয় কেন?</li>
                                 <li>$C_{3}H_{6}O$ টটোমারিজম ধর্ম প্রদর্শন করে-ব্যাখ্যা কর।</li>
@@ -1031,29 +1016,29 @@
                                 <li>জ্যামিতিক সমানুতার শর্ত লিখ।</li>
                                 <li>$CH_{3}CH(OH)-COOH$-কী সমাণুতা দেখায় কনফিগারেশনসহ দেখাও।</li>
                                 <li>ইথাইন থেকে কীভাবে $CH_{3}-CHO$ প্রস্তুত করবে? সমীকরণ দাও।</li>
-                                <li>অ্যালডিহাইড ও কিটেনের মধ্যে পার্থক্যসূচক বিক্রিয়া লিখ।</li>
+                                <li>অ্যালডিহাইড ও কিটোনের মধ্যে পার্থক্যসূচক বিক্রিয়া লিখ।</li>
                                 <li>জ্যামিতিক সমানুতার শর্ত লিখ।</li>
-                                <li>সমগোত্রিয় শ্রেণী বলতে কি বুঝ?</li>
-                                <li>$C_{5}H_{6}NH_{2}$ অপেক্ষা $CH_{3}NH_{2}$ তীব্র ক্ষারক কেন?</li>
+                                <li>সমগোত্রীয় শ্রেণী বলতে কি বুঝ?</li>
+                                <li>$C_{6}H_{5}NH_{2}$ অপেক্ষা $CH_{3}NH_{2}$ তীব্র ক্ষারক কেন?</li>
                                 <li>মার্কনিকভ সূত্র উদাহরনসহ লিখ।</li>
                                 <li>জ্যামিতিক সমানুতা বলতে কি বুঝ?</li>
                                 <li>কেন্দ্রাকর্ষী প্রতিস্থাপন বিক্রিয়ায় ক্লোরো বেনজিন অপেক্ষা নাইট্রোক্লোরো বেনজিন অধিক সক্রিয় কেন?</li>
                                 <li>অ্যালডল ঘনীভবন বিক্রিয়া বলতে কি বুঝ?</li>
                                 <li>অ্যারোমেটিসিটি বলতে কি বুঝ?</li>
                                 <li>নাইট্রোমূলক বেনজিন চক্রে মেটা নির্দেশক-কেন?</li>
-                                <li>উর্টজ বিক্রিয়ায় শুস্ক ইথার ব্যবহার করা হয় কেন?</li>
+                                <li>উর্টজ বিক্রিয়ায় শুষ্ক ইথার ব্যবহার করা হয় কেন?</li>
                                 <li>গ্রিগনার্ড বিকারক থেকে কিভাবে কার্বক্সিলিক এসিড পাওয়া যায়?</li>
                                 <li>কার্বিল অ্যামিন বিক্রিয়া ব্যাখ্যা কর।</li>
                             </ol>
                         </div>
                     </details>
 
-                    <details class="group bg-white dark:bg-slate-900 border border-gray-200 dark:border-slate-700 rounded-lg shadow-sm">
+                    <details class="group bg-white dark:bg-[#1B2740] border border-gray-200 dark:border-darkBorder rounded-lg shadow-sm">
                         <summary class="flex justify-between items-center cursor-pointer p-4 font-semibold text-lg hover:bg-gray-50 dark:hover:bg-slate-800 text-slate-800 dark:text-slate-200">
                             <span>উচ্চতর দক্ষতার জন্য গুরুত্বপূর্ণ টপিক</span>
                             <svg class="accordion-icon w-6 h-6 text-indigo-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
                         </summary>
-                        <div class="p-4 border-t border-gray-200 dark:border-slate-700 bg-gray-50 dark:bg-slate-800/50">
+                        <div class="p-4 border-t border-gray-200 dark:border-darkBorder bg-gray-50 dark:bg-darkSurface/50">
                             <ol class="question-list">
                                 <li>অ্যালকিনের ওজনেশন+মার্কনিকভসূত্র এর ব্যবহার</li>
                                 <li>হাইড্রোকার্বনের অসম্পৃক্ততা নির্ণয়ে বেয়ার ও ব্রোমিন দ্রবন টেস্ট</li>
@@ -1063,8 +1048,8 @@
                                 <li>বেনজিনের মেটা নির্দেশক ($-NO_{2}$, $-CHO$, $-COOH$)</li>
                                 <li>বেনজিনের নাইট্রেশন, সালফোনেশন, ফ্রিডেলক্রাফট অ্যালকাইলেশন ও অ্যাশাইলেশন</li>
                                 <li>অ্যালকাইল হ্যালাইডের ও মেকানিজম।</li>
-                                <li>অ্যালডিহাইড ও কিটোনের সক্রিয়তা + পার্থক্যকরণ + অ্যালডল ঘনীভবন ক্যানিজারো বিক্রিয়া+হ্যালোফরম বিক্রিয়া</li>
-                                <li>ফেনলের কোব বিক্রিয়া রাইমার টাইম্যান বিক্রিয়া।</li>
+                                <li>অ্যালডিহাইড ও কিটোনের সক্রিয়তা + পার্থক্যকরণ + অ্যালডল ঘনীভবন, ক্যানিজারো বিক্রিয়া + হ্যালোফরম বিক্রিয়া</li>
+                                <li>ফেনলের কোব বিক্রিয়া ও রাইমার-টাইম্যান বিক্রিয়া।</li>
                                 <li>অ্যানিলিনের ডায়াজোকরন (ডায়াজোনিয়াম লবন)</li>
                                 <li>অ্যামিনের পার্থক্যকরণ $1^{\circ}, 2^{\circ}, 3^{\circ}$</li>
                                 <li>অ্যামিন ও অ্যানিলিনের পার্থক্য ক্ষারকত্ব +বিক্রিয়া।</li>
@@ -1075,28 +1060,28 @@
             </section>
 
             <!-- Chapter 3 -->
-            <section class="bg-white dark:bg-slate-800 rounded-xl shadow-md border border-gray-100 dark:border-slate-700 overflow-hidden">
-                <div class="bg-teal-50 dark:bg-slate-700 border-b border-teal-100 dark:border-slate-600 px-6 py-4">
+            <section class="bg-lightSurface dark:bg-darkSurface rounded-xl shadow-md border border-lightBorder dark:border-darkBorder overflow-hidden">
+                <div class="bg-teal-50 dark:bg-slate-800/80 border-b border-teal-100 dark:border-darkBorder px-6 py-4">
                     <h2 class="text-2xl font-bold text-teal-800 dark:text-teal-300">অধ্যায় ৩: পরিমানগত রসায়ন</h2>
                 </div>
                 <div class="p-4 md:p-6 space-y-4">
                     
-                    <details class="group bg-white dark:bg-slate-900 border border-gray-200 dark:border-slate-700 rounded-lg shadow-sm">
+                    <details class="group bg-white dark:bg-[#1B2740] border border-gray-200 dark:border-darkBorder rounded-lg shadow-sm">
                         <summary class="flex justify-between items-center cursor-pointer p-4 font-semibold text-lg hover:bg-gray-50 dark:hover:bg-slate-800 text-slate-800 dark:text-slate-200">
                             <span>জ্ঞানমূলক প্রশ্ন</span>
                             <svg class="accordion-icon w-6 h-6 text-teal-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
                         </summary>
-                        <div class="p-4 border-t border-gray-200 dark:border-slate-700 bg-gray-50 dark:bg-slate-800/50">
+                        <div class="p-4 border-t border-gray-200 dark:border-darkBorder bg-gray-50 dark:bg-darkSurface/50">
                             <ol class="question-list">
                                 <li>মোলারিটি কি?</li>
                                 <li>মোলার দ্রবণ কাকে বলে?</li>
-                                <li>প্রাইমারী স্ট্যান্ডাড পদাথ কাকে বলে?</li>
+                                <li>প্রাইমারী স্ট্যান্ডাড পদার্থ কাকে বলে?</li>
                                 <li>ডেসি মোলার দ্রবণ কী?</li>
                                 <li>ppm ঘনমাত্রার পদ্ধতি কী?</li>
                                 <li>মোল ভগ্নাংশ কী?</li>
                                 <li>প্রমাণ দ্রবণ কী?</li>
                                 <li>দশক আয়ন কী?</li>
-                                <li>নিদেশক কী?</li>
+                                <li>নির্দেশক কী?</li>
                                 <li>জারক কী?</li>
                                 <li>জারন সংখ্যা কী?</li>
                                 <li>অসামঞ্জস্যতা বিক্রিয়া কী?</li>
@@ -1104,19 +1089,19 @@
                         </div>
                     </details>
 
-                    <details class="group bg-white dark:bg-slate-900 border border-gray-200 dark:border-slate-700 rounded-lg shadow-sm">
+                    <details class="group bg-white dark:bg-[#1B2740] border border-gray-200 dark:border-darkBorder rounded-lg shadow-sm">
                         <summary class="flex justify-between items-center cursor-pointer p-4 font-semibold text-lg hover:bg-gray-50 dark:hover:bg-slate-800 text-slate-800 dark:text-slate-200">
                             <span>অনুধাবন মূলক</span>
                             <svg class="accordion-icon w-6 h-6 text-teal-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
                         </summary>
-                        <div class="p-4 border-t border-gray-200 dark:border-slate-700 bg-gray-50 dark:bg-slate-800/50">
+                        <div class="p-4 border-t border-gray-200 dark:border-darkBorder bg-gray-50 dark:bg-darkSurface/50">
                             <ol class="question-list">
-                                <li>$Na_{2}CO_{3}$ কে প্রাইমারী পদাথ বলা হয় কেন?</li>
-                                <li>$KMnO_{4}$ কে প্রাইমারী পদাথ বলা হয় না কেন?</li>
-                                <li>$KOH$ কে প্রাইমারী পদাথ বলা হয় না কেন?</li>
+                                <li>$Na_{2}CO_{3}$ কে প্রাইমারী পদার্থ বলা হয় কেন?</li>
+                                <li>$KMnO_{4}$ কে প্রাইমারী পদার্থ বলা হয় না কেন?</li>
+                                <li>$KOH$ কে প্রাইমারী পদার্থ বলা হয় না কেন?</li>
                                 <li>মোলার দ্রবণ একটি প্রমান দ্রবন, ব্যাখ্যা কর।</li>
-                                <li>মোলার দ্রবণের ঘনমাত্রা তাপমাত্রা নিভরশীল ব্যাখ্যা কর।</li>
-                                <li>সবল এসিড-সবল ক্ষারের টাইট্রেশনে কোন নিদেশক ব্যবহার করা হয়; ব্যাখ্যা কর।</li>
+                                <li>মোলার দ্রবণের ঘনমাত্রা তাপমাত্রা নির্ভরশীল ব্যাখ্যা কর।</li>
+                                <li>সবল এসিড-সবল ক্ষারের টাইট্রেশনে কোন নির্দেশক ব্যবহার করা হয়; ব্যাখ্যা কর।</li>
                                 <li>$0.15M~HCl$ দ্রবণের ঘনমাত্রা ppm এককে নিণয় কর।</li>
                                 <li>রিডক্স বিক্রিয়ায় ইলেক্ট্রনের স্থানান্তর ঘটে, ব্যাখ্যা কর।</li>
                                 <li>$KMnO_{4}$ একটি জারক ব্যাখ্যা কর।</li>
@@ -1133,12 +1118,12 @@
                         </div>
                     </details>
 
-                    <details class="group bg-white dark:bg-slate-900 border border-gray-200 dark:border-slate-700 rounded-lg shadow-sm">
+                    <details class="group bg-white dark:bg-[#1B2740] border border-gray-200 dark:border-darkBorder rounded-lg shadow-sm">
                         <summary class="flex justify-between items-center cursor-pointer p-4 font-semibold text-lg hover:bg-gray-50 dark:hover:bg-slate-800 text-slate-800 dark:text-slate-200">
                             <span>উচ্চতর দক্ষতার জন্য গুরুত্বপূর্ণ টপিক</span>
                             <svg class="accordion-icon w-6 h-6 text-teal-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
                         </summary>
-                        <div class="p-4 border-t border-gray-200 dark:border-slate-700 bg-gray-50 dark:bg-slate-800/50">
+                        <div class="p-4 border-t border-gray-200 dark:border-darkBorder bg-gray-50 dark:bg-darkSurface/50">
                             <ol class="question-list">
                                 <li>এসিড ও ক্ষার দ্রবণের মিশ্রণের প্রকৃতি ও ঘনমাত্রা নিণয়</li>
                                 <li>দ্রবণের ঘনমাত্রা ppm, ppb, % এককে নিণয়</li>
@@ -1152,18 +1137,18 @@
             </section>
 
             <!-- Chapter 4 -->
-            <section class="bg-white dark:bg-slate-800 rounded-xl shadow-md border border-gray-100 dark:border-slate-700 overflow-hidden">
-                <div class="bg-purple-50 dark:bg-slate-700 border-b border-purple-100 dark:border-slate-600 px-6 py-4">
+            <section class="bg-lightSurface dark:bg-darkSurface rounded-xl shadow-md border border-lightBorder dark:border-darkBorder overflow-hidden">
+                <div class="bg-purple-50 dark:bg-slate-800/80 border-b border-purple-100 dark:border-darkBorder px-6 py-4">
                     <h2 class="text-2xl font-bold text-purple-800 dark:text-purple-300">অধ্যায় ৪: তড়িৎ রসায়ন</h2>
                 </div>
                 <div class="p-4 md:p-6 space-y-4">
                     
-                    <details class="group bg-white dark:bg-slate-900 border border-gray-200 dark:border-slate-700 rounded-lg shadow-sm">
+                    <details class="group bg-white dark:bg-[#1B2740] border border-gray-200 dark:border-darkBorder rounded-lg shadow-sm">
                         <summary class="flex justify-between items-center cursor-pointer p-4 font-semibold text-lg hover:bg-gray-50 dark:hover:bg-slate-800 text-slate-800 dark:text-slate-200">
                             <span>জ্ঞানমূলক প্রশ্ন</span>
                             <svg class="accordion-icon w-6 h-6 text-purple-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
                         </summary>
-                        <div class="p-4 border-t border-gray-200 dark:border-slate-700 bg-gray-50 dark:bg-slate-800/50">
+                        <div class="p-4 border-t border-gray-200 dark:border-darkBorder bg-gray-50 dark:bg-darkSurface/50">
                             <ol class="question-list">
                                 <li>ফ্যারাডে / তড়িৎ বিশ্লেষণের প্রথম সূত্র লিখ।</li>
                                 <li>তড়িৎ রাসায়নিক তুল্যাঙ্ক কাকে বলে?</li>
@@ -1171,7 +1156,7 @@
                                 <li>তড়িৎ রাসায়নিক সারি কি?</li>
                                 <li>সক্রিয়তা সিরিজ কি?</li>
                                 <li>ফ্যারাডে ধ্রুবক কী?</li>
-                                <li>তড়িৎদ্বার বা ইলোক্ট্রোড কী?</li>
+                                <li>তড়িৎদ্বার বা ইলেকট্রোড কী?</li>
                                 <li>গ্যালভানিক কোষ (ভোল্টার কোষ) কাকে বলে?</li>
                                 <li>ইলেক্ট্রাড পটেনশিয়াল কী?</li>
                                 <li>তড়িৎচালক বল (EMF) কি?</li>
@@ -1181,18 +1166,18 @@
                                 <li>নির্দেশক তড়িৎদ্বার কী?</li>
                                 <li>মুখ্য নির্দেশক তড়িৎদ্বার কী?</li>
                                 <li>প্রমান হাইড্রোজেন তড়িৎদ্বার কী?</li>
-                                <li>গৌন কোষ বা সেকেন্ডারী সেল কি?</li>
+                                <li>গৌণ কোষ বা সেকেন্ডারী সেল কি?</li>
                                 <li>ফুয়েল সেল কি?</li>
                             </ol>
                         </div>
                     </details>
 
-                    <details class="group bg-white dark:bg-slate-900 border border-gray-200 dark:border-slate-700 rounded-lg shadow-sm">
+                    <details class="group bg-white dark:bg-[#1B2740] border border-gray-200 dark:border-darkBorder rounded-lg shadow-sm">
                         <summary class="flex justify-between items-center cursor-pointer p-4 font-semibold text-lg hover:bg-gray-50 dark:hover:bg-slate-800 text-slate-800 dark:text-slate-200">
                             <span>অনুধাবন মূলক</span>
                             <svg class="accordion-icon w-6 h-6 text-purple-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
                         </summary>
-                        <div class="p-4 border-t border-gray-200 dark:border-slate-700 bg-gray-50 dark:bg-slate-800/50">
+                        <div class="p-4 border-t border-gray-200 dark:border-darkBorder bg-gray-50 dark:bg-darkSurface/50">
                             <ol class="question-list">
                                 <li>এসিড মিশ্রিত পানিকে তড়িৎবিশ্লেষ্য পরিবাহী বলে-কেন?</li>
                                 <li>তড়িৎ বিশ্লেষণ একটি রিডক্স বিক্রিয়া ব্যাখ্যা কর।</li>
@@ -1200,8 +1185,8 @@
                                 <li>সিলভারের তড়িৎ রাসায়নিক তুল্যাঙ্ক $1.118 \times 10^{-3}$ বলতে কী বুঝ?</li>
                                 <li>$NaCl$ একটি তড়িৎবিশ্লেষ্য পরিবাহী-কেন?</li>
                                 <li>গ্যালভানিক কোষে রিডক্স বিক্রিয়া ঘটে-ব্যাখ্যা কর।</li>
-                                <li>কোরাসান একটি তড়িৎ রাসায়নিক প্রক্রিয়া- ব্যাখ্যা কর।</li>
-                                <li>প্রমাণ হাইড্রোজেন গ্যাস তড়িৎদ্বার একটি প্রাইমারি নিদেশক তড়িৎদ্বার-ব্যাখ্যা কর।</li>
+                                <li>কোরোশন (Corrosion) একটি তড়িৎ রাসায়নিক প্রক্রিয়া- ব্যাখ্যা কর।</li>
+                                <li>প্রমাণ হাইড্রোজেন গ্যাস তড়িৎদ্বার একটি প্রাইমারি নির্দেশক তড়িৎদ্বার-ব্যাখ্যা কর।</li>
                                 <li>ড্যানিয়েল সেলে জিংক বিজারক হিসেবে কাজ করে কেন?</li>
                                 <li>একটি কোষে লবন সেতুর ভূমিকা কী?</li>
                                 <li>হাইড্রোজেন ফুয়েল সেল সবচেয়ে পরিবেশ বান্ধব সেল-কেন?</li>
@@ -1211,12 +1196,12 @@
                         </div>
                     </details>
 
-                    <details class="group bg-white dark:bg-slate-900 border border-gray-200 dark:border-slate-700 rounded-lg shadow-sm">
+                    <details class="group bg-white dark:bg-[#1B2740] border border-gray-200 dark:border-darkBorder rounded-lg shadow-sm">
                         <summary class="flex justify-between items-center cursor-pointer p-4 font-semibold text-lg hover:bg-gray-50 dark:hover:bg-slate-800 text-slate-800 dark:text-slate-200">
                             <span>উচ্চতর দক্ষতার জন্য গুরুত্বপূর্ণ টপিক</span>
                             <svg class="accordion-icon w-6 h-6 text-purple-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
                         </summary>
-                        <div class="p-4 border-t border-gray-200 dark:border-slate-700 bg-gray-50 dark:bg-slate-800/50">
+                        <div class="p-4 border-t border-gray-200 dark:border-darkBorder bg-gray-50 dark:bg-darkSurface/50">
                             <ol class="question-list">
                                 <li>ফ্যারাডের সূত্র ও তার গাণিতিক সমস্যা।</li>
                                 <li>তড়িৎ কোষ বিভব ও তার গাণিতিক সমস্যা</li>
@@ -1229,18 +1214,18 @@
             </section>
 
             <!-- Chapter 5 -->
-            <section class="bg-white dark:bg-slate-800 rounded-xl shadow-md border border-gray-100 dark:border-slate-700 overflow-hidden">
-                <div class="bg-blue-50 dark:bg-slate-700 border-b border-blue-100 dark:border-slate-600 px-6 py-4">
+            <section class="bg-lightSurface dark:bg-darkSurface rounded-xl shadow-md border border-lightBorder dark:border-darkBorder overflow-hidden">
+                <div class="bg-blue-50 dark:bg-slate-800/80 border-b border-blue-100 dark:border-darkBorder px-6 py-4">
                     <h2 class="text-2xl font-bold text-blue-800 dark:text-blue-300">অধ্যায় ৫: অর্থনৈতিক রসায়ন</h2>
                 </div>
                 <div class="p-4 md:p-6 space-y-4">
                     
-                    <details class="group bg-white dark:bg-slate-900 border border-gray-200 dark:border-slate-700 rounded-lg shadow-sm">
+                    <details class="group bg-white dark:bg-[#1B2740] border border-gray-200 dark:border-darkBorder rounded-lg shadow-sm">
                         <summary class="flex justify-between items-center cursor-pointer p-4 font-semibold text-lg hover:bg-gray-50 dark:hover:bg-slate-800 text-slate-800 dark:text-slate-200">
                             <span>জ্ঞানমূলক প্রশ্ন</span>
                             <svg class="accordion-icon w-6 h-6 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
                         </summary>
-                        <div class="p-4 border-t border-gray-200 dark:border-slate-700 bg-gray-50 dark:bg-slate-800/50">
+                        <div class="p-4 border-t border-gray-200 dark:border-darkBorder bg-gray-50 dark:bg-darkSurface/50">
                             <ol class="question-list">
                                 <li>ন্যানো প্রযুক্তি কি?</li>
                                 <li>ন্যানো কণা কী?</li>
@@ -1259,12 +1244,12 @@
                         </div>
                     </details>
 
-                    <details class="group bg-white dark:bg-slate-900 border border-gray-200 dark:border-slate-700 rounded-lg shadow-sm">
+                    <details class="group bg-white dark:bg-[#1B2740] border border-gray-200 dark:border-darkBorder rounded-lg shadow-sm">
                         <summary class="flex justify-between items-center cursor-pointer p-4 font-semibold text-lg hover:bg-gray-50 dark:hover:bg-slate-800 text-slate-800 dark:text-slate-200">
                             <span>অনুধাবন মূলক</span>
                             <svg class="accordion-icon w-6 h-6 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
                         </summary>
-                        <div class="p-4 border-t border-gray-200 dark:border-slate-700 bg-gray-50 dark:bg-slate-800/50">
+                        <div class="p-4 border-t border-gray-200 dark:border-darkBorder bg-gray-50 dark:bg-darkSurface/50">
                             <ol class="question-list">
                                 <li>সিরামিকে গ্লেজিং করা হয় কেন?</li>
                                 <li>শিল্পে ETP ব্যবহার করা হয় কেন?</li>
@@ -1273,27 +1258,27 @@
                                 <li>প্রাকৃতিক গ্যাস ব্যবহারের ক্ষেত্রগুলো সংক্ষেপে লিখ।</li>
                                 <li>চামড়ার ট্যানিংএ লবন যুক্ত করা হয় কেন?</li>
                                 <li>পরমাণু ও ন্যানো কনার মধ্যে পার্থক্য লিখ।</li>
-                                <li>কাচ শিল্পে পুন: চক্রায়নের সুবিধাসমূহ বর্ণনা কর।</li>
+                                <li>কাচ শিল্পে পুনঃচক্রায়নের সুবিধাসমূহ বর্ণনা কর।</li>
                                 <li>কাচ প্রস্তুতিতে অ্যানিলিং করা হয় কেন?</li>
                                 <li>সিমেন্ট এর জমাটকরণ বলতে কী বুঝ?</li>
                                 <li>কয়লায় সালফারের উপস্থিতি ক্ষতিকর কেন?</li>
                                 <li>CNT ইস্পাত থেকে বেশি শক্তিশালী-ব্যাখ্যা কর।</li>
-                                <li>চামড়ার ট্যানিং এ মিল্ক অফ লাইম গুরুত্বপূর্ন কেন?</li>
+                                <li>চামড়ার ট্যানিং এ মিল্ক অফ লাইম গুরুত্বপূর্ণ কেন?</li>
                             </ol>
                         </div>
                     </details>
 
-                    <details class="group bg-white dark:bg-slate-900 border border-gray-200 dark:border-slate-700 rounded-lg shadow-sm">
+                    <details class="group bg-white dark:bg-[#1B2740] border border-gray-200 dark:border-darkBorder rounded-lg shadow-sm">
                         <summary class="flex justify-between items-center cursor-pointer p-4 font-semibold text-lg hover:bg-gray-50 dark:hover:bg-slate-800 text-slate-800 dark:text-slate-200">
                             <span>উচ্চতর দক্ষতার জন্য গুরুত্বপূর্ণ টপিক</span>
                             <svg class="accordion-icon w-6 h-6 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
                         </summary>
-                        <div class="p-4 border-t border-gray-200 dark:border-slate-700 bg-gray-50 dark:bg-slate-800/50">
+                        <div class="p-4 border-t border-gray-200 dark:border-darkBorder bg-gray-50 dark:bg-darkSurface/50">
                             <ol class="question-list">
                                 <li>ইউরিয়া উৎপাদন ও এর ক্ষতিকর প্রভাব</li>
                                 <li>সিমেন্ট উৎপাদন ও এর ক্ষতিকর প্রভাব</li>
                                 <li>চামড়ার ট্যানিং (ক্রোম ট্যানিং) ও এর ক্ষতিকর প্রভাব</li>
-                                <li>পাল্প পেপার প্রস্তুতি ও এর রাসাইক্লিং এর প্রয়োজনীয়তা</li>
+                                <li>পাল্প পেপার প্রস্তুতি ও এর রিসাইক্লিং এর প্রয়োজনীয়তা</li>
                                 <li>টেক্সটাইল শিল্প ও এ শিল্প কর্তৃক পরিবেশ দূষণ রোধ করার উপায়।</li>
                                 <li>ETP এর মূলনীতি লিখ।</li>
                             </ol>
@@ -1311,7 +1296,7 @@
         <p class="text-xs mt-2 text-gray-500">Document generated and optimized for HSC Exam Preparation</p>
     </footer>
 
-    <!-- Scripts at the bottom to ensure they run before MathJax parsing (if async completes later) or explicitly trigger it -->
+    <!-- Interactive Scripts -->
     <script>
         // Tab switching logic
         function switchTab(tabId) {
@@ -1329,8 +1314,8 @@
             const btn1 = document.getElementById('btn-paper1');
             const btn2 = document.getElementById('btn-paper2');
             
-            const inactiveClass = 'px-6 py-2 rounded-full font-bold text-sm md:text-lg transition-all text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400';
-            const activeClass = 'px-6 py-2 rounded-full font-bold text-sm md:text-lg transition-all bg-blue-600 text-white shadow-md dark:bg-blue-500';
+            const inactiveClass = 'px-6 py-2 rounded-full font-bold text-sm md:text-lg transition-all text-slate-700 dark:text-slate-300 hover:text-primaryBlue border-transparent';
+            const activeClass = 'px-6 py-2 rounded-full font-bold text-sm md:text-lg transition-all bg-[#3B82F6] text-white shadow-[0_8px_24px_rgba(37,99,235,0.30)] border-transparent';
             
             btn1.className = tabId === 'paper1' ? activeClass : inactiveClass;
             btn2.className = tabId === 'paper2' ? activeClass : inactiveClass;
@@ -1418,15 +1403,15 @@
             if (resetClicks === 0) {
                 btn.innerHTML = "আপনি কি নিশ্চিত? (Click again to confirm)";
                 btn.classList.add('text-red-600', 'dark:text-red-500', 'font-bold');
-                btn.classList.remove('text-gray-500');
+                btn.classList.remove('text-slate-500', 'dark:text-slate-400');
                 resetClicks++;
                 
                 setTimeout(() => {
                     resetClicks = 0;
                     btn.innerHTML = `<svg class="w-3 h-3 inline-block mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path></svg>প্রস্তুতি রিসেট করুন`;
                     btn.classList.remove('text-red-600', 'dark:text-red-500', 'font-bold');
-                    btn.classList.add('text-gray-500');
-                }, 3000); // 3 sec timer to cancel reset state
+                    btn.classList.add('text-slate-500', 'dark:text-slate-400');
+                }, 3000); 
             } else {
                 localStorage.removeItem('hsc_chem_progress');
                 location.reload();
@@ -1434,10 +1419,10 @@
         }
 
         // Initialize Checklists
-        document.querySelectorAll('.question-list li, .nested-list li').forEach(li => {
+        document.querySelectorAll('.question-list li, .nested-list li, .list-disc li').forEach(li => {
             const contentHTML = li.innerHTML;
             const textForHash = li.textContent.trim();
-            if(!textForHash) return; // Ignore empty LIs
+            if(!textForHash || textForHash.length < 2) return; // Ignore empty or broken LIs
             
             const id = hashCode(textForHash);
             
@@ -1448,7 +1433,7 @@
             // Create custom structure inside li
             li.innerHTML = `
                 <label class="inline-flex items-start gap-3 w-full cursor-pointer group">
-                    <input type="checkbox" id="${id}" ${isChecked ? 'checked' : ''} class="checklist-item mt-1 w-5 h-5 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-slate-800 focus:ring-2 dark:bg-slate-700 dark:border-slate-500 cursor-pointer transition-colors duration-200">
+                    <input type="checkbox" id="${id}" ${isChecked ? 'checked' : ''} class="checklist-item mt-1 w-5 h-5 text-[#3B82F6] bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-darkSurface focus:ring-2 dark:bg-slate-700 dark:border-slate-500 cursor-pointer transition-colors duration-200">
                     <span class="content-wrapper flex-1 min-w-0 transition-all duration-200 overflow-x-auto ${styleClasses}">
                         ${contentHTML}
                     </span>
@@ -1476,7 +1461,7 @@
         // Initial Score update after DOM manipulation
         updateScores();
 
-        // Finally, tell MathJax to render equations now that our DOM structures are built.
+        // Trigger MathJax after DOM structures are built
         window.onload = function() {
             if (window.MathJax) {
                 MathJax.typesetPromise();
