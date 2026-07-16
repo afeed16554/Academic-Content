@@ -1,0 +1,1339 @@
+<!DOCTYPE html>
+<html lang="bn" class="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chemistry Preparation - HSC</title>
+    
+    <!-- Tailwind CSS for styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {}
+            }
+        }
+    </script>
+    
+    <!-- Google Fonts for better Bengali typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- MathJax for rendering Chemical & Mathematical formulas -->
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']]
+            },
+            svg: {
+                fontCache: 'global'
+            },
+            startup: {
+                typeset: false // We will trigger it manually after our checklist script runs
+            }
+        };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+    <style>
+        body {
+            font-family: 'Hind Siliguri', sans-serif;
+        }
+        
+        /* Custom styles for details/summary accordion */
+        details > summary {
+            list-style: none;
+        }
+        details > summary::-webkit-details-marker {
+            display: none;
+        }
+        
+        .accordion-icon {
+            transition: transform 0.3s ease-in-out;
+        }
+        details[open] .accordion-icon {
+            transform: rotate(180deg);
+        }
+
+        /* Styling lists for better readability */
+        .question-list {
+            list-style-type: decimal;
+            padding-left: 1.5rem;
+            margin-top: 0.5rem;
+        }
+        .question-list li {
+            margin-bottom: 0.85rem;
+            line-height: 1.6;
+            padding-left: 0.25rem;
+        }
+        .question-list li::marker, .nested-list li::marker {
+            font-weight: 600;
+            color: #3b82f6;
+        }
+        .suggestion-list {
+            list-style-type: none;
+            padding-left: 0;
+        }
+        .suggestion-list > li {
+            margin-bottom: 1.25rem;
+            padding: 1rem;
+            border-radius: 0.5rem;
+            border-left: 4px solid #3b82f6;
+        }
+        .nested-list {
+            list-style-type: lower-roman;
+            padding-left: 1.5rem;
+            margin-top: 0.75rem;
+        }
+        .nested-list li {
+            margin-bottom: 0.75rem;
+            line-height: 1.6;
+        }
+
+        /* Animations */
+        .animate-fade-in {
+            animation: fadeIn 0.4s ease-in-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(5px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Checkbox custom style adjustments */
+        .checklist-item {
+            flex-shrink: 0;
+            margin-top: 0.25rem; /* align with text */
+        }
+    </style>
+</head>
+<body class="antialiased bg-slate-50 text-slate-900 dark:bg-slate-900 dark:text-slate-200 transition-colors duration-300">
+
+    <!-- Header Section -->
+    <header class="bg-gradient-to-r from-blue-700 to-indigo-800 dark:from-slate-800 dark:to-slate-950 text-white shadow-lg py-10 px-4 text-center relative">
+        <!-- Dark Mode Toggle -->
+        <button onclick="toggleDarkMode()" class="absolute top-4 right-4 bg-white/20 hover:bg-white/30 text-white p-2 rounded-full backdrop-blur-sm transition-all" aria-label="Toggle Dark Mode">
+            <svg id="moon-icon" class="w-6 h-6 hidden dark:block" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path></svg>
+            <svg id="sun-icon" class="w-6 h-6 block dark:hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path></svg>
+        </button>
+
+        <div class="max-w-4xl mx-auto">
+            <h1 class="text-2xl md:text-4xl font-bold mb-3 tracking-wide">মোহাম্মদপুর প্রিপারেটরি স্কুল এন্ড কলেজ</h1>
+            <h2 class="text-xl md:text-2xl font-semibold mb-2 text-blue-100 dark:text-gray-300">এইচ এস সি পরীক্ষা - ২০২৬ / নির্বাচনি পরীক্ষা-২০২৫</h2>
+            <p class="text-md md:text-lg text-blue-200 dark:text-gray-400 mt-2">প্রস্তুতকারক: <span class="font-semibold text-white">আতিকুন্নাহার মিতু</span>, প্রভাষক (রসায়ন)</p>
+        </div>
+    </header>
+
+    <!-- Pill Tabs -->
+    <div class="flex justify-center mt-8 px-4 relative z-10">
+        <div class="flex bg-gray-200 dark:bg-slate-800 p-1 rounded-full shadow-inner border border-gray-300 dark:border-slate-700">
+            <button id="btn-paper1" onclick="switchTab('paper1')" class="px-6 py-2 rounded-full font-bold text-sm md:text-lg transition-all bg-blue-600 text-white shadow-md dark:bg-blue-500">
+                রসায়ন ১ম পত্র
+            </button>
+            <button id="btn-paper2" onclick="switchTab('paper2')" class="px-6 py-2 rounded-full font-bold text-sm md:text-lg transition-all text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400">
+                রসায়ন ২য় পত্র
+            </button>
+        </div>
+    </div>
+
+    <!-- Progress & Score Section -->
+    <div class="max-w-3xl mx-auto px-4 mt-6">
+        <div class="bg-white dark:bg-slate-800 p-5 rounded-xl shadow-sm border border-gray-200 dark:border-slate-700">
+            <!-- Paper 1 Score -->
+            <div id="p1-score-container" class="block animate-fade-in">
+                <div class="flex justify-between items-center mb-2">
+                    <span class="text-sm font-bold text-slate-700 dark:text-slate-300">১ম পত্র প্রস্তুতি অগ্রগতি</span>
+                    <span id="p1-score" class="text-sm font-bold text-blue-700 dark:text-blue-300 bg-blue-100 dark:bg-blue-900/50 py-1 px-3 rounded-full border border-blue-200 dark:border-blue-700">0 / 0</span>
+                </div>
+                <div class="w-full bg-gray-200 rounded-full h-2.5 dark:bg-slate-700 overflow-hidden">
+                    <div id="p1-progress-bar" class="bg-gradient-to-r from-blue-500 to-indigo-600 h-2.5 rounded-full transition-all duration-700 ease-out" style="width: 0%"></div>
+                </div>
+            </div>
+            
+            <!-- Paper 2 Score -->
+            <div id="p2-score-container" class="hidden animate-fade-in">
+                <div class="flex justify-between items-center mb-2">
+                    <span class="text-sm font-bold text-slate-700 dark:text-slate-300">২য় পত্র প্রস্তুতি অগ্রগতি</span>
+                    <span id="p2-score" class="text-sm font-bold text-blue-700 dark:text-blue-300 bg-blue-100 dark:bg-blue-900/50 py-1 px-3 rounded-full border border-blue-200 dark:border-blue-700">0 / 0</span>
+                </div>
+                <div class="w-full bg-gray-200 rounded-full h-2.5 dark:bg-slate-700 overflow-hidden">
+                    <div id="p2-progress-bar" class="bg-gradient-to-r from-blue-500 to-indigo-600 h-2.5 rounded-full transition-all duration-700 ease-out" style="width: 0%"></div>
+                </div>
+            </div>
+            
+            <!-- Reset Button -->
+            <div class="mt-4 text-right">
+                <button id="reset-btn" onclick="handleReset()" class="text-xs font-semibold text-gray-500 hover:text-red-600 dark:text-gray-400 dark:hover:text-red-400 transition-colors">
+                    <svg class="w-3 h-3 inline-block mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path></svg>প্রস্তুতি রিসেট করুন
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content Container -->
+    <main class="max-w-5xl mx-auto px-4 py-6 space-y-8">
+
+        <!-- ============================== -->
+        <!-- PAPER 1 CONTENT (Source 2)     -->
+        <!-- ============================== -->
+        <div id="paper1" class="space-y-8 block animate-fade-in">
+            
+            <!-- Chapter 2 -->
+            <section class="bg-white dark:bg-slate-800 rounded-xl shadow-md border border-gray-100 dark:border-slate-700 overflow-hidden">
+                <div class="bg-blue-50 dark:bg-slate-700 border-b border-blue-100 dark:border-slate-600 px-6 py-4">
+                    <h2 class="text-2xl font-bold text-blue-800 dark:text-blue-300">অধ্যায় ২: গুনগত রসায়ন</h2>
+                </div>
+                <div class="p-4 md:p-6 space-y-4">
+                    
+                    <details class="group bg-white dark:bg-slate-900 border border-gray-200 dark:border-slate-700 rounded-lg shadow-sm">
+                        <summary class="flex justify-between items-center cursor-pointer p-4 font-semibold text-lg hover:bg-gray-50 dark:hover:bg-slate-800 text-slate-800 dark:text-slate-200">
+                            <span>জ্ঞানমূলক প্রশ্ন</span>
+                            <svg class="accordion-icon w-6 h-6 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                        </summary>
+                        <div class="p-4 border-t border-gray-200 dark:border-slate-700 bg-gray-50 dark:bg-slate-800/50">
+                            <ol class="question-list">
+                                <li>আলফা কণা কাকে বলে?</li>
+                                <li>আইসোটোপ ও আইসোটোন কাকে বলে?</li>
+                                <li>জীম্যান প্রভাব কাকে বলে?</li>
+                                <li>কোয়ান্টাম সংখ্যা কাকে বলে?</li>
+                                <li>অরবিট কাকে বলে?</li>
+                                <li>নোড কাকে বলে?</li>
+                                <li>পলির বর্জন নীতি লিখ।</li>
+                                <li>বর্ণালী কাকে বলে?</li>
+                                <li>তড়িৎ চুম্বকীয় বিকিরণ কাকে বলে?</li>
+                                <li>প্রধান কোয়ান্টাম সংখ্যা কাকে বলে?</li>
+                                <li>চৌম্বক কোয়ান্টাম সংখ্যা কাকে বলে?</li>
+                                <li>স্পিন কোয়ান্টাম সংখ্যা কাকে বলে?</li>
+                                <li>অরবিটাল কাকে বলে?</li>
+                                <li>আউফবাউ নীতি কী?</li>
+                                <li>হুন্ডের নীতি কী?</li>
+                                <li>দ্রাব্যতা কি?</li>
+                                <li>MRI এর পূর্ণরূপ কি?</li>
+                                <li>লাইম্যান সিরিজ কী?</li>
+                                <li>বামার সিরিজ কী?</li>
+                                <li>হাইজেনবার্গের অনিশ্চয়তা নীতিটি লিখ?</li>
+                                <li>সমআয়ন প্রভাব কাকে বলে?</li>
+                                <li>সম্পৃক্ত দ্রবণ কাকে বলে?</li>
+                                <li>পানির আয়নিক গুনফল কাকে বলে?</li>
+                                <li>নেসলার বিকারক কাকে বলে?</li>
+                                <li>কেলাসন কাকে বলে?</li>
+                                <li>আংশিক পাতন কাকে বলে?</li>
+                                <li>নিম্নচাপ পাতন/ বাষ্প পাতন কাকে বলে?</li>
+                                <li>দ্রাবক নিষকাশন কী?</li>
+                                <li>ক্রোমাটোগ্রাফি কাকে বলে?</li>
+                                <li>Rf কাকে বলে?</li>
+                            </ol>
+                        </div>
+                    </details>
+
+                    <details class="group bg-white dark:bg-slate-900 border border-gray-200 dark:border-slate-700 rounded-lg shadow-sm">
+                        <summary class="flex justify-between items-center cursor-pointer p-4 font-semibold text-lg hover:bg-gray-50 dark:hover:bg-slate-800 text-slate-800 dark:text-slate-200">
+                            <span>অনুধাবন মূলক প্রশ্ন</span>
+                            <svg class="accordion-icon w-6 h-6 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                        </summary>
+                        <div class="p-4 border-t border-gray-200 dark:border-slate-700 bg-gray-50 dark:bg-slate-800/50">
+                            <ol class="question-list">
+                                <li>$Fe^{2+}$ ও $Fe^{3+}$ আয়নদ্বয়ের মধ্যে কোনটি অধিক স্থায়ী?</li>
+                                <li>He এর ক্ষেত্রে বোর তত্ত্ব প্রযোজ্য ব্যাখ্যা কর।</li>
+                                <li>2d ও 3f অরবিটাল সম্ভব নয় কেন?</li>
+                                <li>K এর ১৯ তম ইলেক্ট্রনটি 3d না গিয়ে 4s অরবিটালে যায় কেন?</li>
+                                <li>Cu ও Cr এর ইলেক্ট্রন বিন্যাস সাধারণ নিয়মের ব্যতিক্রম কেন?</li>
+                                <li>শিখা পরীক্ষাতে HCl ব্যবহার করা হয় কেন?</li>
+                                <li>অরবিট ও অরবিটালের মধ্যে পার্থক্য লিখ।</li>
+                                <li>সালফেট আয়নের সনাক্তকরণে $BaCl_{2}$ এর পরিবর্তে $Ba(NO_{3})_{2}$ ব্যবহার করা উত্তম কেন?</li>
+                                <li>$25^{\circ}C$ তাপমাত্রায় $M(OH)_{3}$ এর দ্রাব্যতা গুনফল $2.5\times10^{-39}$ বলতে কি বুঝ?</li>
+                                <li>UV রশ্নির সাহায্যে কিভাবে জাল টাকা/পাসপোর্ট সনাক্ত করা যায়?</li>
+                                <li>দেখাও যে ফসফরাস/অক্সিজেনের ইলেক্ট্রন বিন্যাস হুন্ডের নীতি মেনে চলে।</li>
+                                <li>পলির বর্জন নীতি ব্যাখ্যা কর।</li>
+                                <li>শিখা পরীক্ষাতে বেরিলিয়াম ও ম্যাগনেশিয়াম বর্ণ দেয় না কেন?</li>
+                                <li>দ্রবনে $NH_{4}^{+}/Na^{+}$ আয়ন কিভাবে সনাক্ত করা যায়?</li>
+                                <li>বেরিলিয়ামের ক্ষেত্রে হুন্ডের নীতি প্রযোজ্য নয় কেন?</li>
+                                <li>চিকিৎসাক্ষেত্রে IR রশ্নির ব্যবহার লিখ।</li>
+                                <li>দ্রাব্যতার গুনফল বলতে কি বোঝায়?</li>
+                                <li>পানির আয়নিক গুনফল তাপমাত্রার উপর নির্ভরশীল কেন? ব্যাখ্যা কর।</li>
+                                <li>সমআয়ন প্রভাবের ফলে দ্রাব্যতা হ্রাস পায় কেন?</li>
+                            </ol>
+                        </div>
+                    </details>
+
+                    <details class="group bg-white dark:bg-slate-900 border border-gray-200 dark:border-slate-700 rounded-lg shadow-sm">
+                        <summary class="flex justify-between items-center cursor-pointer p-4 font-semibold text-lg hover:bg-gray-50 dark:hover:bg-slate-800 text-slate-800 dark:text-slate-200">
+                            <span>উচ্চতর দক্ষতার জন্য গুরুত্বপূর্ণ টপিক</span>
+                            <svg class="accordion-icon w-6 h-6 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                        </summary>
+                        <div class="p-4 border-t border-gray-200 dark:border-slate-700 bg-gray-50 dark:bg-slate-800/50">
+                            <ol class="question-list">
+                                <li>বোর পরমাণু মডেল ও এর গাণিতিক সমস্যা</li>
+                                <li>কোয়ান্টাম সংখ্যা</li>
+                                <li>ইলেক্ট্রন বিন্যাসের নিয়ম</li>
+                                <li>বর্ণালি ও এর গাণিতিক সমস্যা</li>
+                                <li>$K_{sp}$ ও $K_{ip}$ এর গাণিতিক সমস্যা</li>
+                                <li>সমআয়ন প্রভাব এর গাণিতিক সমস্যা</li>
+                            </ol>
+                        </div>
+                    </details>
+
+                    <details class="group bg-white dark:bg-slate-900 border border-blue-200 dark:border-blue-800 rounded-lg shadow-sm" open>
+                        <summary class="flex justify-between items-center cursor-pointer p-4 font-semibold text-lg bg-blue-50 dark:bg-blue-900/30 hover:bg-blue-100 dark:hover:bg-blue-900/50 text-blue-800 dark:text-blue-300">
+                            <span>গুরুত্বপূর্ণ টপিক (সাজেশন)</span>
+                            <svg class="accordion-icon w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                        </summary>
+                        <div class="p-4 md:p-6 border-t border-blue-100 dark:border-blue-800">
+                            <ul class="suggestion-list">
+                                <li class="bg-blue-50 dark:bg-slate-800">
+                                    <strong class="text-lg text-slate-800 dark:text-slate-200 block mb-2">১) বোর ও রাদারফোর্ড পরমাণু মডেল:</strong>
+                                    <ol class="nested-list text-slate-700 dark:text-slate-300">
+                                        <li>তুলনা অর্থাৎ কোনটি অধিকতর গ্রহণযোগ্য।</li>
+                                        <li>বোর মডেলের স্বীকার্য ৩টি বিশেষ করে কৌণিক ভরবেগ।</li>
+                                        <li>বোর তত্ত্বের সাহায্যে n তম কক্ষপথের শক্তি ও ব্যাসার্ধ নির্ণয়।
+                                            <div class="mt-3 mb-1 text-sm md:text-base text-gray-700 dark:text-gray-300 bg-white dark:bg-slate-900 p-3 rounded border dark:border-slate-700 shadow-sm">
+                                                [★★★] n তম কক্ষপথের শক্তি, $E_n = -\left(\frac{2\pi^{2}me^{4}}{h^{2}}\right) \times \left(\frac{Z^{2}}{n^{2}}\right)$<br><br>
+                                                n তম কক্ষপথের ব্যাসার্ধ, $r_n = \left(\frac{h^{2}}{4\pi^{2}me^{2}}\right) \times \left(\frac{n^{2}}{Z}\right)$
+                                            </div>
+                                        </li>
+                                        <li>$mvr = \frac{nh}{2\pi}$ সমীকরণের math।</li>
+                                    </ol>
+                                </li>
+                                <li class="bg-blue-50 dark:bg-slate-800">
+                                    <strong class="text-lg text-slate-800 dark:text-slate-200 block mb-2">২) কোয়ান্টাম সংখ্যা: [★★★]</strong>
+                                    <ol class="nested-list text-slate-700 dark:text-slate-300">
+                                        <li>কোয়ান্টাম সংখ্যার সাহায্যে কক্ষপথে অরবিটাল সংখ্যা ও সর্বোচ্চ ইলেকট্রন ধারণ ক্ষমতা নির্ণয়।</li>
+                                        <li>কোন অরবিটালটি সম্ভব বা সম্ভব নয় কেন?</li>
+                                    </ol>
+                                </li>
+                                <li class="bg-blue-50 dark:bg-slate-800">
+                                    <strong class="text-lg text-slate-800 dark:text-slate-200 block mb-2">৩) ইলেকট্রন বিন্যাসের নীতি ৩টি: [★★★]</strong>
+                                    <ol class="nested-list text-slate-700 dark:text-slate-300">
+                                        <li>আউফবাউ নীতি, ব্যতিক্রম: Cr ও Cu কেন?</li>
+                                        <li>হুন্ডের নীতি</li>
+                                        <li>পলির বর্জননীতি</li>
+                                    </ol>
+                                </li>
+                                <li class="bg-blue-50 dark:bg-slate-800">
+                                    <strong class="text-lg text-slate-800 dark:text-slate-200 block mb-2">৪) বর্ণালী:</strong>
+                                    <ol class="nested-list text-slate-700 dark:text-slate-300">
+                                        <li>কেন সৃষ্টি হয়?</li>
+                                        <li>[★★★] পরমাণুর বর্ণালির সিরিজ ও রিডবার্গ সমীকরণভিত্তিক math।<br>
+                                            <span class="inline-block bg-white dark:bg-slate-900 px-3 py-2 border dark:border-slate-700 rounded mt-2 shadow-sm font-medium">$\bar{\nu} = \frac{1}{\lambda} = R_H \times Z^2 \times \left(\frac{1}{n_1^2} - \frac{1}{n_2^2}\right)$</span>
+                                        </li>
+                                        <li>দৃশ্যমান আলোর তরঙ্গদৈর্ঘ্যের পরিসর (বেগুনী থেকে লাল পর্যন্ত)।</li>
+                                        <li>UV, IR রশ্মির ব্যবহার (যথাক্রমে জাল টাকা সনাক্তকরণ ও চিকিৎসা ক্ষেত্রে ব্যবহার)।</li>
+                                    </ol>
+                                </li>
+                                <li class="bg-blue-50 dark:bg-slate-800">
+                                    <strong class="text-lg text-slate-800 dark:text-slate-200 block mb-2">৫) দ্রাব্যতা:</strong>
+                                    <ol class="nested-list text-slate-700 dark:text-slate-300">
+                                        <li>[★★★] $S=\frac{100 \times m}{M-m}$ সূত্রের math এবং এই সূত্রের সাহায্যে কেলাসিত বা অধঃক্ষিপ্ত লবণের ভর নির্ণয়।</li>
+                                        <li>দ্রাব্যতার উপর তাপমাত্রার প্রভাব।</li>
+                                        <li>[★★★] মিশ্রণের অধঃক্ষেপ পড়বে কিনা তা নির্ণয় ($K_{sp}$ ও $K_{ip}$ নির্ণয়)।</li>
+                                        <li>[★★★] দ্রাব্যতার উপর সমআয়নের প্রভাব + math + (ব্যতিক্রম)।</li>
+                                    </ol>
+                                </li>
+                                <li class="bg-blue-50 dark:bg-slate-800">
+                                    <strong class="text-lg text-slate-800 dark:text-slate-200 block">৬) আয়ন সনাক্তকরণ: (পড়তেই হবে) [★★★]</strong>
+                                    <div class="text-slate-700 dark:text-slate-300 mt-3 bg-white dark:bg-slate-900 p-3 rounded border dark:border-slate-700 inline-block shadow-sm">
+                                        $Cu^{2+}$, $Na^{+}$, $NH_{4}^{+}$, $Cl^{-}$, $SO_{4}^{2-}$, $CO_{3}^{2-}$
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </details>
+                </div>
+            </section>
+
+            <!-- Chapter 3 -->
+            <section class="bg-white dark:bg-slate-800 rounded-xl shadow-md border border-gray-100 dark:border-slate-700 overflow-hidden">
+                <div class="bg-indigo-50 dark:bg-slate-700 border-b border-indigo-100 dark:border-slate-600 px-6 py-4">
+                    <h2 class="text-2xl font-bold text-indigo-800 dark:text-indigo-300">অধ্যায় ৩: পর্যায়বৃত্তিক ধর্ম ও রাসায়নিক বন্ধন</h2>
+                </div>
+                <div class="p-4 md:p-6 space-y-4">
+                    
+                    <details class="group bg-white dark:bg-slate-900 border border-gray-200 dark:border-slate-700 rounded-lg shadow-sm">
+                        <summary class="flex justify-between items-center cursor-pointer p-4 font-semibold text-lg hover:bg-gray-50 dark:hover:bg-slate-800 text-slate-800 dark:text-slate-200">
+                            <span>জ্ঞানমূলক প্রশ্ন</span>
+                            <svg class="accordion-icon w-6 h-6 text-indigo-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                        </summary>
+                        <div class="p-4 border-t border-gray-200 dark:border-slate-700 bg-gray-50 dark:bg-slate-800/50">
+                            <ol class="question-list">
+                                <li>হাইড্রোজেন বন্ধন কাকে বলে?</li>
+                                <li>ইলেক্ট্রন আসক্তি কাকে বলে?</li>
+                                <li>সংকরায়ন / হাইব্রিডাইজেশন কাকে বলে?</li>
+                                <li>তড়িৎ ঋনাত্মকতা কাকে বলে?</li>
+                                <li>অবস্থান্তর মৌল কাকে বলে?</li>
+                                <li>আয়নিকরণ বিভব কি?</li>
+                                <li>সিগমা বন্ধন ও পাই বন্ধন কাকে বলে?</li>
+                                <li>পোলারায়ন কি?</li>
+                                <li>সন্নিবেশ সংখ্যা কি?</li>
+                                <li>ডায়াম্যাগনেটিক মৌল কাকে বলে?</li>
+                                <li>d- ব্লক মৌল কাকে বলে?</li>
+                                <li>জটিল যৌগ কাকে বলে?</li>
+                                <li>অম্লীয় অক্সাইড কাকে বলে?</li>
+                                <li>পোলার যৌগ কাকে বলে?</li>
+                                <li>সন্নিবেশ সমযোজী বন্ধন কাকে বলে?</li>
+                                <li>ফাজানের নীতি লিখ</li>
+                                <li>লিগ্যান্ড কাকে বলে?</li>
+                                <li>ল্যান্থেনাইড ও অ্যকটিনাইড কাকে বলে?</li>
+                                <li>প্রতিনিধি মৌল কাকে বলে?</li>
+                                <li>পোলারিটি কাকে বলে?</li>
+                                <li>কর্ণ সর্ম্পক কাকে বলে?</li>
+                                <li>ভ্যান্ডারওয়াল আর্কষণ বল কাকে বলে?</li>
+                                <li>$[Co(NH_{3})_{4}Cl_{2}]^{+}$ এর IUPAC নাম কী?</li>
+                            </ol>
+                        </div>
+                    </details>
+
+                    <details class="group bg-white dark:bg-slate-900 border border-gray-200 dark:border-slate-700 rounded-lg shadow-sm">
+                        <summary class="flex justify-between items-center cursor-pointer p-4 font-semibold text-lg hover:bg-gray-50 dark:hover:bg-slate-800 text-slate-800 dark:text-slate-200">
+                            <span>অনুধাবন মূলক প্রশ্ন</span>
+                            <svg class="accordion-icon w-6 h-6 text-indigo-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                        </summary>
+                        <div class="p-4 border-t border-gray-200 dark:border-slate-700 bg-gray-50 dark:bg-slate-800/50">
+                            <ol class="question-list">
+                                <li>NaCl অপেক্ষা CuCl এর গলনাঙ্ক কম কেন?</li>
+                                <li>সিগমা বন্ধন মূলত সমযোজী বন্ধন ব্যাখ্যা কর।</li>
+                                <li>অবস্থান্তর মৌল কি? উদাহরনসহ ব্যাখ্যা কর।</li>
+                                <li>সাধারন তাপমাত্রায় $H_{2}O$ তরল কিন্তু $H_{2}S$ গ্যাস-ব্যাখ্যা কর।</li>
+                                <li>লিথিয়ামের ইলেক্ট্রন আসক্তি ঋনাত্মক কিন্তু বেরিলিয়ামের ইলেক্ট্রন আসক্তি ধনাত্মক কেন? ব্যাখ্যা কর।</li>
+                                <li>সোডিয়ামের দ্বিতীয় আয়নিকরণ শক্তি বেশি কেন?</li>
+                                <li>নাইট্রোজেনকে নিষ্ক্রিয় মাধ্যম হিসেবে ব্যবহার করা হয় কেন?</li>
+                                <li>অর্থোনাইট্রোফেনল ও প্যারানাইট্রোফেনল এর গলনাঙ্কের ভিন্নতা ব্যাখ্যা কর।</li>
+                                <li>$CaCl_{2}$ এবং $AlCl_{3}$ লবনদ্বয়ের মধ্যে কোনটি পানিতে অধিক দ্রবনীয় এবং কেন?</li>
+                                <li>নাইট্রোজেনের প্রথম আয়নিকরণ শক্তি অক্সিজেনের প্রথম আয়নিকরন শক্তি হতে বেশি কেন?</li>
+                                <li>বেরিলিয়ামের প্রথম আয়নিকরণ শক্তি বোরনের প্রথম আয়নিকরন শক্তি হতে বেশি কেন?</li>
+                                <li>১ম গ্রুপের মৌলসমূহ সহজে দ্বিধনাত্মক আয়ন গঠন করে না-ব্যাখ্যা কর।</li>
+                                <li>F সর্বাধিক তড়িৎ ঋনাত্মক মৌল ব্যাখ্যা কর।</li>
+                                <li>$FeCl_{2}$ অপেক্ষা $FeCl_{3}$ এর গলনাঙ্ক কম কেন?</li>
+                                <li>ক্লোরিনের তড়িৎ ঋনাত্মকতা ফ্লোরিন অপেক্ষা বেশি-ব্যাখ্যা কর।</li>
+                                <li>$NH_{4}Cl$ যৌগের বন্ধন প্রকৃতি ব্যাখ্যা কর।</li>
+                                <li>অবস্থান্তর মৌল রঙিন যৌগ গঠন করে কেন? / Fe মৌল রঙিন যৌগ গঠন করে কেন?</li>
+                                <li>কেন $PCl_{5}$ গঠিত হয় কিন্তু $NCl_{5}$ গঠিত হয় না কেন?</li>
+                                <li>$AlCl_{3}$ এর ডাইমার গঠন ব্যাখ্যা কর।</li>
+                                <li>$NH_{4}^{+}$ একটি লিগ্যান্ড-ব্যাখ্যা কর।</li>
+                                <li>Na গঠিত হলেও $Na^{2+}$ গঠিত হয় না কেন?</li>
+                                <li>$Na^{+}$ ও Ne এর মধ্যে কোনটির আয়নিকরন শক্তি বেশি এবং কেন?</li>
+                                <li>Zn কে অবস্থান্তর মৌল কেন বলা হয় না?</li>
+                                <li>বরফ পানিতে ভাসে কেন?</li>
+                                <li>$P_{2}O_{5}$ অম্লীয় অক্সাইড কেন?</li>
+                                <li>$HCl/H_{2}O$ কে পোলার যৌগ বলা হয় কেন?</li>
+                                <li>$Al_{2}O_{3}$ একটি উভধর্মী অক্সাইড ব্যাখ্যা কর।</li>
+                                <li>AgCl পানিতে অদ্রবনীয় কিন্তু AgF পানিতে দ্রবনীয় কেন?</li>
+                                <li>$CO_{2}$ গ্যাস অথচ $SiO_{2}$ কঠিন ব্যাখ্যা কর।</li>
+                                <li>$BeCO_{3}$ এবং $CaCO_{3}$ লবনদ্বয়ের মধ্যে কোনটি সহজে উত্তাপে বিয়োজিত হয় এবং কেন?</li>
+                                <li>Na কে ক্ষার ধাতু বলে কেন?</li>
+                                <li>মৃৎ-ক্ষার ধাতু কাকে বলে এবং কেন?</li>
+                            </ol>
+                        </div>
+                    </details>
+
+                    <details class="group bg-white dark:bg-slate-900 border border-gray-200 dark:border-slate-700 rounded-lg shadow-sm">
+                        <summary class="flex justify-between items-center cursor-pointer p-4 font-semibold text-lg hover:bg-gray-50 dark:hover:bg-slate-800 text-slate-800 dark:text-slate-200">
+                            <span>উচ্চতর দক্ষতার জন্য গুরুত্বপূর্ণ টপিক</span>
+                            <svg class="accordion-icon w-6 h-6 text-indigo-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                        </summary>
+                        <div class="p-4 border-t border-gray-200 dark:border-slate-700 bg-gray-50 dark:bg-slate-800/50">
+                            <ol class="question-list">
+                                <li>d- ব্লক ও অবস্থান্তর মৌল</li>
+                                <li>অবস্থান্তর মৌলের রঙিনযৌগ গঠন, জটিল যৌগ গঠন।</li>
+                                <li>পর্যায়বৃত্ত ধর্ম (আয়নিকরণ শক্তি, ইলেক্ট্রন আসক্তি, তড়িৎখনাত্মকতা, গলনাঙ্ক ও স্ফুটনাঙ্ক)</li>
+                                <li>সংকরায়ন/ হাইব্রিডাইজেশন ($sp^{3}, sp^{2}, sp, sp^{3}d$)</li>
+                                <li>VSEPR ও তড়িৎ ঋনাত্মকতার প্রভাব সংকরায়ন/ হাইব্রিডাইজেশন এর উপর</li>
+                                <li>হাইড্রোজেন বন্ধন</li>
+                            </ol>
+                        </div>
+                    </details>
+
+                    <details class="group bg-white dark:bg-slate-900 border border-indigo-200 dark:border-indigo-800 rounded-lg shadow-sm" open>
+                        <summary class="flex justify-between items-center cursor-pointer p-4 font-semibold text-lg bg-indigo-50 dark:bg-indigo-900/30 hover:bg-indigo-100 dark:hover:bg-indigo-900/50 text-indigo-800 dark:text-indigo-300">
+                            <span>গুরুত্বপূর্ণ টপিক (সাজেশন)</span>
+                            <svg class="accordion-icon w-6 h-6 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                        </summary>
+                        <div class="p-4 md:p-6 border-t border-indigo-100 dark:border-indigo-800">
+                            <ul class="suggestion-list">
+                                <li class="bg-indigo-50 dark:bg-slate-800">
+                                    <strong class="text-lg text-slate-800 dark:text-slate-200 block mb-2">১) পর্যায়বৃত্ত ধর্ম: [★★★]</strong>
+                                    <ol class="nested-list text-slate-700 dark:text-slate-300">
+                                        <li>[★★★] আয়নিকরণ শক্তির ক্রম (বিশেষ করে ব্যতিক্রমগুলো) যেমন: (i) Be ও B (ii) N ও O (iii) Mg ও Al (iv) P ও S</li>
+                                        <li>[★★★] ইলেকট্রন আসক্তির ক্রম (বিশেষ করে হ্যালোজেনের) যেমন: $Cl > F > Br > I$ -> কেন?</li>
+                                        <li>তড়িৎ ঋণাত্মকতা</li>
+                                    </ol>
+                                </li>
+                                <li class="bg-indigo-50 dark:bg-slate-800">
+                                    <strong class="text-lg text-slate-800 dark:text-slate-200 block mb-2">২) সংকরায়ন: [★★★]</strong>
+                                    <ol class="nested-list text-slate-700 dark:text-slate-300">
+                                        <li>অবস্থা বর্ণনা ($CH_{4}, BeCl_{2}, BCl_{3}, CCl_{4}, NH_{3}, H_{2}O$)</li>
+                                        <li>আকৃতির উপর মুক্তজোড় ইলেকট্রনের প্রভাব ($CH_{4}, H_{2}O, NH_{3}$)</li>
+                                        <li>বন্ধনকোণের উপর তড়িৎ ঋণাত্মকতার প্রভাব: (i) $H_{2}O, H_{2}S$ (ii) $NH_{3}$ ও $PH_{3}$ (iii) $NH_{3}$ ও $NF_{3}$</li>
+                                    </ol>
+                                </li>
+                                <li class="bg-indigo-50 dark:bg-slate-800">
+                                    <strong class="text-lg text-slate-800 dark:text-slate-200 block mb-2">৩) ফাজানের নীতি: পোলারায়ন [★★★]</strong>
+                                    <ol class="nested-list text-slate-700 dark:text-slate-300">
+                                        <li>আয়নিক যৌগের সমযোজী বৈশিষ্ট্য</li>
+                                        <li>ধাতব কার্বনেটের তাপসহতা</li>
+                                        <li>গলনাঙ্ক ও স্ফুটনাঙ্কের ক্রম।</li>
+                                    </ol>
+                                </li>
+                                <li class="bg-indigo-50 dark:bg-slate-800">
+                                    <strong class="text-lg text-slate-800 dark:text-slate-200 block mb-2">৪) H বন্ধন: [★★★]</strong>
+                                    <ol class="nested-list text-slate-700 dark:text-slate-300">
+                                        <li>যৌগের ভৌত অবস্থার ভিন্নতা, যেমন: $H_{2}O$ ও $H_{2}S$, HF ও HI</li>
+                                        <li>গলনাঙ্ক ও স্ফুটনাঙ্কের বিভিন্নতা।</li>
+                                        <li>পোলারিটি ও পোলার যৌগ।</li>
+                                    </ol>
+                                </li>
+                                <li class="bg-indigo-50 dark:bg-slate-800">
+                                    <strong class="text-lg text-slate-800 dark:text-slate-200 block mb-2">৫) বিভিন্ন ব্লকের ধর্মাবলি:</strong>
+                                    <ol class="nested-list text-slate-700 dark:text-slate-300">
+                                        <li>ক্ষারধাতু, মৃৎক্ষার ধাতু</li>
+                                        <li>উভধর্মী কেন? ($Al_{2}O_{3}, ZnO, H_{2}O, SnO, PbO_{2}, BeO$)</li>
+                                        <li>$AlCl_{3}$ এর ডাইমার গঠন</li>
+                                        <li>[★★★] $CO_{2}$ গ্যাস $SiO_{2}$ কঠিন কেন?</li>
+                                        <li>[★★★] আর্দ্রবিশ্লেষিত কেন হয়? যেমন: (i) $CCl_{4}$ ও $SiCl_{4}$ (ii) $NF_{3}$ ও $NCl_{3}$ (iii) $NCl_{3}$ ও $PCl_{3}$</li>
+                                        <li>$NH_{3}$ ও $PH_{3}$ এর মধ্যে কোনটি অধিক ক্ষারীয়?</li>
+                                        <li>[★★★] $NCl_{3}$ গঠিত হলেও $NCl_{5}$ কেন হয় না? $PCl_{3}$ ও $PCl_{5}$ কেন গঠিত হয়?</li>
+                                        <li>$N_{2}$ নিষ্ক্রিয় কেন?</li>
+                                        <li>$OF_{2}$ গঠিত হলেও $OF_{4}, OF_{6}$ কেন হয় না? সালফার কেন $SF_{2}, SF_{4}$ ও $SF_{6}$ গঠন করে?</li>
+                                        <li>$F_{2}, Cl_{2}, Br_{2}, I_{2}$ এর ভৌত অবস্থার ভিন্নতা।</li>
+                                        <li>$HF, HCl, HBr, HI$ এর অম্ল ধর্মের ক্রম।</li>
+                                        <li>[★★★] d ব্লক: অবস্থান্তর মৌল, রঙিন যৌগ গঠন, চৌম্বকীয় ধর্ম প্রদর্শন।</li>
+                                    </ol>
+                                </li>
+                            </ul>
+                        </div>
+                    </details>
+                </div>
+            </section>
+
+            <!-- Chapter 4 -->
+            <section class="bg-white dark:bg-slate-800 rounded-xl shadow-md border border-gray-100 dark:border-slate-700 overflow-hidden">
+                <div class="bg-teal-50 dark:bg-slate-700 border-b border-teal-100 dark:border-slate-600 px-6 py-4">
+                    <h2 class="text-2xl font-bold text-teal-800 dark:text-teal-300">অধ্যায় ৪: রাসায়নিক পরিবর্তন</h2>
+                </div>
+                <div class="p-4 md:p-6 space-y-4">
+                    
+                    <details class="group bg-white dark:bg-slate-900 border border-gray-200 dark:border-slate-700 rounded-lg shadow-sm">
+                        <summary class="flex justify-between items-center cursor-pointer p-4 font-semibold text-lg hover:bg-gray-50 dark:hover:bg-slate-800 text-slate-800 dark:text-slate-200">
+                            <span>জ্ঞানমূলক প্রশ্ন</span>
+                            <svg class="accordion-icon w-6 h-6 text-teal-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                        </summary>
+                        <div class="p-4 border-t border-gray-200 dark:border-slate-700 bg-gray-50 dark:bg-slate-800/50">
+                            <ol class="question-list">
+                                <li>ভরক্রিয়া সূত্রটি লিখ</li>
+                                <li>সক্রিয়ন শক্তি কি?</li>
+                                <li>এটম ইকোনমি কী?</li>
+                                <li>বিক্রিয়ার হার / গতি কি?</li>
+                                <li>বিক্রিয়ার হার ধ্রুবক কি?</li>
+                                <li>সবুজ রসায়ন/গ্রীন কেমিস্ট্রি কি?</li>
+                                <li>রাসায়নিক সাম্যাবস্থা কি?</li>
+                                <li>সাম্যধ্রুবক কি?</li>
+                                <li>প্রভাবক কাকে বলে?</li>
+                                <li>স্ব/অটো প্রভাবক কাকে বলে?</li>
+                                <li>অসমসত্ত্ব প্রভাবন কাকে বলে?</li>
+                                <li>প্রভাবক সহায়ক/ বিবর্ধক কাকে বলে?</li>
+                                <li>প্রভাবক বিষ কাকে বলে?</li>
+                                <li>এনজাইম কী?</li>
+                                <li>বিয়োজন মাত্রা কি?</li>
+                                <li>সচল বা গতিশীল সাম্যাবস্থা কী?</li>
+                                <li>$P^{H}$ কি?</li>
+                                <li>বাফার দ্রবন কি?</li>
+                                <li>লা-শাতেলীয়ার নীতি লিখ</li>
+                                <li>পানির আয়নিক গুনফল কি?</li>
+                                <li>অসওয়াল্ডের লঘুকরণ সুত্রটি লিখ।</li>
+                                <li>বিয়োজন ধ্রুবক কাকে বলে?</li>
+                                <li>এসিড বিয়োজন ধ্রুবক $K_{a}$ কাকে বলে?</li>
+                                <li>ক্ষার বিয়োজন ধ্রুবক $K_{b}$ কাকে বলে?</li>
+                                <li>বাফার ক্ষমতা কি?</li>
+                                <li>বাফার ক্রিয়া কি?</li>
+                                <li>দ্রবণ তাপ কাকে বলে?</li>
+                                <li>গঠন তাপ কাকে বলে?</li>
+                                <li>দহন তাপ কাকে বলে?</li>
+                                <li>বিক্রিয়া তাপ কাকে বলে?</li>
+                                <li>এনথালপি কী?</li>
+                                <li>পরমাণুকরণ তাপ কাকে বলে?</li>
+                                <li>হেসের সুত্রটি লিখ।</li>
+                            </ol>
+                        </div>
+                    </details>
+
+                    <details class="group bg-white dark:bg-slate-900 border border-gray-200 dark:border-slate-700 rounded-lg shadow-sm">
+                        <summary class="flex justify-between items-center cursor-pointer p-4 font-semibold text-lg hover:bg-gray-50 dark:hover:bg-slate-800 text-slate-800 dark:text-slate-200">
+                            <span>অনুধাবন মূলক প্রশ্ন</span>
+                            <svg class="accordion-icon w-6 h-6 text-teal-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                        </summary>
+                        <div class="p-4 border-t border-gray-200 dark:border-slate-700 bg-gray-50 dark:bg-slate-800/50">
+                            <ol class="question-list">
+                                <li>$K_{p}$ এর মান শূন্য বা অসীম হতে পারে না কেন? ব্যাখ্যা কর।</li>
+                                <li>সাম্যাঙ্কের মান শূন্য বা অসীম হতে পারে না কেন? ব্যাখ্যা কর।</li>
+                                <li>তাপমাত্রা বাড়ালে বিক্রিয়ার গতি বাড়ে কেন? ব্যাখ্যা কর।</li>
+                                <li>রাসায়নিক সাম্যাবস্থার গতিশীলতা ব্যাখ্যা কর।</li>
+                                <li>সবুজ রসায়নের প্রয়োজনীয়তা ব্যাখ্যা কর।</li>
+                                <li>এটম ইকোনমি বলতে কী বুঝায়?</li>
+                                <li>উভমুখী বিক্রিয়া কখনও শেষ হয় না কেন?</li>
+                                <li>এনজাইম একটি জৈব প্রভাবক-দেখাও</li>
+                                <li>প্রভাবক কিভাবে বিক্রিয়ার গতি বৃদ্ধি করে?</li>
+                                <li>সক্রিয়ণ শক্তি কীভাবে বিক্রিয়ার হারকে প্রভাবিত করে-ব্যাখ্যা কর।</li>
+                                <li>বিক্রিয়ক ঘনমাত্রা বৃদ্ধি পেলে বিক্রিয়ার গতির হার বৃদ্ধি পায় কেন?</li>
+                                <li>$PCl_{5(g)} \rightleftharpoons PCl_{3} + Cl_{2}$ বিক্রিয়ার $K_{c}$ এর একক নিণয় কর।</li>
+                                <li>পানির আয়নিক গুনফল বলতে কী বুঝায়?</li>
+                                <li>$H_{2}SO_{3}, HNO_{3}$ মধ্যে কোনটির তীব্রতা বেশি এবং কেন ব্যাখ্যা কর?</li>
+                                <li>$H_{3}PO_{4}, HNO_{3}$ মধ্যে কোনটির তীব্রতা বেশি এবং কেন ব্যাখ্যা কর?</li>
+                                <li>$HClO_{4}, HBrO_{4}$ মধ্যে কোনটির তীব্রতা বেশি এবং কেন ব্যাখ্যা কর?</li>
+                                <li>$HClO_{4}, H_{2}SO_{4}$ মধ্যে কোনটির তীব্রতা বেশি এবং কেন ব্যাখ্যা কর?</li>
+                                <li>HCl, HF এর মধ্যে কোনটির তীব্রতা বেশি এবং কেন ব্যাখ্যা কর?</li>
+                                <li>পানির আয়নিক গুনফল থেকে কিভাবে $P^{H}$ স্কেল তৈরি করা য়ায়?</li>
+                                <li>দ্রবণের $H_{3}O^{+}$ আয়নের ঘনমাত্রা $1.0M$ এর বেশি হলে pH স্কেল অকার্যকর হয় কেন?</li>
+                                <li>প্রশম জলীয় দ্রবণের $P^{H}$ এর মান ৭ হয় কেন?</li>
+                                <li>$Na_{2}CO_{3}$ এর জলীয় দ্রবণ ক্ষারধর্মী কেন?</li>
+                                <li>$P^{H}$ স্কেল 0-14 এর মধ্যে সীমাবদ্ধ কেন?</li>
+                                <li>বিশুদ্ধ পানির $P^{H}$ এর মান ৭ হয় কেন?</li>
+                                <li>তাপমাত্রা বাড়ালে পানির আয়নিক গুনফল বাড়ে কেন?</li>
+                                <li>রক্তের বাফার ক্রিয়া ব্যাখ্যা কর।</li>
+                                <li>HF দুর্বল এসিড কিন্তু HCl তীব্র কেন?</li>
+                                <li>ক্ষারীয় বাফার দ্রবন কিভাবে প্রস্তুত করবে?</li>
+                                <li>অসওয়াল্ডের লঘুকরণ সুত্রটি ব্যাখ্যা কর।</li>
+                                <li>পানির আয়নিক গুনফলের সাথে এসিড বিয়োজন ও ক্ষার বিয়োজন ধ্রুবকের সম্পর্ক ব্যাখ্যা কর।</li>
+                                <li>তীব্র এসিড, HF ও তীব্র ক্ষার, NaOH এর প্রশমন তাপ স্থির মানের চেযে বেশি কেন?</li>
+                            </ol>
+                        </div>
+                    </details>
+
+                    <details class="group bg-white dark:bg-slate-900 border border-gray-200 dark:border-slate-700 rounded-lg shadow-sm">
+                        <summary class="flex justify-between items-center cursor-pointer p-4 font-semibold text-lg hover:bg-gray-50 dark:hover:bg-slate-800 text-slate-800 dark:text-slate-200">
+                            <span>উচ্চতর দক্ষতার জন্য গুরুত্বপূর্ণ টপিক</span>
+                            <svg class="accordion-icon w-6 h-6 text-teal-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                        </summary>
+                        <div class="p-4 border-t border-gray-200 dark:border-slate-700 bg-gray-50 dark:bg-slate-800/50">
+                            <ol class="question-list">
+                                <li>দহন ও সংগঠন তাপের গানিতিক সমস্যা</li>
+                                <li>হেসের সুত্রের ব্যাখ্যা ও গাণিতিক সমস্যা</li>
+                                <li>আরহেনিয়াস সমীকরণ প্রতিপাদন ও গাণিতিক সমস্যা</li>
+                                <li>বাফার দ্রবনের হেন্ডারসন হেসেলবাখ সমীকরণ + গাণিতিক সমস্যা</li>
+                                <li>বিয়োজন মাত্রার সাহায্যে $K_{p}/K_{c}$ সমীকরণ প্রতিপাদন + গাণিতিক সমস্যা</li>
+                                <li>$P^{H}$ এর গাণিতিক সমস্যা</li>
+                            </ol>
+                        </div>
+                    </details>
+
+                    <details class="group bg-white dark:bg-slate-900 border border-teal-200 dark:border-teal-800 rounded-lg shadow-sm" open>
+                        <summary class="flex justify-between items-center cursor-pointer p-4 font-semibold text-lg bg-teal-50 dark:bg-teal-900/30 hover:bg-teal-100 dark:hover:bg-teal-900/50 text-teal-800 dark:text-teal-300">
+                            <span>গুরুত্বপূর্ণ টপিক (সাজেশন)</span>
+                            <svg class="accordion-icon w-6 h-6 text-teal-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                        </summary>
+                        <div class="p-4 md:p-6 border-t border-teal-100 dark:border-teal-800">
+                            <ul class="suggestion-list">
+                                <li class="bg-teal-50 dark:bg-slate-800">
+                                    <ol class="nested-list text-slate-700 dark:text-slate-300" style="list-style-type: decimal;">
+                                        <li>(i) % AE নির্ণয়।</li>
+                                        <li>[★★★] (ii) লা শাতেলিয়ার নীতি [সর্বোচ্চ উৎপাদ পাওয়ার কৌশল বা তাপমাত্রা ও চাপের প্রভাব ব্যাখ্যা]।</li>
+                                        <li>[★★★] (iii) $K_{c}$ ও $K_{p}$ এর রাশিমালা প্রতিপাদন, সম্পর্ক প্রতিপাদন + math।</li>
+                                        <li>(iv) $K_{p}$ এর উপর তাপমাত্রার প্রভাব লেখচিত্র + ভ্যান্ট হফের সমীকরণ।</li>
+                                        <li>[★★★] (v) $K_{w}, K_{a}, K_{b}$, ওসওয়াল্ডের লঘুকরণ সূত্র + math, pH, pOH নির্ণয়।</li>
+                                        <li>[★★★] (vi) মিশ্রণের প্রকৃতি ও pH নির্ণয়।</li>
+                                        <li>[★★★] (vii) বাফার দ্রবণ নির্ণয়, কৌশল ব্যাখ্যা ও বাফারের pH নির্ণয়।</li>
+                                        <li>[★★★] (viii) ক্ষারক বা অম্লের তীব্রতার কারণ ব্যাখ্যা।</li>
+                                    </ol>
+                                </li>
+                            </ul>
+                        </div>
+                    </details>
+                </div>
+            </section>
+
+            <!-- Chapter 5 -->
+            <section class="bg-white dark:bg-slate-800 rounded-xl shadow-md border border-gray-100 dark:border-slate-700 overflow-hidden">
+                <div class="bg-purple-50 dark:bg-slate-700 border-b border-purple-100 dark:border-slate-600 px-6 py-4">
+                    <h2 class="text-2xl font-bold text-purple-800 dark:text-purple-300">অধ্যায় ৫: কর্মমুখী রসায়ন</h2>
+                </div>
+                <div class="p-4 md:p-6 space-y-4">
+                    
+                    <details class="group bg-white dark:bg-slate-900 border border-gray-200 dark:border-slate-700 rounded-lg shadow-sm">
+                        <summary class="flex justify-between items-center cursor-pointer p-4 font-semibold text-lg hover:bg-gray-50 dark:hover:bg-slate-800 text-slate-800 dark:text-slate-200">
+                            <span>জ্ঞানমূলক প্রশ্ন</span>
+                            <svg class="accordion-icon w-6 h-6 text-purple-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                        </summary>
+                        <div class="p-4 border-t border-gray-200 dark:border-slate-700 bg-gray-50 dark:bg-slate-800/50">
+                            <ol class="question-list">
+                                <li>ভিনেগার কি?</li>
+                                <li>ব্লাচিং কি?</li>
+                                <li>সাসপেনসন কি?</li>
+                                <li>কলয়েড কি?</li>
+                                <li>কোয়াগুলেষন কি?</li>
+                                <li>রিটটিং কি?</li>
+                                <li>বি এইচ টি (BHT) এর সংকেত লিখ?</li>
+                                <li>কলয়েড মিশ্রন কি?</li>
+                                <li>খাদ্য নিরাপত্তা কি?</li>
+                                <li>গ্লাস ক্লিনারের মূল উপাদান কি?</li>
+                                <li>ফুড লেকার কি?</li>
+                                <li>নিরাপদ খাদ্য কাকে বলে?</li>
+                                <li>খাদ্য সংরক্ষক বা ফুড প্রিজারভেটিভ কাকে বলে?</li>
+                                <li>অ্যান্টিঅক্সিডেন্ট কাকে বলে?</li>
+                                <li>পিকলিং কী?</li>
+                                <li>রিটটিং কী?</li>
+                                <li>ট্যালক কী?</li>
+                                <li>ট্যালকম পাউডারের প্রধান উপাদান কী?</li>
+                                <li>ইমালশন কী?</li>
+                                <li>মল্ট ভিনেগার কী?</li>
+                            </ol>
+                        </div>
+                    </details>
+
+                    <details class="group bg-white dark:bg-slate-900 border border-gray-200 dark:border-slate-700 rounded-lg shadow-sm">
+                        <summary class="flex justify-between items-center cursor-pointer p-4 font-semibold text-lg hover:bg-gray-50 dark:hover:bg-slate-800 text-slate-800 dark:text-slate-200">
+                            <span>অনুধাবন মূলক প্রশ্ন</span>
+                            <svg class="accordion-icon w-6 h-6 text-purple-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                        </summary>
+                        <div class="p-4 border-t border-gray-200 dark:border-slate-700 bg-gray-50 dark:bg-slate-800/50">
+                            <ol class="question-list">
+                                <li>প্রিজারভেটিব খাদ্যবস্তুকে সংরক্ষন করে কিভাবে?</li>
+                                <li>খাদ্য নিরাপত্তায় রসায়নের ভূমিকা ব্যাখ্যা কর।</li>
+                                <li>সংরক্ষনের জন্য খাদ্যকে বায়ুমুক্ত রাখতে হয়-ব্যাখ্যা কর।</li>
+                                <li>খাদ্য সংরক্ষনে প্রিজারভেটিব হিসেবে চিনির ভূমিকা কি?</li>
+                                <li>খাদ্য সংরক্ষনে প্রিজারভেটিব হিসেবে লবনের ভূমিকা কি?</li>
+                                <li>খাদ্য সংরক্ষনে প্রিজারভেটিব হিসেবে ভিনেগারের ভূমিকা কি?</li>
+                                <li>ভিনেগার কিভাবে ব্যাকটেরিয়া ধ্বংস করে?</li>
+                                <li>বিএইচএ (BHA) কীরূপে খাদ্যবস্তুর জারণ বাধাগ্রস্থ করে।</li>
+                                <li>কোয়াগুলেশন বলতে কি বুঝ?</li>
+                                <li>কলয়েড কণার সুস্থিতির কারণ ব্যাখ্যা কর।</li>
+                                <li>ভ্যানিশিং ক্রিমের উপাদান সংযুক্তি সহকারে লিখ?</li>
+                                <li>নদীর ঘোলা পানি সাগরে গিয়ে পরিস্কার হয় কেন?</li>
+                                <li>দুধ একটি ইমালশন-ব্যাখ্যা কর।</li>
+                                <li>মাখনকে পানিমুক্ত করা প্রয়োজন কেন? ব্যাখ্যা কর।</li>
+                                <li>গ্লাস ক্লিনারে কস্টিক অ্যামোনিয়া ব্যবহারের কারণ ব্যাখ্যা কর।</li>
+                                <li>গ্লাস কেন?</li>
+                                <li>কেন?</li>
+                                <li>কর।</li>
+                                <li>দ্রবন কলয়েড ও সাসপেনশনের মধ্যে পার্থক্য লিখ?</li>
+                                <li>দুধ থেকে মাখন প্রস্তুতিতে পাস্তুরাইজেশনের গুরূত্ব লিখ।</li>
+                                <li>ক্রিস্টালয়েড ও কলয়েডের মধ্যে পার্থক্য লিখ।</li>
+                            </ol>
+                        </div>
+                    </details>
+
+                    <details class="group bg-white dark:bg-slate-900 border border-gray-200 dark:border-slate-700 rounded-lg shadow-sm">
+                        <summary class="flex justify-between items-center cursor-pointer p-4 font-semibold text-lg hover:bg-gray-50 dark:hover:bg-slate-800 text-slate-800 dark:text-slate-200">
+                            <span>উচ্চতর দক্ষতার জন্য গুরুত্বপূর্ণ টপিক</span>
+                            <svg class="accordion-icon w-6 h-6 text-purple-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                        </summary>
+                        <div class="p-4 border-t border-gray-200 dark:border-slate-700 bg-gray-50 dark:bg-slate-800/50">
+                            <ol class="question-list">
+                                <li>দুধ হতে মাখন ও ঘি প্রস্তুতি (কোয়াগুলেশন)</li>
+                                <li>টয়লেট ক্লিনার ও গ্লাস ক্লিনার এর ক্রিয়াকৌশল।</li>
+                                <li>খাদ্য বস্তু কৌটজাতকরণ</li>
+                                <li>প্রিজারভেটিব দ্বারা খাদ্যবস্তু সংরক্ষন (ভিনেগার)</li>
+                            </ol>
+                        </div>
+                    </details>
+
+                    <details class="group bg-white dark:bg-slate-900 border border-purple-200 dark:border-purple-800 rounded-lg shadow-sm" open>
+                        <summary class="flex justify-between items-center cursor-pointer p-4 font-semibold text-lg bg-purple-50 dark:bg-purple-900/30 hover:bg-purple-100 dark:hover:bg-purple-900/50 text-purple-800 dark:text-purple-300">
+                            <span>গুরুত্বপূর্ণ টপিক (সাজেশন)</span>
+                            <svg class="accordion-icon w-6 h-6 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                        </summary>
+                        <div class="p-4 md:p-6 border-t border-purple-100 dark:border-purple-800">
+                            <ul class="suggestion-list">
+                                <li class="bg-purple-50 dark:bg-slate-800">
+                                    <strong class="text-lg text-slate-800 dark:text-slate-200 block mb-2">(১) খাদ্য নিরাপত্তায় রসায়নের ভূমিকা</strong>
+                                </li>
+                                <li class="bg-purple-50 dark:bg-slate-800">
+                                    <strong class="text-lg text-slate-800 dark:text-slate-200 block mb-2">[★★★] (২) ভিনেগার:</strong>
+                                    <ol class="nested-list text-slate-700 dark:text-slate-300">
+                                        <li>প্রস্তুত প্রণালী (বিক্রিয়াসহ)</li>
+                                        <li>খাদ্য সংরক্ষণের কৌশল</li>
+                                        <li>গুরুত্ব।</li>
+                                    </ol>
+                                </li>
+                            </ul>
+                        </div>
+                    </details>
+                </div>
+            </section>
+        </div>
+
+        <!-- ============================== -->
+        <!-- PAPER 2 CONTENT (Source 1)     -->
+        <!-- ============================== -->
+        <div id="paper2" class="space-y-8 hidden animate-fade-in">
+            
+            <!-- Chapter 1 -->
+            <section class="bg-white dark:bg-slate-800 rounded-xl shadow-md border border-gray-100 dark:border-slate-700 overflow-hidden">
+                <div class="bg-blue-50 dark:bg-slate-700 border-b border-blue-100 dark:border-slate-600 px-6 py-4">
+                    <h2 class="text-2xl font-bold text-blue-800 dark:text-blue-300">অধ্যায় ১: পরিবেশ রসায়ন</h2>
+                </div>
+                <div class="p-4 md:p-6 space-y-4">
+                    
+                    <details class="group bg-white dark:bg-slate-900 border border-gray-200 dark:border-slate-700 rounded-lg shadow-sm">
+                        <summary class="flex justify-between items-center cursor-pointer p-4 font-semibold text-lg hover:bg-gray-50 dark:hover:bg-slate-800 text-slate-800 dark:text-slate-200">
+                            <span>জ্ঞানমূলক প্রশ্ন</span>
+                            <svg class="accordion-icon w-6 h-6 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                        </summary>
+                        <div class="p-4 border-t border-gray-200 dark:border-slate-700 bg-gray-50 dark:bg-slate-800/50">
+                            <ul class="question-list list-none mb-4 text-slate-700 dark:text-slate-300">
+                                <li>$HNO_{3}$ অপেক্ষা $H_{3}PO_{4}$ দুর্বল এসিড কেন?</li>
+                                <li>$44g~CO_{2}$ এর জন্য ভ্যান্ডার ওয়ালস সমীকরণ লিখ।</li>
+                                <li>৫.</li>
+                                <li>৬.</li>
+                                <li>৭. $BF_{3}$ অম্লধর্মী কেন?</li>
+                                <li>৮. অনুবন্ধী এসিড ও অনুবন্ধী ক্ষার ব্যাখ্যা কর।</li>
+                            </ul>
+                            <ol class="question-list">
+                                <li>ব্যাপন কাকে বলে?</li>
+                                <li>নিঃসরন কাকে বলে?</li>
+                                <li>সন্ধি/ সংকট তাপমাত্রা কাকে বলে?</li>
+                                <li>আইসোথার্ম কি?</li>
+                                <li>অনুবন্ধী এসিড ও অনুবন্ধী ক্ষার কাকে বলে?</li>
+                                <li>SATP ও STP কি?</li>
+                                <li>COD কাকে বলে?</li>
+                                <li>BOD কাকে বলে?</li>
+                                <li>TDS কাকে কলে?</li>
+                                <li>আদর্শ গ্যাস কাকে বলে?</li>
+                                <li>SI এককে R এর মান কত?</li>
+                                <li>CFC কি?</li>
+                                <li>পরমশূন্য তাপমাত্রা কাকে বলে?</li>
+                                <li>RMS বেগ কি?</li>
+                                <li>এসিড বৃষ্টি কি?</li>
+                            </ol>
+                        </div>
+                    </details>
+
+                    <details class="group bg-white dark:bg-slate-900 border border-gray-200 dark:border-slate-700 rounded-lg shadow-sm">
+                        <summary class="flex justify-between items-center cursor-pointer p-4 font-semibold text-lg hover:bg-gray-50 dark:hover:bg-slate-800 text-slate-800 dark:text-slate-200">
+                            <span>অনুধাবন মূলক</span>
+                            <svg class="accordion-icon w-6 h-6 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                        </summary>
+                        <div class="p-4 border-t border-gray-200 dark:border-slate-700 bg-gray-50 dark:bg-slate-800/50">
+                            <ol class="question-list">
+                                <li>পানির ক্ষরতার কারণ কি ও কিভাবে দূর করা যায়?</li>
+                                <li>$HCl$ অপেক্ষা $NH_{3}$ এর ব্যাপন হার বেশি কেন?</li>
+                                <li>CFC কিভাবে ওজনস্তরকে ধ্বংস করে?</li>
+                                <li>পানির BOD $5~mg/L$ বলতে কি বুঝ?</li>
+                                <li>$H_{2}O$, $HSO_{4}^{-}$ একটি উভধর্মী পদার্থ- ব্যাখ্যা কর।</li>
+                                <li>কোন নমুনায় BOD অপেক্ষা COD এর মান বেশি হয় কেন?</li>
+                                <li>অ্যামোনিয়া একটি লুইস ক্ষারক- ব্যাখ্যা কর।</li>
+                                <li>R এর তাৎপর্য লিখ?</li>
+                                <li>BOD ও COD এর মধ্যে পার্থক্য লিখ?</li>
+                                <li>জুলথমসন পরীক্ষাতে গ্যাসের তাপমাত্রা হ্রাস পায় কেন?</li>
+                                <li>বিভিন্ন এককে R এর মান নির্ণয় কর।</li>
+                            </ol>
+                        </div>
+                    </details>
+
+                    <details class="group bg-white dark:bg-slate-900 border border-gray-200 dark:border-slate-700 rounded-lg shadow-sm">
+                        <summary class="flex justify-between items-center cursor-pointer p-4 font-semibold text-lg hover:bg-gray-50 dark:hover:bg-slate-800 text-slate-800 dark:text-slate-200">
+                            <span>উচ্চতর দক্ষতার জন্য গুরুত্বপূর্ণ টপিক</span>
+                            <svg class="accordion-icon w-6 h-6 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                        </summary>
+                        <div class="p-4 border-t border-gray-200 dark:border-slate-700 bg-gray-50 dark:bg-slate-800/50">
+                            <ol class="question-list">
+                                <li>ডাল্টনের আংশিক চাপ সুত্র ও গানিতিক সমস্যা</li>
+                                <li>গ্রাহামের ব্যাপন সূত্র ও গানিতিক সমস্যা</li>
+                                <li>আদর্শ গ্যাস থেকে বাস্তব গ্যাস এর বিচ্যুতির কারণ</li>
+                                <li>যে কোন গ্যাসের বর্গমূল গড় বর্গবেগ নির্ণয়।</li>
+                                <li>বাস্তব গ্যাসের জন্য আদর্শ গ্যাসের সমীকরণ সংশোধন</li>
+                            </ol>
+                        </div>
+                    </details>
+                </div>
+            </section>
+
+            <!-- Chapter 2 -->
+            <section class="bg-white dark:bg-slate-800 rounded-xl shadow-md border border-gray-100 dark:border-slate-700 overflow-hidden">
+                <div class="bg-indigo-50 dark:bg-slate-700 border-b border-indigo-100 dark:border-slate-600 px-6 py-4">
+                    <h2 class="text-2xl font-bold text-indigo-800 dark:text-indigo-300">অধ্যায় ২: জৈব রসায়ন</h2>
+                </div>
+                <div class="p-4 md:p-6 space-y-4">
+                    
+                    <details class="group bg-white dark:bg-slate-900 border border-gray-200 dark:border-slate-700 rounded-lg shadow-sm">
+                        <summary class="flex justify-between items-center cursor-pointer p-4 font-semibold text-lg hover:bg-gray-50 dark:hover:bg-slate-800 text-slate-800 dark:text-slate-200">
+                            <span>জ্ঞানমূলক প্রশ্ন</span>
+                            <svg class="accordion-icon w-6 h-6 text-indigo-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                        </summary>
+                        <div class="p-4 border-t border-gray-200 dark:border-slate-700 bg-gray-50 dark:bg-slate-800/50">
+                            <ol class="question-list">
+                                <li>লুকাস বিকারক কি?</li>
+                                <li>প্যারাফিন কি?</li>
+                                <li>ডিকাবক্সিলেশন কী?</li>
+                                <li>রেজন্যান্স কী?</li>
+                                <li>কাইরাল কার্বন কি?</li>
+                                <li>রেসিমিক মিশ্রন কি?</li>
+                                <li>মেসো যৌগ কী?</li>
+                                <li>কার্যকরী মূলক কাকে বলে?</li>
+                                <li>ফরমালিন কি?</li>
+                                <li>প্রডিউসার গ্যাস কী?</li>
+                                <li>হেক্সামিন কী?</li>
+                                <li>টি.এন.টি কি?</li>
+                                <li>মনোমার ক?</li>
+                                <li>ডায়াজোকরণ কি?</li>
+                                <li>কার্বোক্যাটায়ন কি?</li>
+                                <li>কার্বানায়ন কাকে বলে?</li>
+                                <li>এনানসিওমার কি?</li>
+                                <li>ইলেক্ট্রফাইল কি?</li>
+                                <li>নিউক্লিয়োফাইল কাকে বলে?</li>
+                                <li>কার্বলিক এসিডের সংকেত লিখ।</li>
+                                <li>প্যারাসিটামলের সংকেত লিখ।</li>
+                                <li>একটি হেটারো অ্যালিসাইক্লিক যৌগের উদাহরন দাও।</li>
+                                <li>ক্যাটিনেশন কি?</li>
+                                <li>সাইজেফ নিয়ম কি?</li>
+                                <li>ডিডিটি কি?</li>
+                                <li>এস্টারিফিকেশন কি?</li>
+                                <li>ক্লিমেনসন বিজারন বিক্রিয়াটি লিখ।</li>
+                                <li>কাঁদুনে গ্যাসের সংকেত লিখ।</li>
+                                <li>টটোমারিজম কি?</li>
+                                <li>হাকেল নীতি কি?</li>
+                                <li>ডেটলের সংকেত লিখ?</li>
+                                <li>সমগোত্রীয় শ্রেণি কাকে বলে?</li>
+                                <li>জ্যামিতিক/ সিস-ট্রান্স সমাণু কাকে বলে?</li>
+                                <li>ফ্রি-রেডিকেল কাকে বলে?</li>
+                            </ol>
+                        </div>
+                    </details>
+
+                    <details class="group bg-white dark:bg-slate-900 border border-gray-200 dark:border-slate-700 rounded-lg shadow-sm">
+                        <summary class="flex justify-between items-center cursor-pointer p-4 font-semibold text-lg hover:bg-gray-50 dark:hover:bg-slate-800 text-slate-800 dark:text-slate-200">
+                            <span>অনুধাবন মূলক</span>
+                            <svg class="accordion-icon w-6 h-6 text-indigo-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                        </summary>
+                        <div class="p-4 border-t border-gray-200 dark:border-slate-700 bg-gray-50 dark:bg-slate-800/50">
+                            <ol class="question-list">
+                                <li>প্রোপিন ও বিউটিন পরস্পর সমগোত্রক-কেন?</li>
+                                <li>রেসিমিক মিশ্রন আলোক নিক্সিয়-কেন?</li>
+                                <li>গ্লুকোজ পানিতে দ্রবনীয় কেন?</li>
+                                <li>$CHCl_{3}$ কে বাদামী বোতলে রাখা হয় কেন?</li>
+                                <li>$C_{3}H_{6}O$ টটোমারিজম ধর্ম প্রদর্শন করে-ব্যাখ্যা কর।</li>
+                                <li>অ্যালকোহল পানিতে দ্রবনীয় কেন?</li>
+                                <li>ইথাইন অম্লধর্মী কেন?/ অ্যালকাইন-১ অম্লধর্মী কিন্তু অ্যালকাইন-২ নয়, কেন?</li>
+                                <li>বেনজিনকে অ্যারোমেটিক যৌগ বলা হয় কেন?</li>
+                                <li>পিরিডিন একটি অ্যারোমেটিক যৌগ ব্যাখ্যা কর।</li>
+                                <li>ফেনল অম্লধর্মী কেন?</li>
+                                <li>মিথাইল অ্যামিন অ্যানিলিনের চেয়ে বেশি ক্ষারীয়- ব্যাখ্যা কর।</li>
+                                <li>$C_{3}H_{8}O$ কার্যকরীমূলক সমানুতা প্রদর্শন করে- ব্যাখ্যা কর।</li>
+                                <li>জৈব যৌগে কার্বক্সিলিক মূলক সনাক্তকরন পরীক্সা লিখ।</li>
+                                <li>$C_{4}H_{8}$ জ্যামিতিক সমানুতা প্রদর্শন করে-ব্যাখ্যা কর।</li>
+                                <li>হাকেল নিয়ম ব্যাখ্যা কর।</li>
+                                <li>জ্যামিতিক সমানুতার শর্ত লিখ।</li>
+                                <li>$CH_{3}CH(OH)-COOH$-কী সমাণুতা দেখায় কনফিগারেশনসহ দেখাও।</li>
+                                <li>ইথাইন থেকে কীভাবে $CH_{3}-CHO$ প্রস্তুত করবে? সমীকরণ দাও।</li>
+                                <li>অ্যালডিহাইড ও কিটেনের মধ্যে পার্থক্যসূচক বিক্রিয়া লিখ।</li>
+                                <li>জ্যামিতিক সমানুতার শর্ত লিখ।</li>
+                                <li>সমগোত্রিয় শ্রেণী বলতে কি বুঝ?</li>
+                                <li>$C_{5}H_{6}NH_{2}$ অপেক্ষা $CH_{3}NH_{2}$ তীব্র ক্ষারক কেন?</li>
+                                <li>মার্কনিকভ সূত্র উদাহরনসহ লিখ।</li>
+                                <li>জ্যামিতিক সমানুতা বলতে কি বুঝ?</li>
+                                <li>কেন্দ্রাকর্ষী প্রতিস্থাপন বিক্রিয়ায় ক্লোরো বেনজিন অপেক্ষা নাইট্রোক্লোরো বেনজিন অধিক সক্রিয় কেন?</li>
+                                <li>অ্যালডল ঘনীভবন বিক্রিয়া বলতে কি বুঝ?</li>
+                                <li>অ্যারোমেটিসিটি বলতে কি বুঝ?</li>
+                                <li>নাইট্রোমূলক বেনজিন চক্রে মেটা নির্দেশক-কেন?</li>
+                                <li>উর্টজ বিক্রিয়ায় শুস্ক ইথার ব্যবহার করা হয় কেন?</li>
+                                <li>গ্রিগনার্ড বিকারক থেকে কিভাবে কার্বক্সিলিক এসিড পাওয়া যায়?</li>
+                                <li>কার্বিল অ্যামিন বিক্রিয়া ব্যাখ্যা কর।</li>
+                            </ol>
+                        </div>
+                    </details>
+
+                    <details class="group bg-white dark:bg-slate-900 border border-gray-200 dark:border-slate-700 rounded-lg shadow-sm">
+                        <summary class="flex justify-between items-center cursor-pointer p-4 font-semibold text-lg hover:bg-gray-50 dark:hover:bg-slate-800 text-slate-800 dark:text-slate-200">
+                            <span>উচ্চতর দক্ষতার জন্য গুরুত্বপূর্ণ টপিক</span>
+                            <svg class="accordion-icon w-6 h-6 text-indigo-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                        </summary>
+                        <div class="p-4 border-t border-gray-200 dark:border-slate-700 bg-gray-50 dark:bg-slate-800/50">
+                            <ol class="question-list">
+                                <li>অ্যালকিনের ওজনেশন+মার্কনিকভসূত্র এর ব্যবহার</li>
+                                <li>হাইড্রোকার্বনের অসম্পৃক্ততা নির্ণয়ে বেয়ার ও ব্রোমিন দ্রবন টেস্ট</li>
+                                <li>অ্যালকোহলের পার্থক্যকরন $1^{\circ}, 2^{\circ}, 3^{\circ}$</li>
+                                <li>গ্রিগনার্ডবিকারক</li>
+                                <li>বেনজিনের অর্থো-প্যারা নিদের্শক ($-OH$, $-NH_{2}$, $-CH_{3}$)</li>
+                                <li>বেনজিনের মেটা নির্দেশক ($-NO_{2}$, $-CHO$, $-COOH$)</li>
+                                <li>বেনজিনের নাইট্রেশন, সালফোনেশন, ফ্রিডেলক্রাফট অ্যালকাইলেশন ও অ্যাশাইলেশন</li>
+                                <li>অ্যালকাইল হ্যালাইডের ও মেকানিজম।</li>
+                                <li>অ্যালডিহাইড ও কিটোনের সক্রিয়তা + পার্থক্যকরণ + অ্যালডল ঘনীভবন ক্যানিজারো বিক্রিয়া+হ্যালোফরম বিক্রিয়া</li>
+                                <li>ফেনলের কোব বিক্রিয়া রাইমার টাইম্যান বিক্রিয়া।</li>
+                                <li>অ্যানিলিনের ডায়াজোকরন (ডায়াজোনিয়াম লবন)</li>
+                                <li>অ্যামিনের পার্থক্যকরণ $1^{\circ}, 2^{\circ}, 3^{\circ}$</li>
+                                <li>অ্যামিন ও অ্যানিলিনের পার্থক্য ক্ষারকত্ব +বিক্রিয়া।</li>
+                            </ol>
+                        </div>
+                    </details>
+                </div>
+            </section>
+
+            <!-- Chapter 3 -->
+            <section class="bg-white dark:bg-slate-800 rounded-xl shadow-md border border-gray-100 dark:border-slate-700 overflow-hidden">
+                <div class="bg-teal-50 dark:bg-slate-700 border-b border-teal-100 dark:border-slate-600 px-6 py-4">
+                    <h2 class="text-2xl font-bold text-teal-800 dark:text-teal-300">অধ্যায় ৩: পরিমানগত রসায়ন</h2>
+                </div>
+                <div class="p-4 md:p-6 space-y-4">
+                    
+                    <details class="group bg-white dark:bg-slate-900 border border-gray-200 dark:border-slate-700 rounded-lg shadow-sm">
+                        <summary class="flex justify-between items-center cursor-pointer p-4 font-semibold text-lg hover:bg-gray-50 dark:hover:bg-slate-800 text-slate-800 dark:text-slate-200">
+                            <span>জ্ঞানমূলক প্রশ্ন</span>
+                            <svg class="accordion-icon w-6 h-6 text-teal-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                        </summary>
+                        <div class="p-4 border-t border-gray-200 dark:border-slate-700 bg-gray-50 dark:bg-slate-800/50">
+                            <ol class="question-list">
+                                <li>মোলারিটি কি?</li>
+                                <li>মোলার দ্রবণ কাকে বলে?</li>
+                                <li>প্রাইমারী স্ট্যান্ডাড পদাথ কাকে বলে?</li>
+                                <li>ডেসি মোলার দ্রবণ কী?</li>
+                                <li>ppm ঘনমাত্রার পদ্ধতি কী?</li>
+                                <li>মোল ভগ্নাংশ কী?</li>
+                                <li>প্রমাণ দ্রবণ কী?</li>
+                                <li>দশক আয়ন কী?</li>
+                                <li>নিদেশক কী?</li>
+                                <li>জারক কী?</li>
+                                <li>জারন সংখ্যা কী?</li>
+                                <li>অসামঞ্জস্যতা বিক্রিয়া কী?</li>
+                            </ol>
+                        </div>
+                    </details>
+
+                    <details class="group bg-white dark:bg-slate-900 border border-gray-200 dark:border-slate-700 rounded-lg shadow-sm">
+                        <summary class="flex justify-between items-center cursor-pointer p-4 font-semibold text-lg hover:bg-gray-50 dark:hover:bg-slate-800 text-slate-800 dark:text-slate-200">
+                            <span>অনুধাবন মূলক</span>
+                            <svg class="accordion-icon w-6 h-6 text-teal-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                        </summary>
+                        <div class="p-4 border-t border-gray-200 dark:border-slate-700 bg-gray-50 dark:bg-slate-800/50">
+                            <ol class="question-list">
+                                <li>$Na_{2}CO_{3}$ কে প্রাইমারী পদাথ বলা হয় কেন?</li>
+                                <li>$KMnO_{4}$ কে প্রাইমারী পদাথ বলা হয় না কেন?</li>
+                                <li>$KOH$ কে প্রাইমারী পদাথ বলা হয় না কেন?</li>
+                                <li>মোলার দ্রবণ একটি প্রমান দ্রবন, ব্যাখ্যা কর।</li>
+                                <li>মোলার দ্রবণের ঘনমাত্রা তাপমাত্রা নিভরশীল ব্যাখ্যা কর।</li>
+                                <li>সবল এসিড-সবল ক্ষারের টাইট্রেশনে কোন নিদেশক ব্যবহার করা হয়; ব্যাখ্যা কর।</li>
+                                <li>$0.15M~HCl$ দ্রবণের ঘনমাত্রা ppm এককে নিণয় কর।</li>
+                                <li>রিডক্স বিক্রিয়ায় ইলেক্ট্রনের স্থানান্তর ঘটে, ব্যাখ্যা কর।</li>
+                                <li>$KMnO_{4}$ একটি জারক ব্যাখ্যা কর।</li>
+                                <li>$K_{2}Cr_{2}O_{7}$ একটি জারক ব্যাখ্যা কর।</li>
+                                <li>$Fe^{3+}$ আয়ন একটি জারক ব্যাখ্যা কর।</li>
+                                <li>$Sn^{2+}$ আয়ন একটি জারক ও বিজারক উভয় রূপে ক্রিয়া করে ব্যাখ্যা কর।</li>
+                                <li>$H_{2}O_{2}$ একটি জারক ও বিজারক উভয় রূপে ক্রিয়া করে ব্যাখ্যা কর।</li>
+                                <li>$I_{2}$ একটি জারক ও বিজারক উভয় রূপে ক্রিয়া করে ব্যাখ্যা কর।</li>
+                                <li>$K_{2}Cr_{2}O_{7}$ যৌগে Cr এর জারণ সংখ্যা নিণয় কর।</li>
+                                <li>$Na_{2}S_{2}O_{3}$ যৌগে S এর জারণ সংখ্যা নিণয় কর।</li>
+                                <li>$HClO_{4}$ যৌগে Cl এর জারণ সংখ্যা নিণয় কর।</li>
+                                <li>জারণ-বিজারণ বিক্রিয়ায় অম্লীয় মাধ্যম হিসেবে $HNO_{3}$ ব্যবহৃত হয় না কেন?</li>
+                            </ol>
+                        </div>
+                    </details>
+
+                    <details class="group bg-white dark:bg-slate-900 border border-gray-200 dark:border-slate-700 rounded-lg shadow-sm">
+                        <summary class="flex justify-between items-center cursor-pointer p-4 font-semibold text-lg hover:bg-gray-50 dark:hover:bg-slate-800 text-slate-800 dark:text-slate-200">
+                            <span>উচ্চতর দক্ষতার জন্য গুরুত্বপূর্ণ টপিক</span>
+                            <svg class="accordion-icon w-6 h-6 text-teal-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                        </summary>
+                        <div class="p-4 border-t border-gray-200 dark:border-slate-700 bg-gray-50 dark:bg-slate-800/50">
+                            <ol class="question-list">
+                                <li>এসিড ও ক্ষার দ্রবণের মিশ্রণের প্রকৃতি ও ঘনমাত্রা নিণয়</li>
+                                <li>দ্রবণের ঘনমাত্রা ppm, ppb, % এককে নিণয়</li>
+                                <li>জারণ-বিজারণের সাহায্যে সমীকরণের সমতাকরণ।</li>
+                                <li>জারণ বিজারণ বিক্রিয়ার সাহায্যে যৌগের আয়নের পরিমাণ নিণয়</li>
+                                <li>আয়োডোমিতি ও আয়োডিমিতির গাণিতিক সমস্যা</li>
+                            </ol>
+                        </div>
+                    </details>
+                </div>
+            </section>
+
+            <!-- Chapter 4 -->
+            <section class="bg-white dark:bg-slate-800 rounded-xl shadow-md border border-gray-100 dark:border-slate-700 overflow-hidden">
+                <div class="bg-purple-50 dark:bg-slate-700 border-b border-purple-100 dark:border-slate-600 px-6 py-4">
+                    <h2 class="text-2xl font-bold text-purple-800 dark:text-purple-300">অধ্যায় ৪: তড়িৎ রসায়ন</h2>
+                </div>
+                <div class="p-4 md:p-6 space-y-4">
+                    
+                    <details class="group bg-white dark:bg-slate-900 border border-gray-200 dark:border-slate-700 rounded-lg shadow-sm">
+                        <summary class="flex justify-between items-center cursor-pointer p-4 font-semibold text-lg hover:bg-gray-50 dark:hover:bg-slate-800 text-slate-800 dark:text-slate-200">
+                            <span>জ্ঞানমূলক প্রশ্ন</span>
+                            <svg class="accordion-icon w-6 h-6 text-purple-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                        </summary>
+                        <div class="p-4 border-t border-gray-200 dark:border-slate-700 bg-gray-50 dark:bg-slate-800/50">
+                            <ol class="question-list">
+                                <li>ফ্যারাডে / তড়িৎ বিশ্লেষণের প্রথম সূত্র লিখ।</li>
+                                <li>তড়িৎ রাসায়নিক তুল্যাঙ্ক কাকে বলে?</li>
+                                <li>তড়িৎ রাসায়নিক কোষ কি?</li>
+                                <li>তড়িৎ রাসায়নিক সারি কি?</li>
+                                <li>সক্রিয়তা সিরিজ কি?</li>
+                                <li>ফ্যারাডে ধ্রুবক কী?</li>
+                                <li>তড়িৎদ্বার বা ইলোক্ট্রোড কী?</li>
+                                <li>গ্যালভানিক কোষ (ভোল্টার কোষ) কাকে বলে?</li>
+                                <li>ইলেক্ট্রাড পটেনশিয়াল কী?</li>
+                                <li>তড়িৎচালক বল (EMF) কি?</li>
+                                <li>প্রমাণ তড়িৎদ্বার বিভব কি?</li>
+                                <li>অর্ধকোষ কী?</li>
+                                <li>লবন সেতু কী?</li>
+                                <li>নির্দেশক তড়িৎদ্বার কী?</li>
+                                <li>মুখ্য নির্দেশক তড়িৎদ্বার কী?</li>
+                                <li>প্রমান হাইড্রোজেন তড়িৎদ্বার কী?</li>
+                                <li>গৌন কোষ বা সেকেন্ডারী সেল কি?</li>
+                                <li>ফুয়েল সেল কি?</li>
+                            </ol>
+                        </div>
+                    </details>
+
+                    <details class="group bg-white dark:bg-slate-900 border border-gray-200 dark:border-slate-700 rounded-lg shadow-sm">
+                        <summary class="flex justify-between items-center cursor-pointer p-4 font-semibold text-lg hover:bg-gray-50 dark:hover:bg-slate-800 text-slate-800 dark:text-slate-200">
+                            <span>অনুধাবন মূলক</span>
+                            <svg class="accordion-icon w-6 h-6 text-purple-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                        </summary>
+                        <div class="p-4 border-t border-gray-200 dark:border-slate-700 bg-gray-50 dark:bg-slate-800/50">
+                            <ol class="question-list">
+                                <li>এসিড মিশ্রিত পানিকে তড়িৎবিশ্লেষ্য পরিবাহী বলে-কেন?</li>
+                                <li>তড়িৎ বিশ্লেষণ একটি রিডক্স বিক্রিয়া ব্যাখ্যা কর।</li>
+                                <li>তাপমাত্রা বৃদ্ধিতে ইলেক্ট্রনীয় পরিবাহীর পরিবাহিতা হ্রাস পায়-ব্যাখ্যা কর।</li>
+                                <li>সিলভারের তড়িৎ রাসায়নিক তুল্যাঙ্ক $1.118 \times 10^{-3}$ বলতে কী বুঝ?</li>
+                                <li>$NaCl$ একটি তড়িৎবিশ্লেষ্য পরিবাহী-কেন?</li>
+                                <li>গ্যালভানিক কোষে রিডক্স বিক্রিয়া ঘটে-ব্যাখ্যা কর।</li>
+                                <li>কোরাসান একটি তড়িৎ রাসায়নিক প্রক্রিয়া- ব্যাখ্যা কর।</li>
+                                <li>প্রমাণ হাইড্রোজেন গ্যাস তড়িৎদ্বার একটি প্রাইমারি নিদেশক তড়িৎদ্বার-ব্যাখ্যা কর।</li>
+                                <li>ড্যানিয়েল সেলে জিংক বিজারক হিসেবে কাজ করে কেন?</li>
+                                <li>একটি কোষে লবন সেতুর ভূমিকা কী?</li>
+                                <li>হাইড্রোজেন ফুয়েল সেল সবচেয়ে পরিবেশ বান্ধব সেল-কেন?</li>
+                                <li>লেড স্টোরেজ সেল অপেক্ষা LIB বেশি সুবিধাজনক-কেন?</li>
+                                <li>সঞ্চয়ী কোষে চার্জিতকরণের পূর্বে পানি ব্যবহার করা হয় কেন?</li>
+                            </ol>
+                        </div>
+                    </details>
+
+                    <details class="group bg-white dark:bg-slate-900 border border-gray-200 dark:border-slate-700 rounded-lg shadow-sm">
+                        <summary class="flex justify-between items-center cursor-pointer p-4 font-semibold text-lg hover:bg-gray-50 dark:hover:bg-slate-800 text-slate-800 dark:text-slate-200">
+                            <span>উচ্চতর দক্ষতার জন্য গুরুত্বপূর্ণ টপিক</span>
+                            <svg class="accordion-icon w-6 h-6 text-purple-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                        </summary>
+                        <div class="p-4 border-t border-gray-200 dark:border-slate-700 bg-gray-50 dark:bg-slate-800/50">
+                            <ol class="question-list">
+                                <li>ফ্যারাডের সূত্র ও তার গাণিতিক সমস্যা।</li>
+                                <li>তড়িৎ কোষ বিভব ও তার গাণিতিক সমস্যা</li>
+                                <li>নানস্ট সমীকরণ ও তার গাণিতিক সমস্যা</li>
+                                <li>প্রমান হাইড্রোজেন তড়িৎদ্বার।</li>
+                            </ol>
+                        </div>
+                    </details>
+                </div>
+            </section>
+
+            <!-- Chapter 5 -->
+            <section class="bg-white dark:bg-slate-800 rounded-xl shadow-md border border-gray-100 dark:border-slate-700 overflow-hidden">
+                <div class="bg-blue-50 dark:bg-slate-700 border-b border-blue-100 dark:border-slate-600 px-6 py-4">
+                    <h2 class="text-2xl font-bold text-blue-800 dark:text-blue-300">অধ্যায় ৫: অর্থনৈতিক রসায়ন</h2>
+                </div>
+                <div class="p-4 md:p-6 space-y-4">
+                    
+                    <details class="group bg-white dark:bg-slate-900 border border-gray-200 dark:border-slate-700 rounded-lg shadow-sm">
+                        <summary class="flex justify-between items-center cursor-pointer p-4 font-semibold text-lg hover:bg-gray-50 dark:hover:bg-slate-800 text-slate-800 dark:text-slate-200">
+                            <span>জ্ঞানমূলক প্রশ্ন</span>
+                            <svg class="accordion-icon w-6 h-6 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                        </summary>
+                        <div class="p-4 border-t border-gray-200 dark:border-slate-700 bg-gray-50 dark:bg-slate-800/50">
+                            <ol class="question-list">
+                                <li>ন্যানো প্রযুক্তি কি?</li>
+                                <li>ন্যানো কণা কী?</li>
+                                <li>BTU কি?</li>
+                                <li>কুকিং লিকার কি?</li>
+                                <li>ব্লাক লিকার কী?</li>
+                                <li>ETP কি?</li>
+                                <li>ট্যানিং কি?</li>
+                                <li>বোরাক্স এর সংকেত লিখ।</li>
+                                <li>পোর্টল্যান্ড সিমেন্ট কাকে বলে?</li>
+                                <li>ওয়াটার গ্যাস কী?</li>
+                                <li>চামড়ার কিউরিং কি?</li>
+                                <li>প্রডিউসার গ্যাস কাকে বলে?</li>
+                                <li>বিটুমিনাস কয়লা কী?</li>
+                            </ol>
+                        </div>
+                    </details>
+
+                    <details class="group bg-white dark:bg-slate-900 border border-gray-200 dark:border-slate-700 rounded-lg shadow-sm">
+                        <summary class="flex justify-between items-center cursor-pointer p-4 font-semibold text-lg hover:bg-gray-50 dark:hover:bg-slate-800 text-slate-800 dark:text-slate-200">
+                            <span>অনুধাবন মূলক</span>
+                            <svg class="accordion-icon w-6 h-6 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                        </summary>
+                        <div class="p-4 border-t border-gray-200 dark:border-slate-700 bg-gray-50 dark:bg-slate-800/50">
+                            <ol class="question-list">
+                                <li>সিরামিকে গ্লেজিং করা হয় কেন?</li>
+                                <li>শিল্পে ETP ব্যবহার করা হয় কেন?</li>
+                                <li>সিমেন্ট শিল্পে জিপসামের প্রয়োজনীয়তা কী?</li>
+                                <li>মানব দেহে ক্রোমিয়ামের ক্ষতিকর প্রভাব লিখ।</li>
+                                <li>প্রাকৃতিক গ্যাস ব্যবহারের ক্ষেত্রগুলো সংক্ষেপে লিখ।</li>
+                                <li>চামড়ার ট্যানিংএ লবন যুক্ত করা হয় কেন?</li>
+                                <li>পরমাণু ও ন্যানো কনার মধ্যে পার্থক্য লিখ।</li>
+                                <li>কাচ শিল্পে পুন: চক্রায়নের সুবিধাসমূহ বর্ণনা কর।</li>
+                                <li>কাচ প্রস্তুতিতে অ্যানিলিং করা হয় কেন?</li>
+                                <li>সিমেন্ট এর জমাটকরণ বলতে কী বুঝ?</li>
+                                <li>কয়লায় সালফারের উপস্থিতি ক্ষতিকর কেন?</li>
+                                <li>CNT ইস্পাত থেকে বেশি শক্তিশালী-ব্যাখ্যা কর।</li>
+                                <li>চামড়ার ট্যানিং এ মিল্ক অফ লাইম গুরুত্বপূর্ন কেন?</li>
+                            </ol>
+                        </div>
+                    </details>
+
+                    <details class="group bg-white dark:bg-slate-900 border border-gray-200 dark:border-slate-700 rounded-lg shadow-sm">
+                        <summary class="flex justify-between items-center cursor-pointer p-4 font-semibold text-lg hover:bg-gray-50 dark:hover:bg-slate-800 text-slate-800 dark:text-slate-200">
+                            <span>উচ্চতর দক্ষতার জন্য গুরুত্বপূর্ণ টপিক</span>
+                            <svg class="accordion-icon w-6 h-6 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                        </summary>
+                        <div class="p-4 border-t border-gray-200 dark:border-slate-700 bg-gray-50 dark:bg-slate-800/50">
+                            <ol class="question-list">
+                                <li>ইউরিয়া উৎপাদন ও এর ক্ষতিকর প্রভাব</li>
+                                <li>সিমেন্ট উৎপাদন ও এর ক্ষতিকর প্রভাব</li>
+                                <li>চামড়ার ট্যানিং (ক্রোম ট্যানিং) ও এর ক্ষতিকর প্রভাব</li>
+                                <li>পাল্প পেপার প্রস্তুতি ও এর রাসাইক্লিং এর প্রয়োজনীয়তা</li>
+                                <li>টেক্সটাইল শিল্প ও এ শিল্প কর্তৃক পরিবেশ দূষণ রোধ করার উপায়।</li>
+                                <li>ETP এর মূলনীতি লিখ।</li>
+                            </ol>
+                        </div>
+                    </details>
+                </div>
+            </section>
+        </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-gray-300 dark:bg-slate-950 py-6 text-center mt-8 transition-colors duration-300">
+        <p class="text-sm">Prepared for students by <strong>Atikunnahar Mitu</strong> | Mohammadpur Preparatory School and College</p>
+        <p class="text-xs mt-2 text-gray-500">Document generated and optimized for HSC Exam Preparation</p>
+    </footer>
+
+    <!-- Scripts at the bottom to ensure they run before MathJax parsing (if async completes later) or explicitly trigger it -->
+    <script>
+        // Tab switching logic
+        function switchTab(tabId) {
+            // Hide all tabs & score sections
+            document.getElementById('paper1').classList.add('hidden');
+            document.getElementById('paper2').classList.add('hidden');
+            document.getElementById('p1-score-container').classList.add('hidden');
+            document.getElementById('p2-score-container').classList.add('hidden');
+            
+            // Show selected tab & score section
+            document.getElementById(tabId).classList.remove('hidden');
+            document.getElementById(tabId === 'paper1' ? 'p1-score-container' : 'p2-score-container').classList.remove('hidden');
+            
+            // Toggle button styles
+            const btn1 = document.getElementById('btn-paper1');
+            const btn2 = document.getElementById('btn-paper2');
+            
+            const inactiveClass = 'px-6 py-2 rounded-full font-bold text-sm md:text-lg transition-all text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400';
+            const activeClass = 'px-6 py-2 rounded-full font-bold text-sm md:text-lg transition-all bg-blue-600 text-white shadow-md dark:bg-blue-500';
+            
+            btn1.className = tabId === 'paper1' ? activeClass : inactiveClass;
+            btn2.className = tabId === 'paper2' ? activeClass : inactiveClass;
+        }
+
+        // Dark mode logic
+        function toggleDarkMode() {
+            document.documentElement.classList.toggle('dark');
+            const isDark = document.documentElement.classList.contains('dark');
+            localStorage.setItem('theme', isDark ? 'dark' : 'light');
+        }
+
+        if (localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+        }
+
+        // Checklist, Progress & LocalStorage Logic
+        function hashCode(str) {
+            let hash = 0;
+            for (let i = 0, len = str.length; i < len; i++) {
+                let chr = str.charCodeAt(i);
+                hash = (hash << 5) - hash + chr;
+                hash |= 0; 
+            }
+            return 'q_' + Math.abs(hash).toString(36);
+        }
+
+        const progressData = JSON.parse(localStorage.getItem('hsc_chem_progress') || '{}');
+
+        function updateScores() {
+            // Calculate Paper 1 Score
+            const p1Checkboxes = document.querySelectorAll('#paper1 .checklist-item');
+            const p1Total = p1Checkboxes.length;
+            const p1Checked = Array.from(p1Checkboxes).filter(cb => cb.checked).length;
+            
+            document.getElementById('p1-score').innerText = `${p1Checked} / ${p1Total}`;
+            document.getElementById('p1-progress-bar').style.width = p1Total ? (p1Checked / p1Total * 100) + '%' : '0%';
+
+            // Calculate Paper 2 Score
+            const p2Checkboxes = document.querySelectorAll('#paper2 .checklist-item');
+            const p2Total = p2Checkboxes.length;
+            const p2Checked = Array.from(p2Checkboxes).filter(cb => cb.checked).length;
+            
+            document.getElementById('p2-score').innerText = `${p2Checked} / ${p2Total}`;
+            document.getElementById('p2-progress-bar').style.width = p2Total ? (p2Checked / p2Total * 100) + '%' : '0%';
+        }
+
+        let resetClicks = 0;
+        function handleReset() {
+            const btn = document.getElementById('reset-btn');
+            if (resetClicks === 0) {
+                btn.innerHTML = "আপনি কি নিশ্চিত? (Click again to confirm)";
+                btn.classList.add('text-red-600', 'dark:text-red-500', 'font-bold');
+                btn.classList.remove('text-gray-500');
+                resetClicks++;
+                
+                setTimeout(() => {
+                    resetClicks = 0;
+                    btn.innerHTML = `<svg class="w-3 h-3 inline-block mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path></svg>প্রস্তুতি রিসেট করুন`;
+                    btn.classList.remove('text-red-600', 'dark:text-red-500', 'font-bold');
+                    btn.classList.add('text-gray-500');
+                }, 3000); // 3 sec timer to cancel reset state
+            } else {
+                localStorage.removeItem('hsc_chem_progress');
+                location.reload();
+            }
+        }
+
+        // Initialize Checklists
+        document.querySelectorAll('.question-list li, .nested-list li').forEach(li => {
+            const contentHTML = li.innerHTML;
+            const textForHash = li.textContent.trim();
+            if(!textForHash) return; // Ignore empty LIs
+            
+            const id = hashCode(textForHash);
+            
+            // Check previous state
+            const isChecked = progressData[id] === true;
+            const styleClasses = isChecked ? 'line-through text-gray-400 dark:text-gray-500' : 'text-slate-800 dark:text-slate-200';
+            
+            // Create custom structure inside li
+            li.innerHTML = `
+                <label class="inline-flex items-start gap-3 w-full cursor-pointer group">
+                    <input type="checkbox" id="${id}" ${isChecked ? 'checked' : ''} class="checklist-item mt-1 w-5 h-5 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-slate-800 focus:ring-2 dark:bg-slate-700 dark:border-slate-500 cursor-pointer transition-colors duration-200">
+                    <span class="content-wrapper flex-1 transition-all duration-200 ${styleClasses}">
+                        ${contentHTML}
+                    </span>
+                </label>
+            `;
+            
+            // Add interaction event
+            const cb = li.querySelector('input');
+            cb.addEventListener('change', function() {
+                progressData[id] = this.checked;
+                localStorage.setItem('hsc_chem_progress', JSON.stringify(progressData));
+                
+                const wrapper = this.nextElementSibling;
+                if (this.checked) {
+                    wrapper.classList.add('line-through', 'text-gray-400', 'dark:text-gray-500');
+                    wrapper.classList.remove('text-slate-800', 'dark:text-slate-200');
+                } else {
+                    wrapper.classList.remove('line-through', 'text-gray-400', 'dark:text-gray-500');
+                    wrapper.classList.add('text-slate-800', 'dark:text-slate-200');
+                }
+                updateScores();
+            });
+        });
+        
+        // Initial Score update after DOM manipulation
+        updateScores();
+
+        // Finally, tell MathJax to render equations now that our DOM structures are built.
+        window.onload = function() {
+            if (window.MathJax) {
+                MathJax.typesetPromise();
+            }
+        };
+    </script>
+</body>
+</html>
+
+
+
