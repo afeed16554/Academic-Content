@@ -174,7 +174,12 @@
         </div>
 
         <!-- Controls Top Right -->
-        <div class="fixed top-4 right-4 z-50">
+        <div class="fixed top-4 right-4 z-50 flex items-center gap-3">
+            <!-- Install PWA Button (Hidden by default, shows on Android/Chrome) -->
+            <button id="install-btn" class="hidden px-4 py-2 rounded-full backdrop-blur-md transition-all duration-300 border border-blue-500/30 shadow-[0_8px_20px_rgba(37,99,235,0.25)] bg-blue-600/90 hover:bg-blue-600 text-white font-bold text-sm flex items-center gap-2 animate-fade-in" aria-label="Install App">
+                <i data-lucide="download" class="w-4 h-4"></i> অ্যাপ ইনস্টল
+            </button>
+            
             <!-- Dark Mode Toggle -->
             <button onclick="toggleDarkMode()" class="p-2.5 rounded-full backdrop-blur-md transition-all duration-300 border border-white/80 shadow-[0_8px_20px_rgba(0,0,0,0.15)] bg-white/80 hover:bg-white text-blue-700 hover:scale-110 flex items-center justify-center" aria-label="Toggle Dark Mode">
                 <i data-lucide="moon" class="w-5 h-5 hidden dark:block text-yellow-500"></i>
@@ -1529,6 +1534,75 @@
                 MathJax.typesetPromise();
             }
         });
+
+        // ==========================================
+        // PWA Installation Logic (App Install)
+        // ==========================================
+        
+        // 1. Generate dynamic Web App Manifest
+        const appIconSVG = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><rect width="512" height="512" fill="#2563EB" rx="100"/><path fill="none" stroke="#FFF" stroke-linecap="round" stroke-linejoin="round" stroke-width="32" d="M176 416h160M160 384l64-160V112M288 112v112l64 160M208 112h96M224 256h64M160 384c0 17.67 14.33 32 32 32h128c17.67 0 32-14.33 32-32V368c0-15.02-8.35-28.57-21.73-35.26L288 232.7V112c0-8.84-7.16-16-16-16h-32c-8.84 0-16 7.16-16 16v120.7L171.73 332.74C158.35 339.43 150 352.98 150 368v16z"/></svg>`;
+        const iconDataURI = 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(appIconSVG);
+
+        const manifest = {
+            name: "HSC Chemistry Prep",
+            short_name: "Chem Prep",
+            start_url: window.location.href,
+            display: "standalone",
+            background_color: "#F5F7FB",
+            theme_color: "#2563EB",
+            icons: [{ src: iconDataURI, sizes: "512x512", type: "image/svg+xml", purpose: "any maskable" }]
+        };
+        
+        const manifestBlob = new Blob([JSON.stringify(manifest)], { type: 'application/json' });
+        const manifestURL = URL.createObjectURL(manifestBlob);
+        document.head.insertAdjacentHTML('beforeend', `<link rel="manifest" href="${manifestURL}">`);
+
+        // 2. Generate and Register Service Worker (Required for PWA installability)
+        const swCode = `
+            self.addEventListener('install', e => self.skipWaiting());
+            self.addEventListener('activate', e => self.clients.claim());
+            self.addEventListener('fetch', e => {
+                e.respondWith(fetch(e.request).catch(() => new Response('Offline mode ready.')));
+            });
+        `;
+        const swBlob = new Blob([swCode], { type: 'application/javascript' });
+        const swURL = URL.createObjectURL(swBlob);
+        
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register(swURL).catch(err => console.log('SW Registration failed:', err));
+        }
+
+        // 3. Handle Install Prompt
+        let deferredPrompt;
+        const installBtn = document.getElementById('install-btn');
+
+        window.addEventListener('beforeinstallprompt', (e) => {
+            // Prevent the mini-infobar from appearing on mobile
+            e.preventDefault();
+            // Stash the event so it can be triggered later
+            deferredPrompt = e;
+            // Update UI notify the user they can install the PWA
+            installBtn.classList.remove('hidden');
+        });
+
+        installBtn.addEventListener('click', async () => {
+            if (deferredPrompt) {
+                // Show the install prompt
+                deferredPrompt.prompt();
+                // Wait for the user to respond to the prompt
+                const { outcome } = await deferredPrompt.userChoice;
+                if (outcome === 'accepted') {
+                    installBtn.classList.add('hidden'); // Hide button if installed
+                }
+                deferredPrompt = null;
+            }
+        });
+
+        window.addEventListener('appinstalled', () => {
+            installBtn.classList.add('hidden');
+            console.log('PWA was installed');
+        });
+
     </script>
 </body>
 </html>
